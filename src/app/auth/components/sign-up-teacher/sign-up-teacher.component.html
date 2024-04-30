@@ -1,0 +1,141 @@
+<div class="flex-column-frame">
+    <div class="alert-container">
+      <div class="alert-body alert-bg-error" role="alert" *ngIf="isSignUpTeacherFailed">
+        <span class="alert-icon-container">
+          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <use xlink:href="assets/icons.svg#error-icon"></use>
+          </svg>
+        </span>
+        <span class="alert-text">{{ errorMessage }}</span>
+        <span class="alert-button-container" (click)="closeErrorAlert()">
+          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <use xlink:href="assets/icons.svg#close-icon"></use>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="sign-up-teacher-form">
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <div class="title-input">
+          <h3 class="title-text">Sign up teacher</h3>
+          <div class="field-container">
+            <div>
+              <label for="firstname" class="label">Firstname</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['firstname'].invalid && (form.controls['firstname'].dirty || form.controls['firstname'].touched)}">
+              <input class="field-text" id="firstname" name="firstname" type="firstname" autocomplete="firstname" formControlName="firstname">
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="lastname" class="label">Lastname</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['lastname'].invalid && (form.controls['lastname'].dirty || form.controls['lastname'].touched)}">
+              <input class="field-text" id="lastname" name="lastname" type="lastname" autocomplete="lastname" formControlName="lastname">
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="email" class="label">E-mail</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)}">
+              <input class="field-text" id="email" name="email" type="email" autocomplete="email" formControlName="email">
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
+              <div *ngIf="form.controls['email'].errors?.['required']" class="label text-red">
+                Enter a valid email.
+              </div>
+              <div *ngIf="form.controls['email'].errors?.['pattern']" class="label text-red">
+                Email is not valid.
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="password" class="label">Password</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)}">
+              <input class="field-text" id="password" name="password" type="password" placeholder="Password" show-password [show]="showPassword" formControlName="password">
+              <div class="input-icon-container">
+                <svg class="input-icon" (click)="togglePassword()"
+                  [ngClass]="{'hidden': !showPassword, 'block':showPassword }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <use xlink:href="assets/icons.svg#eye-icon"></use>
+                </svg>
+                <svg class="input-icon" (click)="togglePassword()"
+                  [ngClass]="{'block': !showPassword, 'hidden':showPassword }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                  <use xlink:href="assets/icons.svg#crossed-out-eye-icon"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)">
+  
+              <div *ngIf="form.controls['password'].errors?.['required']" class="label text-red">
+                Enter a valid password.
+              </div>
+              <div *ngIf="form.controls['password'].errors?.['minlength']" class="label text-red">
+                Password should contain at least 8 symbols.
+              </div>
+              <div *ngIf="form.controls['password'].errors?.['uppercase']" class="label text-red">
+                Password should contain at least one uppercase letter.
+              </div>
+              <div *ngIf="form.controls['password'].errors?.['lowercase']" class="label text-red">
+                Password should contain at least one lowercase letter.
+              </div>
+              <div *ngIf="form.controls['password'].errors?.['number']" class="label text-red">
+                Password should contain at least one digit.
+              </div>
+              <div *ngIf="form.controls['password'].errors?.['nospaces']" class="label text-red">
+                Password shouldn't contain spaces.
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="passwordConfirm" class="label">Repeat password</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['passwordConfirm'].invalid && (form.controls['passwordConfirm'].dirty || form.controls['passwordConfirm'].touched)}">
+              <input class="field-text" id="passwordConfirm" name="passwordConfirm" type="password" placeholder="Password" show-password [show]="showPasswordConfirm" formControlName="passwordConfirm">
+              <div class="input-icon-container">
+                <svg class="input-icon" (click)="togglePasswordConfirm()"
+                  [ngClass]="{'hidden': !showPasswordConfirm, 'block':showPasswordConfirm }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <use xlink:href="assets/icons.svg#eye-icon"></use>
+                </svg>
+                <svg class="input-icon" fill="none" (click)="togglePasswordConfirm()"
+                  [ngClass]="{'block': !showPasswordConfirm, 'hidden':showPasswordConfirm }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                  <use xlink:href="assets/icons.svg#crossed-out-eye-icon"></use>
+                </svg>
+              </div>
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['passwordConfirm'].invalid && (form.controls['passwordConfirm'].dirty || form.controls['passwordConfirm'].touched)">
+              <div *ngIf="form.controls['passwordConfirm'].errors?.['required']" class="label text-red">
+                Enter a valid password.
+              </div>
+              <div *ngIf="form.controls['passwordConfirm'].errors?.['matching']" class="label text-red">
+                Passwords don't match.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
+            <h3 class="link-text text-white">Sign up</h3>
+          </button>
+          <button class="button-white" (click)="goBack($event)">
+            <h3 class="link-text text-blue">Back</h3>
+          </button>
+        </div>
+      </form>
+    </div>
+</div> 
