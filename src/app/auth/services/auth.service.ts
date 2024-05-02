@@ -79,4 +79,38 @@ export class AuthService {
       { params }
     );
   }
+
+  forgotPassword(email: string): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/password/forgot',
+      params,
+      { observe: 'response' }
+    );
+  }
+
+  checkToken(token:string): Observable<any> {
+    const params = new HttpParams().set('token', token);
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/password/check-token',
+      params,
+      { responseType: 'json' }
+    );
+  }
+
+  changePassword(newPassword: string, newPasswordConfirm: string, token: string): Observable<any> {
+    const Options = {
+      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token}),
+      params: new HttpParams().set('token', token),
+      responseType: 'json' as 'json'
+    };
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/password/change',
+      {
+        newPassword,
+        newPasswordConfirm,
+      },
+      Options
+    );
+  }
 }
