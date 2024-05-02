@@ -1,0 +1,58 @@
+<div class="flex-column-frame">
+    <div class="alert-container">
+      <div class="alert-body alert-bg-success" role="alert" *ngIf="isEmailConfirmed">
+        <span class="alert-icon-container">
+          <svg class="alert-icon icon-success-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <use xlink:href="assets/icons.svg#success-icon"></use>
+          </svg>
+        </span>
+        <span class="alert-text">Your email was successfully confirmed.</span>
+        <span class="alert-button-container" (click)="closeSuccessAlert()">
+          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <use xlink:href="assets/icons.svg#close-icon"></use>
+          </svg>
+        </span>
+      </div>
+      <div class="alert-body alert-bg-error" role="alert" *ngIf="!isEmailSent">
+        <span class="alert-icon-container">
+          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <use xlink:href="assets/icons.svg#error-icon"></use>
+          </svg>
+        </span>
+        <span class="alert-text">{{ errorMessage }}</span>
+        <span class="alert-button-container" (click)="closeErrorAlert()">
+          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <use xlink:href="assets/icons.svg#close-icon"></use>
+          </svg>
+        </span>
+      </div>
+    </div>
+  
+    <div class="check-mail-form">
+      <div class="logo">
+        <div class="logo-text-container">
+          <span class="logo-text-title">SCHOOL-APP</span>
+          <span class="logo-text-descriptor">Marks, lessons</span>
+        </div>
+      </div>
+  
+      <div class="title-text-container text-container">
+        <h3 class="title-text">Check your email</h3>
+        <div class="text-container regular-text">We've sent password reset instructions to:
+          {{email}}
+        </div>
+        <div class="link-text-container">
+          <span class="regular-text">If it doesn't arrive soon, check your spam folder or
+            <button (click)="sendChangePasswordMail()" class="link-text" type="button">
+              send the email again
+            </button>
+          </span>
+        </div>
+        <div class="button-container">
+          <button routerLink="/log-in" class="button-white">
+            <h3 class="link-text text-blue">Back to log in</h3>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
