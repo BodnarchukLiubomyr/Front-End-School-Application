@@ -1,0 +1,7 @@
+export * from './components/main-part/main-part.component'
+export * from './components/navbar/navbar.component'
+export * from './components/create-class/create-class.component'
+export * from './components/add-user-to-class/add-user-to-class.component'
+export * from './components/find-class/find-class.component'
+export * from './components/get-class/get-class.component'
+export * from './components/get-class-students/get-class-students.component'

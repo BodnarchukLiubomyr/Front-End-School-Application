@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const USER_KEY = 'auth-user';
+const CLASS_NAME_KEY = 'className';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,14 @@ export class StorageService {
     }
 
     return false;
+  }
+
+  public saveClassName(className: any): void {
+    window.localStorage.removeItem(CLASS_NAME_KEY);
+    window.localStorage.setItem(CLASS_NAME_KEY, JSON.stringify(className));
+  }
+
+  public getClassName(): any {
+    return window.localStorage.getItem(CLASS_NAME_KEY);
   }
 }
