@@ -1,5 +1,4 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfigService, PathNotFoundComponent } from './shared';
@@ -8,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
+import { MainFuncModule } from './main-func/main-func.module';
+import { MaterialModule } from './material.module';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 const appInitializerFn = (appConfig: ConfigService) => {
   return () => {
@@ -24,9 +26,11 @@ const appInitializerFn = (appConfig: ConfigService) => {
     BrowserModule,
     BrowserAnimationsModule,
     AuthModule,
+    MainFuncModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   providers: [
     ConfigService,
@@ -36,6 +40,11 @@ const appInitializerFn = (appConfig: ConfigService) => {
       multi: true,
       deps: [ConfigService]
     },
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+    { provide: MAT_DIALOG_DATA, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

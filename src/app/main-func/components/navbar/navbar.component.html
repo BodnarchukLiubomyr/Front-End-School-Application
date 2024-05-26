@@ -1,0 +1,34 @@
+<nav class="header">
+  <a class="logo" routerLink="/main-part">
+    <span class="logo-text-container">
+      <div class="logo-text-big">School-App</div>
+      <div class="logo-text-small">Education</div>
+    </span>
+  </a>
+  <div class="content">
+    <div class="menu">
+      <ng-container *ngIf="isTeacher()" class="teacher-links">
+        <a routerLink="/create-exercise">Create Exercise</a>
+      </ng-container>
+    </div>
+
+    <div *ngIf="isLoggedIn()" class="dropdown">
+      <div class="dropdown-items-container">
+        <button type="button" id="user-menu-button" (click)="toggleMenu()">
+          <div class="account-icons-container">
+            <svg class="account-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="assets/icons.svg#account-icon"></use>
+            </svg>
+            <svg class="menu-down-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <use xlink:href="assets/icons.svg#menu-down-icon"></use>
+            </svg>
+          </div>
+        </button>
+        </div>
+        <div class="dropdown-menu" [ngClass]="{'hidden': !showMenu, 'block': showMenu}">
+          <a class="dropdown-menu-section section-text" id="user-menu-item-0"><strong>{{email}}</strong></a>
+          <a (click)="onSignOut()" class="dropdown-menu-section section-text" id="user-menu-item-2">Sign out</a>
+        </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,33 @@
+<div *ngIf="schoolClass && schoolClass.length > 0; else noSchoolClass">
+    <p>{{schoolClass.name}}</p>
+    <h2>School class users</h2>
+    <button routerLink="/main-part" class="button-white">
+      <h3 class="link-text text-blue">Back</h3>
+    </button>
+    <div class="excel-container">
+      <table class="excel-table">
+      <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr *ngFor="let user of schoolClass">
+              <td>{{ user.lastname }}</td>
+              <td>{{ user.firstname }}</td>
+              <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <ng-template #noSchoolClass>
+    <p>No class users available.</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>
