@@ -13,6 +13,8 @@ export class NavbarComponent implements OnDestroy{
   showMenu: Boolean = false;
   email: string = this.storageService.getUser().email;
   userId: string = this.storageService.getUser().id;
+  firstname: string = this.storageService.getUser().firstname;
+  lastname: string = this.storageService.getUser().lastname;
   errorMessage = '';
   private subscription: Subscription;
 

@@ -1,0 +1,17 @@
+<div *ngIf="subjects && subjects.length > 0; else noSubjects">
+    <div class="subject-row">
+      <div *ngFor="let subject of subjects" class="subject-card">
+        <h3>{{ subject.name }}</h3>
+        <p>Teacher: {{ subject.teacherLastname }} {{ subject.teacherFirstname }}</p>
+        <button class="button" [routerLink]="['/subject-view', subject.id]">Go to Subject View</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noSubjects>
+    <p>No subjects available.</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

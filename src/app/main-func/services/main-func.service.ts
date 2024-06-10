@@ -70,4 +70,54 @@ export class MainFuncService {
       { observe: 'response' }
     );
   }
+
+  createSubject(subjectName: string, email: string, className: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-subject',
+      {
+        subjectName,
+        email,
+        className
+      },
+      httpOptions
+    );
+  }
+
+  getSubjects(userId: string, token: string): Observable<any> {
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-subjects/'+userId,
+      {
+        headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }),
+        responseType: 'json'
+      }
+    );
+  }
+
+  createExercise(name:string,description: string, date: string, className: string, subjectName: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-exercise',
+      {
+        name,
+        description,
+        date,
+        className,
+        subjectName
+      },
+      httpOptions
+    );
+  }
+
+  getExercises(subjectId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-exercises/'+subjectId,
+      { responseType: 'json' }
+    )
+  }
+
+  deleteExercise(exerciseName:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-exercise/'+ exerciseName,
+      {responseType:'json'}
+    )
+  }
 }

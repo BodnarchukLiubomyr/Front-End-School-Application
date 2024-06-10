@@ -1,0 +1,124 @@
+.create-exercise-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 35px;
+  gap: 32px;
+  width: 640px;
+  height: 500px; 
+  background: #FFFFFF;
+  box-shadow: 0px 3px 12px rgba(29, 30, 38, 0.1), 0px 6px 18px rgba(29, 30, 38, 0.1);
+}
+
+.title-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 18px;
+
+  position: relative;
+}
+
+.row {
+  display: flex;
+  gap: 32px;
+}
+
+.column {
+  flex: 1;
+}
+
+.field-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
+  width: 270px; 
+}
+
+.label {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #474A59;
+}
+
+.text-red {
+  color: #E54322;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%; 
+  height: 42px;
+  border: 1px solid #ACAFBF;
+}
+
+.field:focus-within {
+  border: 1px solid #008ACE;
+}
+
+.border-error {
+  border: 1px solid #E54322;
+}
+
+.field-text {
+  flex: 1; 
+  height: 100%; 
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  padding: 9px 6px 9px 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  outline: none;
+  color: #303240;
+}
+
+.error-label-container {
+  display: flex;
+  flex-direction: column; 
+  gap: 4px; 
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto 0; 
+}
+
+.button, .button-white {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 24px;
+  gap: 10px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.button {
+  background: #9400D3;
+}
+
+.button-white {
+  border: 2px solid #008ACE;
+  background: #f4f7f8;
+}
+
+.button.disabled {
+  background: #b3b2b2;
+  cursor: not-allowed;
+}
+
+.link-text {
+  color: #FFFFFF;
+}
+
+.text-blue {
+  color: #008ACE;
+}

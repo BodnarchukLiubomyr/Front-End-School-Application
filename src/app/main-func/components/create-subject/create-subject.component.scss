@@ -1,13 +1,18 @@
-.sign-up-teacher-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 35px;
-  gap: 32px;
-  width: 640px;
-  height: 500px; 
-  background: #FFFFFF;
-  box-shadow: 0px 3px 12px rgba(29, 30, 38, 0.1), 0px 6px 18px rgba(29, 30, 38, 0.1);
+.create-subject-form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 35px 35px;
+    gap: 32px;
+  
+    position: relative;
+    width: 340.25px;
+    height: 480px;
+  
+    background: #FFFFFF;
+  
+    box-shadow: 0px 3px 12px rgba(29, 30, 38, 0.1), 0px 6px 18px rgba(29, 30, 38, 0.1);
   }
   
   .title-input {
@@ -18,30 +23,30 @@
     gap: 18px;
   
     position: relative;
-  }
-
-  .row {
-    display: flex;
-    gap: 32px;
-  }
-  
-  .column {
-    flex: 1;
+    width: 270.25px;
+    height: 435px;
   }
   
   .field-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1px;
+  
     width: 270px;
+    height: 78px;
   }
   
   .label {
+    height: 18px;
+  
     font-family: 'Source Sans 3';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+  
     color: #474A59;
   }
   
@@ -50,11 +55,17 @@
   }
   
   .field {
+    box-sizing: border-box;
+  
     display: flex;
+    flex-direction: row;
     align-items: center;
+    padding: 9px 6px 9px 12px;
     gap: 12px;
-    width: 100%;
+  
+    width: 270px;
     height: 42px;
+  
     border: 1px solid #ACAFBF;
   }
   
@@ -67,15 +78,16 @@
   }
   
   .field-text {
-    flex: 1; 
-    height: 100%; 
+    width: 216px;
+    height: 24px;
+  
     font-family: 'Source Sans 3';
     font-style: normal;
-    padding: 9px 6px 9px 12px;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     outline: none;
+  
     color: #303240;
   }
   
@@ -97,8 +109,12 @@
   
   .error-label-container {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+  
+    width: 270px;
+    height: 18px;
   }
   
   .error-label-container .label:not(:first-child) {
@@ -107,27 +123,38 @@
   
   .button-container {
     display: flex;
+    flex-direction: column;
+    padding-top: 25px;
     gap: 10px;
-    margin: 20px auto 0;
+    margin: 0 auto;
   }
   
-  .button, .button-white {
+  .button {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px;
+    gap: 10px;
+  
+    width: 100%;
+  
+    background: #9400D3;
+    border-radius: 3px;
+  }
+  
+  .button-white {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 9px 24px;
     gap: 10px;
     width: 100%;
-    border-radius: 3px;
-  }
-  
-  .button {
-    background: #9400D3;
-  }
-  
-  .button-white {
-    border: 2px solid #008ACE;
+    border-color: #008ACE;
+    border-width: 2px;
     background: #f4f7f8;
+    border-radius: 3px;
   }
   
   .button.disabled {
