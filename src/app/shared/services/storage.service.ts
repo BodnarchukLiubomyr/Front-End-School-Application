@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const USER_KEY = 'auth-user';
 const CLASS_NAME_KEY = 'className';
+const EXERCISE_KEY = "exercise";
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,19 @@ export class StorageService {
 
   public getClassName(): any {
     return window.localStorage.getItem(CLASS_NAME_KEY);
+  }
+
+  public saveExercise(exercise: any): void {
+    window.localStorage.removeItem(EXERCISE_KEY);
+    window.localStorage.setItem(EXERCISE_KEY, JSON.stringify(exercise));
+  }
+
+  public getExercise(): any {
+    const exercise = window.localStorage.getItem(EXERCISE_KEY);
+    if (exercise) {
+      return JSON.parse(exercise);
+    }
+
+    return {};
   }
 }

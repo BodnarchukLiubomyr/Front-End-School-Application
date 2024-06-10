@@ -67,6 +67,10 @@ export class MainPartComponent implements OnInit{
     this.router.navigate(['find-class'])
   }
 
+  navigateToCreateSubject(): void {
+    this.router.navigate(['create-subject']);
+  }
+
   transferUsers(): void {
       this.subscription = this.mainFuncService.transferUsersToNextClass()
       .subscribe({

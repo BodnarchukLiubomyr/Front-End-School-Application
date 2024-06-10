@@ -6,10 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   AddUserToClassComponent,
   CreateClassComponent,
+  CreateExerciseComponent,
+  CreateSubjectComponent,
+  DeleteExerciseComponent,
   FindClassComponent,
   GetClassComponent,
   GetClassStudentsComponent,
   MainPartComponent,
+  SubjectViewComponent,
+  SubjectsComponent,
   NavbarComponent
 } from "./index"
 
@@ -17,10 +22,15 @@ import {
   declarations: [
     AddUserToClassComponent,
     CreateClassComponent,
+    CreateExerciseComponent,
+    CreateSubjectComponent,
+    DeleteExerciseComponent,
     FindClassComponent,
     GetClassComponent,
     GetClassStudentsComponent,
     MainPartComponent,
+    SubjectViewComponent,
+    SubjectsComponent,
     NavbarComponent
   ],
   imports: [

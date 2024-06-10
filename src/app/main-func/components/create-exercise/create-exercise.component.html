@@ -1,0 +1,145 @@
+<div class="flex-column-frame">
+  <div class="alert-container">
+    <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateExerciseFailed">
+      <span class="alert-icon-container">
+        <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <use xlink:href="assets/icons.svg#error-icon"></use>
+        </svg>
+      </span>
+      <span class="alert-text">{{ errorMessage }}</span>
+      <span class="alert-button-container" (click)="closeErrorAlert()">
+        <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <use xlink:href="assets/icons.svg#close-icon"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+  <div class="create-exercise-form">
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+      <div class="title-input">
+        <h3 class="title-text">Create exercise</h3>
+        <div class="row">
+          <div class="column">
+            <div class="field-container">
+                <div>
+                  <label for="name" class="label">Name of exercise</label>
+                  <label for="password" class="label text-red">*</label>
+                </div>
+                <div class="field"
+                  [ngClass]="{'border-error': form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)}">
+                  <input class="field-text" id="name" name="name" type="name" autocomplete="name" formControlName="name">
+                </div>
+                <div class="error-label-container"
+                  *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+                  <div *ngIf="form.controls['name'].errors?.['required']" class="label text-red">
+                    Enter a valid name.
+                  </div>
+                  <div *ngIf="form.controls['name'].errors?.['pattern']" class="label text-red">
+                    Name is not valid.
+                  </div>
+                  <div *ngIf="form.controls['name'].errors?.['maxlength']" class="label text-red">
+                    Name should contain at most 60 symbols.
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="column">
+            <div class="field-container">
+              <div>
+                <label for="date" class="label">Execution date</label>
+                <label for="password" class="label text-red">*</label>
+              </div>
+              <div class="field"
+                [ngClass]="{'border-error': form.controls['date'].invalid && (form.controls['date'].dirty || form.controls['date'].touched)}">
+                <input class="field-text" id="date" name="date" type="date" autocomplete="date" formControlName="date">
+              </div>
+              <div class="error-label-container"
+                *ngIf="form.controls['date'].invalid && (form.controls['date'].dirty || form.controls['date'].touched)">
+                <div *ngIf="form.controls['date'].errors?.['required']" class="label text-red">
+                  Enter a valid date.
+                </div>
+                <div *ngIf="form.controls['date'].errors?.['pattern']" class="label text-red">
+                  Date is not valid.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">
+            <div class="field-container">
+              <div>
+                <label for="className" class="label">Class name</label>
+                <label for="password" class="label text-red">*</label>
+              </div>
+              <div class="field"
+                [ngClass]="{'border-error': form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)}">
+                <input class="field-text" id="className" name="className" type="className" autocomplete="className" formControlName="className">
+              </div>
+              <div class="error-label-container"
+                *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
+                <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
+                  Enter a valid class name.
+                </div>
+                <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
+                  Class name is not valid.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">  
+            <div class="field-container">
+              <div>
+                <label for="subjectName" class="label">Subject name</label>
+                <label for="password" class="label text-red">*</label>
+              </div>
+              <div class="field"
+                [ngClass]="{'border-error': form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)}">
+                <input class="field-text" id="subjectName" name="subjectName" type="subjectName" autocomplete="subjectName" formControlName="subjectName">
+              </div>
+              <div class="error-label-container"
+                *ngIf="form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)">
+                <div *ngIf="form.controls['subjectName'].errors?.['required']" class="label text-red">
+                  Enter a valid subject name.
+                </div>
+                <div *ngIf="form.controls['subjectName'].errors?.['pattern']" class="label text-red">
+                  Class name is not valid.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+        <div class="field-container">
+          <div>
+            <label for="description" class="label">Exercise</label>
+            <label for="password" class="label text-red">*</label>
+          </div>
+          <div class="field"
+            [ngClass]="{'border-error': form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)}">
+            <input class="field-text" id="description" name="description" type="description" autocomplete="description" formControlName="description">
+          </div>
+          <div class="error-label-container"
+            *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+            <div *ngIf="form.controls['description'].errors?.['required']" class="label text-red">
+              Enter a valid description.
+            </div>
+            <div *ngIf="form.controls['description'].errors?.['pattern']" class="label text-red">
+              Description is not valid.
+            </div>
+            <div *ngIf="form.controls['description'].errors?.['maxlength']" class="label text-red">
+              Description should contain at most 300 symbols.
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
+            <h3 class="link-text text-white">Create</h3>
+          </button>
+          <button class="button-white" (click)="goBack($event)">
+            <h3 class="link-text text-blue">Back</h3>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

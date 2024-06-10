@@ -26,7 +26,7 @@
         </button>
         </div>
         <div class="dropdown-menu" [ngClass]="{'hidden': !showMenu, 'block': showMenu}">
-          <a class="dropdown-menu-section section-text" id="user-menu-item-0"><strong>{{email}}</strong></a>
+          <a class="dropdown-menu-section section-text" id="user-menu-item-0"><strong>{{lastname}} {{firstname}}</strong></a>
           <a (click)="onSignOut()" class="dropdown-menu-section section-text" id="user-menu-item-2">Sign out</a>
         </div>
     </div>

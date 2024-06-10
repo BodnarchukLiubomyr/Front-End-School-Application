@@ -3,6 +3,7 @@
 <div class="title-layout" *ngIf="!isAdmin()">
   <h3 class="title-layout-text-holder" style="font-size: 24px;">My subjects</h3>
 </div>
+<app-subjects *ngIf="!isAdmin()"></app-subjects>
 
 <div class="center-container" *ngIf="isAdmin()">
   <div class="button-container">
@@ -16,12 +17,14 @@
       <button class="button" (click)="navigateToFindClass()" *ngIf="isAdmin()">Find class</button>
       <!-- <div class="button-separator"></div>
       <button class="button" (click)="transferUsers()" *ngIf="isAdmin()">Transfer students to next classes</button> -->
+      <div class="button-separator"></div>
+      <button class="button" (click)="navigateToCreateSubject()" *ngIf="isAdmin">Create subject</button>
     </div>
     <div class="row-separator"></div>
     <p class="education-heading">Registration</p>
     <div class="button-row">
       <div class="row-separator"></div>
-      <button class="button" (click)="navigateToSignUpUser()" *ngIf="isAdmin()">Sign-up user</button>
+      <button class="button" (click)="navigateToSignUpUser()" *ngIf="isAdmin()">Sign-up student</button>
       <div class="button-separator"></div>
       <button class="button" (click)="navigateToSignUpTeacher()" *ngIf="isAdmin()">Sign-up teacher</button>
     </div>
