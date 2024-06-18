@@ -1,70 +1,70 @@
 .exercise-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 700px;
-    height: 450px;
-    margin-bottom: 20px;
-  
-    h3 {
-      margin-bottom: 5px;
-    }
-  
-    .exercise-info {
-      float: left;
-      width: 60%;
-    }
-  
-    .buttons {
-      float: right;
-      width: 40%;
-    }
-  }
-  
-  p {
-    color: #777;
-    font-style: italic;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 700px;
+  height: 450px;
+  margin-bottom: 20px;
+
+  h3 {
+    margin-bottom: 5px;
   }
 
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #3CB371;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  .exercise-info {
+    float: left;
+    width: 60%;
   }
-  
-  .button:hover {
-    background-color: #7FFFD4;
-    border-color: #7FFFD4;
-    color: #FFFFFF;
+
+  .buttons {
+    float: right;
+    width: 40%;
   }
-  
-  .delete-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: #FF8C00;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  .delete-button:hover {
-    background-color: #FFA07A;
-    border-color: #FF8C00;
-    color: #FFFFFF;
-  }
-  
-  .button-separator {
-    height: 10px;
-  }
+}
+
+p {
+  color: #777;
+  font-style: italic;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #3CB371;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.button:hover {
+  background-color: #7FFFD4;
+  border-color: #7FFFD4;
+  color: #FFFFFF;
+}
+
+.delete-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  background-color: #FF8C00;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #FFA07A;
+  border-color: #FF8C00;
+  color: #FFFFFF;
+}
+
+.button-separator {
+  height: 10px;
+}

@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { MainFuncModule } from './main-func/main-func.module';
 import { MaterialModule } from './material.module';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const appInitializerFn = (appConfig: ConfigService) => {
   return () => {
@@ -44,7 +45,8 @@ const appInitializerFn = (appConfig: ConfigService) => {
       provide: MatDialogRef,
       useValue: {}
     },
-    { provide: MAT_DIALOG_DATA, useValue: {} }
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

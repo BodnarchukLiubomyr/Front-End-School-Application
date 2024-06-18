@@ -1,3 +1,4 @@
+<button class="button" [routerLink]="['/create-exercise']" *ngIf="isTeacher()">Create Exercise</button>
 <div *ngIf="exercises && exercises.length > 0; else noExercises">
     <div *ngFor="let exercise of exercises" class="exercise-card">
       <h2>Exercise Details</h2>
@@ -5,11 +6,19 @@
         <p>Name of Exercise: {{ exercise.name }}</p>
         <p>Description: {{ exercise.description }}</p>
         <p>Date: {{ exercise.date }}</p>
+        <h2>Educational material</h2>
+        <app-get-teacher-file [exerciseId]="exercise.id"></app-get-teacher-file>
+      </div>
+      <div *ngIf="isStudent()">
+        <app-get-student-file [exerciseId]="exercise.id"></app-get-student-file>
+        <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
       </div>
       <div class="buttons">
+        <button class="button" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">Check students' works</button>
         <div class="button-separator"></div>
         <button class="delete-button" (click)="onDelete(exercise.name)" *ngIf="isTeacher()">Delete exercise</button>
       </div>
+      <app-file-sending [exerciseId]="exercise.id"></app-file-sending>
     </div>
   </div>
   

@@ -43,7 +43,7 @@ export class SubjectViewComponent implements OnInit,OnDestroy{
 
       if (this.subjectId) {
         this.getExercises(this.subjectId);
-        this.loadExercises();
+        // this.loadExercises();
       }
     });
   }
@@ -52,13 +52,13 @@ export class SubjectViewComponent implements OnInit,OnDestroy{
     this.issubjectViewFailed = false;
   }
 
-  loadExercises() {
-    setInterval(() => {
-      if (this.subjectId) {
-        this.getExercises(this.subjectId);
-      }
-    }, 2000);
-  }
+  // loadExercises() {
+  //   setInterval(() => {
+  //     if (this.subjectId) {
+  //       this.getExercises(this.subjectId);
+  //     }
+  //   }, 2000);
+  // }
 
   getExercises(subjectId: string): void {
     this.subscription = this.mainFuncService.getExercises(subjectId)
@@ -93,6 +93,12 @@ export class SubjectViewComponent implements OnInit,OnDestroy{
     return userRole === 'TEACHER';
   }
 
+  isStudent(): boolean {
+    const userRole = this.storageService.getUser().role;
+    console.log("Role:",userRole);
+    return userRole === 'STUDENT';
+  }
+
   showError(message: string): void {
     console.error('Error:', message);
     this.errorMessage = 'Error: ' + message;
@@ -101,4 +107,5 @@ export class SubjectViewComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
 }

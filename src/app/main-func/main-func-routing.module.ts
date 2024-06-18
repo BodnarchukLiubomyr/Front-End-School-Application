@@ -7,12 +7,18 @@ import {
   CreateExerciseComponent,
   CreateSubjectComponent,
   DeleteExerciseComponent,
+  FileMarksComponent,
+  FileSendingComponent,
   FindClassComponent,
   GetClassComponent,
   GetClassStudentsComponent,
+  GetMarkComponent,
+  GetStudentFileComponent,
+  GetTeacherFileComponent,
   MainPartComponent,
   SubjectViewComponent,
   SubjectsComponent,
+  WorkRatingComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -27,6 +33,12 @@ const routes: Routes = [
   { path: 'subject-view/:subjectId', component: SubjectViewComponent},
   { path: 'create-exercise', component: CreateExerciseComponent},
   { path: 'delete-exercise/:exerciseName',component:DeleteExerciseComponent},
+  { path: 'work-rating/:exerciseId',component: WorkRatingComponent},
+  { path: 'file-sending/:userId/:exerciseId', component: FileSendingComponent},
+  { path: 'file-marks/:fileName',component: FileMarksComponent},
+  { path: 'teacher-file/:exerciseId',component: GetTeacherFileComponent},
+  { path: 'get-mark/:userId/:exerciseId',component: GetMarkComponent},
+  { path: 'student-file/:userId/:exerciseId',component: GetStudentFileComponent}
 ];
 
 @NgModule({
