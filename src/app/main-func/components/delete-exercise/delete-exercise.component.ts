@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
 
 @Component({
@@ -13,7 +11,7 @@ export class DeleteExerciseComponent {
   exerciseName = '';
 
   constructor(
-    private mainFuncService: MainFuncService,
+    private mainFuncService:MainFuncService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<DeleteExerciseComponent>)
     {}

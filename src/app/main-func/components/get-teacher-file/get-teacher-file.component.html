@@ -1,0 +1,15 @@
+<div *ngIf="fileWorks && fileWorks.length > 0; else noFileWorks">
+    <ul>
+      <li *ngFor="let fileWork of fileWorks">
+        <a href="javascript:void(0)" (click)="downloadFile(fileWork.fileName)"><strong>{{ fileWork.fileName }}</strong></a>
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noFileWorks>
+    <p>No files available.</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

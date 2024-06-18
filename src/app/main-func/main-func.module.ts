@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainFuncRoutingModule } from './main-func-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../material.module';
 
 import {
   AddUserToClassComponent,
@@ -15,8 +16,15 @@ import {
   MainPartComponent,
   SubjectViewComponent,
   SubjectsComponent,
-  NavbarComponent
+  NavbarComponent,
+  FileMarksComponent,
+  FileSendingComponent,
+  GetMarkComponent,
+  GetStudentFileComponent,
+  GetTeacherFileComponent,
+  WorkRatingComponent
 } from "./index"
+
 
 @NgModule({
   declarations: [
@@ -31,12 +39,19 @@ import {
     MainPartComponent,
     SubjectViewComponent,
     SubjectsComponent,
-    NavbarComponent
+    NavbarComponent,
+    FileMarksComponent,
+    FileSendingComponent,
+    GetMarkComponent,
+    GetStudentFileComponent,
+    GetTeacherFileComponent,
+    WorkRatingComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MainFuncRoutingModule
+    MainFuncRoutingModule,
+    MaterialModule
   ]
 })
 export class MainFuncModule { }

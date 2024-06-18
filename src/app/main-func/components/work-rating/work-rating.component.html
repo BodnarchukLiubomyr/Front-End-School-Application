@@ -1,0 +1,38 @@
+<div *ngIf="fileWorks && fileWorks.length > 0; else noFileWorks">
+    <button (click)="goBack($event)" class="button-back">
+      <h3 class="link-text text-blue">Back</h3>
+    </button>
+    <h2 class="h2">File Works</h2>
+    <div class="excel-container">
+      <table class="excel-table">
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>Mark</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fileWork of fileWorks">
+            <td>
+              <a href="javascript:void(0)" (click)="downloadFile(fileWork.fileName)">{{ fileWork.fileName }}</a>
+            </td>
+            <td>
+              <p>{{ fileWork.mark }}</p>
+            </td>
+            <td>
+              <button [routerLink]="['/file-marks', fileWork.fileName]" class="button">Rate file</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <ng-template #noFileWorks>
+    <p>No exercises available.</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>
