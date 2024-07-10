@@ -19,6 +19,11 @@ import {
   SubjectViewComponent,
   SubjectsComponent,
   WorkRatingComponent,
+  CreateGroupComponent,
+  AddUserToGroupComponent,
+  GetGroupComponent,
+  GroupChatComponent,
+  DeleteGroupComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -38,7 +43,12 @@ const routes: Routes = [
   { path: 'file-marks/:fileName',component: FileMarksComponent},
   { path: 'teacher-file/:exerciseId',component: GetTeacherFileComponent},
   { path: 'get-mark/:userId/:exerciseId',component: GetMarkComponent},
-  { path: 'student-file/:userId/:exerciseId',component: GetStudentFileComponent}
+  { path: 'student-file/:userId/:exerciseId',component: GetStudentFileComponent},
+  { path: 'create-group', component: CreateGroupComponent},
+  { path: 'add-user-to-group', component: AddUserToGroupComponent},
+  { path: 'get-group/:subjectId/:userId', component: GetGroupComponent},
+  { path: 'group-chat/:groupId', component: GroupChatComponent},
+  { path: 'delete-group/:groupName',component:DeleteGroupComponent},
 ];
 
 @NgModule({
