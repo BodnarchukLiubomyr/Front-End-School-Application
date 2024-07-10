@@ -22,7 +22,12 @@ import {
   GetMarkComponent,
   GetStudentFileComponent,
   GetTeacherFileComponent,
-  WorkRatingComponent
+  WorkRatingComponent,
+  CreateGroupComponent,
+  AddUserToGroupComponent,
+  GetGroupComponent,
+  GroupChatComponent,
+  DeleteGroupComponent,
 } from "./index"
 
 
@@ -46,6 +51,11 @@ import {
     GetStudentFileComponent,
     GetTeacherFileComponent,
     WorkRatingComponent,
+    CreateGroupComponent,
+    AddUserToGroupComponent,
+    GetGroupComponent,
+    GroupChatComponent,
+    DeleteGroupComponent,
   ],
   imports: [
     CommonModule,

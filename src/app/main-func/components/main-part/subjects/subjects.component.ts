@@ -1,7 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { StorageService } from '../../../../shared';
 import { MainFuncService } from '../../../services/main-func.service';
 
@@ -16,7 +14,7 @@ export class SubjectsComponent implements OnInit, OnDestroy{
   userId = '';
   token = '';
 
-  subjects: any;
+  subjects: any[] = [];
   errorMessage = '';
   isSubjectFailed = false;
   private subscription: Subscription;
@@ -46,6 +44,7 @@ export class SubjectsComponent implements OnInit, OnDestroy{
       next: data => {
         console.log(data);
         this.subjects = data;
+        this.loadClassNames();
       },
       error: err => {
         if (err.status == 500) {
@@ -53,6 +52,18 @@ export class SubjectsComponent implements OnInit, OnDestroy{
           this.isSubjectFailed = true;
         }
       }
+    });
+  }
+
+  loadClassNames(): void {
+    const classNameRequests = this.subjects.map(subject => 
+      this.mainFuncService.getClassName(subject.id).toPromise().then(className => {
+        subject.className = className;
+      })
+    );
+
+    forkJoin(classNameRequests).subscribe(() => {
+      console.log(this.subjects);
     });
   }
 

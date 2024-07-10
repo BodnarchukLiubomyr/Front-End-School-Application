@@ -58,10 +58,10 @@ export class MainFuncService {
     )
   }
 
-  getClass(className: string):Observable<any>{
+  getClassName(subjectId: string):Observable<any>{
     return this.http.get(
-      this.backendApi + '/api/v1/school-application/get-class/'+ className,
-      {responseType: 'json'}
+      this.backendApi + '/api/v1/school-application/get-classname/'+ subjectId,
+      {responseType: 'text'}
     );
   }
 
@@ -178,5 +178,85 @@ export class MainFuncService {
       this.backendApi + '/api/v1/school-application/get-mark/'+ userId+'/'+ exerciseId,
       {responseType: "json"}
     )
+  }
+
+  createGroup(groupName: string,subjectName: string,className: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-group',
+      {
+        groupName,
+        subjectName,
+        className
+      },
+      httpOptions
+    );
+  }
+
+  addUserToGroup(groupName: string,email: string, className:string):Observable<any>{
+    const params = new HttpParams()
+    .set('groupName', groupName)
+    .set('email', email)
+    .set('className',className);
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/add-user-to-group',
+      null,
+      { params, observe: 'response' }
+    );
+  }
+
+  getGroup(subjectId: string, userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-group/'+subjectId+'/'+userId,
+      { responseType: 'json'}
+    )
+  }
+
+  getGroups(subjectId: string, userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-groups/'+subjectId+'/'+userId,
+      { responseType: 'json'}
+    )
+  }
+
+  getTeacherGroups(subjectId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-teacher-groups/'+subjectId,
+      { responseType: 'json'}
+    )
+  }
+
+  deleteGroup(groupName:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-group/'+groupName,
+      {responseType:'json'}
+    )
+  }
+
+  getGroupChatHistory(groupId: string):Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/group-history/'+groupId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  sendGroupMessage(groupId: string, userId: string, content: string): Observable<any> {
+    return this.http.post(this.backendApi+'/api/v1/school-application/group-send/'+ groupId +'/'+ userId,
+    {
+      content,
+      observe: 'response'
+    },
+      httpOptions
+    );
+  }
+
+  getGroupUsers(groupId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/group-users/'+groupId,
+      {
+        responseType: "json"
+      }
+    );
   }
 }
