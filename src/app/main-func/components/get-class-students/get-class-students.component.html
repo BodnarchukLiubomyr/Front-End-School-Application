@@ -18,6 +18,9 @@
               <td>{{ user.lastname }}</td>
               <td>{{ user.firstname }}</td>
               <td>{{ user.email }}</td>
+              <td>
+                <button (click)="onDelete(user.lastname,user.firstname)" class="delete-button">Delete user</button>
+              </td>
             </tr>
         </tbody>
       </table>

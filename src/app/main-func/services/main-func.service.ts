@@ -94,6 +94,13 @@ export class MainFuncService {
     );
   }
 
+  deleteSubject(subjectName:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-subject/'+ subjectName,
+      {responseType:'json'}
+    )
+  }
+
   createExercise(name:string,description: string, date: string, className: string, subjectName: string): Observable<any>{
     return this.http.post(
       this.backendApi + '/api/v1/school-application/create-exercise',
@@ -257,6 +264,43 @@ export class MainFuncService {
       {
         responseType: "json"
       }
+    );
+  }
+
+  createChat(userId: string,lastname: string,firstname: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-app/create-chat/' + userId,
+      {
+        lastname,
+        firstname
+      },
+      httpOptions
+    );
+  }
+
+  getAllUserChats(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-app/get-chats/'+ userId,
+      { responseType: "json"}
+    );
+  }
+
+  getChatHistory(chatId: string):Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-app/chat/'+chatId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  sendMessage(chatId: string, userId: string, content: string): Observable<any> {
+    return this.http.post(this.backendApi+'/api/v1/school-app/send/'+ chatId +'/'+ userId,
+    {
+      content,
+      observe: 'response'
+    },
+      httpOptions
     );
   }
 }

@@ -24,6 +24,10 @@ import {
   GetGroupComponent,
   GroupChatComponent,
   DeleteGroupComponent,
+  ChatComponent,
+  CreateChatComponent,
+  GetChatsComponent,
+  DeleteUserComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -31,6 +35,7 @@ const routes: Routes = [
   { path: 'create-class', component: CreateClassComponent},
   { path: 'add-user-to-class', component: AddUserToClassComponent},
   { path: 'get-users-class/:className', component: GetClassStudentsComponent},
+  { path: 'delete-user/:lastname/:firstname', component: DeleteUserComponent},
   { path: 'find-class',component: FindClassComponent},
   { path: 'get-class/:className',component: GetClassComponent},
   { path: 'create-subject',component: CreateSubjectComponent},
@@ -49,6 +54,9 @@ const routes: Routes = [
   { path: 'get-group/:subjectId/:userId', component: GetGroupComponent},
   { path: 'group-chat/:groupId', component: GroupChatComponent},
   { path: 'delete-group/:groupName',component:DeleteGroupComponent},
+  { path: 'create-chat/:userId', component: CreateChatComponent},
+  { path: 'chat/:chatId', component: ChatComponent},
+  { path: 'get-chats/:userId', component: GetChatsComponent},
 ];
 
 @NgModule({

@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
+import { DeleteUserComponent } from '../..';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-get-class-students',
@@ -23,10 +25,9 @@ export class GetClassStudentsComponent implements OnInit,OnDestroy{
 
   constructor(
     private mainFuncService: MainFuncService,
-    private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
     private storageService: StorageService,
+    private dialog: MatDialog
   ) {
     this.subscription = new Subscription();
   }
@@ -67,6 +68,15 @@ export class GetClassStudentsComponent implements OnInit,OnDestroy{
     } else {
       return [];
     }
+  }
+
+  onDelete(lastname: string,firstname: string): void{
+    this.dialog.open(DeleteUserComponent, {
+      data: {
+        lastname: lastname,
+        firstname: firstname
+    },
+    });
   }
 
   ngOnDestroy(): void {

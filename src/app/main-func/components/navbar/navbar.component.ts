@@ -44,6 +44,22 @@ export class NavbarComponent implements OnDestroy{
     return userRole === 'TEACHER';
   }
 
+  isAdmin(): boolean {
+    const userRole = this.storageService.getUser().role;
+    console.log("Role:",userRole);
+    return userRole === 'ADMIN';
+  }
+
+  isStudent(): boolean {
+    const userRole = this.storageService.getUser().role;
+    console.log("Role:",userRole);
+    return userRole === 'STUDENT';
+  }
+
+  getChats(){
+    this.router.navigate(['/get-chats',this.userId]);
+  }
+
   onSignOut() {
     this.storageService.clean();
     this.router.navigate(['/log-in']);
