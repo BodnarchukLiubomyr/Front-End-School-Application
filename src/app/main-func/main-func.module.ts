@@ -28,6 +28,9 @@ import {
   GetGroupComponent,
   GroupChatComponent,
   DeleteGroupComponent,
+  ChatComponent,
+  CreateChatComponent,
+  GetChatsComponent,
 } from "./index"
 
 
@@ -56,6 +59,9 @@ import {
     GetGroupComponent,
     GroupChatComponent,
     DeleteGroupComponent,
+    CreateChatComponent,
+    ChatComponent,
+    GetChatsComponent,
   ],
   imports: [
     CommonModule,

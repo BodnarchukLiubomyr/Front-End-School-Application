@@ -1,0 +1,90 @@
+<div class="flex-column-frame">
+    <div class="alert-container">
+      <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateChatFailed">
+        <span class="alert-icon-container">
+          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <use xlink:href="assets/icons.svg#error-icon"></use>
+          </svg>
+        </span>
+        <span class="alert-text">{{ errorMessage }}</span>
+        <span class="alert-button-container" (click)="closeErrorAlert()">
+          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <use xlink:href="assets/icons.svg#close-icon"></use>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="create-chat-form">
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <div class="title-input">
+          <h3 class="title-text">Create chat</h3>
+          <div class="field-container">
+            <div>
+              <label for="lastname" class="label">Lastname</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['lastname'].invalid && (form.controls['lastname'].dirty || form.controls['lastname'].touched)}">
+              <input class="field-text" id="lastname" name="lastname" type="lastname" autocomplete="lastname" formControlName="lastname">
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['lastname'].invalid && (form.controls['lastname'].dirty || form.controls['lastname'].touched)">
+  
+              <div *ngIf="form.controls['lastname'].errors?.['required']" class="label text-red">
+                Enter a valid lastname.
+              </div>
+              <div *ngIf="form.controls['lastname'].errors?.['minlength']" class="label text-red">
+                Lastname should contain at least 2 symbols.
+              </div>
+              <div *ngIf="form.controls['lastname'].errors?.['uppercase']" class="label text-red">
+                Lastname should contain at least one uppercase letter.
+              </div>
+              <div *ngIf="form.controls['lastname'].errors?.['lowercase']" class="label text-red">
+                Lastname should contain at least one lowercase letter.
+              </div>
+              <div *ngIf="form.controls['lastname'].errors?.['nospaces']" class="label text-red">
+                Lastname shouldn't contain spaces.
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="firstname" class="label">Firstname</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['firstname'].invalid && (form.controls['firstname'].dirty || form.controls['firstname'].touched)}">
+              <input class="field-text" id="firstname" name="firstname" type="firstname" autocomplete="firstname" formControlName="firstname">
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['firstname'].invalid && (form.controls['firstname'].dirty || form.controls['firstname'].touched)">
+  
+              <div *ngIf="form.controls['firstname'].errors?.['required']" class="label text-red">
+                Enter a valid firstname.
+              </div>
+              <div *ngIf="form.controls['firstname'].errors?.['minlength']" class="label text-red">
+                Firstname should contain at least 2 symbols.
+              </div>
+              <div *ngIf="form.controls['firstname'].errors?.['uppercase']" class="label text-red">
+                Firstname should contain at least one uppercase letter.
+              </div>
+              <div *ngIf="form.controls['firstname'].errors?.['lowercase']" class="label text-red">
+                Firstname should contain at least one lowercase letter.
+              </div>
+              <div *ngIf="form.controls['firstname'].errors?.['nospaces']" class="label text-red">
+                Firstname shouldn't contain spaces.
+              </div>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
+              <h3 class="link-text text-white">Create</h3>
+            </button>
+            <button class="button-white" (click)="goBack($event)">
+              <h3 class="link-text text-blue">Back</h3>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

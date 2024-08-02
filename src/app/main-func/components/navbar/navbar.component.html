@@ -9,6 +9,18 @@
     <div class="menu">
       <ng-container *ngIf="isTeacher()" class="teacher-links">
         <a routerLink="/create-exercise">Create Exercise</a>
+        <a routerLink="/create-group">Create Group</a>
+        <a routerLink="/add-user-to-group">Add User to Group</a>
+        <a [routerLink]="['/get-chats', userId]">Get chats</a>
+        <a [routerLink]="['/create-chat', userId]">Create chat</a>
+      </ng-container>
+      <ng-container *ngIf="isAdmin()" class="admin-links">
+        <a [routerLink]="['/get-chats', userId]">Get chats</a>
+        <a [routerLink]="['/create-chat', userId]">Create chat</a>
+      </ng-container>
+      <ng-container *ngIf="isStudent()" class="student-links">
+        <a [routerLink]="['/get-chats', userId]">Get chats</a>
+        <a [routerLink]="['/create-chat', userId]">Create chat</a>
       </ng-container>
     </div>
 
@@ -27,6 +39,7 @@
         </div>
         <div class="dropdown-menu" [ngClass]="{'hidden': !showMenu, 'block': showMenu}">
           <a class="dropdown-menu-section section-text" id="user-menu-item-0"><strong>{{lastname}} {{firstname}}</strong></a>
+          <a (click)="getChats()" class="dropdown-menu-section section-text" id="user-menu-item-1">Chats</a>
           <a (click)="onSignOut()" class="dropdown-menu-section section-text" id="user-menu-item-2">Sign out</a>
         </div>
     </div>
