@@ -30,7 +30,6 @@ export class FindClassComponent implements OnDestroy{
   showPassword = false;
 
   constructor(
-    private mainFuncService: MainFuncService,
     private router: Router,
     private fb: FormBuilder,
     private location: Location
@@ -46,6 +45,12 @@ export class FindClassComponent implements OnDestroy{
     const { className } = this.form.value;
     console.log(className);
     this.router.navigate(['get-class', className]);
+  }
+
+  getSubjets(){
+    const { className } = this.form.value;
+    console.log(className);
+    this.router.navigate(['get-class-subjects', className]);
   }
 
   goBack(event: MouseEvent) {

@@ -5,8 +5,6 @@ import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.comp
 
 @Component({
   selector: 'app-delete-subject',
-  standalone: true,
-  imports: [],
   templateUrl: './delete-subject.component.html',
   styleUrl: './delete-subject.component.scss'
 })
@@ -23,7 +21,7 @@ export class DeleteSubjectComponent {
     this.subjectName = this.data.subjectName;
   }
 
-  deleteExercise() : void{
+  deleteSubject() : void{
     this.mainFuncService.deleteSubject(this.subjectName).subscribe({
       next: (data) => {
         console.log(data);

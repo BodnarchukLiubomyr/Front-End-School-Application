@@ -1,0 +1,48 @@
+.excel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .excel-table {
+    border-collapse: collapse;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .excel-table th, .excel-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .excel-table th {
+    background-color: #f2f2f2;
+  }
+
+  .update-button {
+    padding: 8px 16px;
+    background-color: greenyellow;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .delete-button {
+    padding: 8px 16px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
+  }

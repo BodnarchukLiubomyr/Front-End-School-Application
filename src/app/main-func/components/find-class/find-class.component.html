@@ -46,6 +46,9 @@
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
             <h3 class="link-text text-white">Find class</h3>
           </button>
+          <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid" (click)="getSubjets()">
+            <h3 class="link-text text-white">Get class subjects</h3>
+          </button>
           <button class="button-white" (click)="goBack($event)">
             <h3 class="link-text text-blue">Back</h3>
           </button>

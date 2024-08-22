@@ -28,6 +28,9 @@ import {
   CreateChatComponent,
   GetChatsComponent,
   DeleteUserComponent,
+  GetSubjectsComponent,
+  DeleteSubjectComponent,
+  UpdateSubjectComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -40,7 +43,10 @@ const routes: Routes = [
   { path: 'get-class/:className',component: GetClassComponent},
   { path: 'create-subject',component: CreateSubjectComponent},
   { path: 'get-subjects', component: SubjectsComponent},
+  { path: 'get-class-subjects/:className', component: GetSubjectsComponent},
+  { path: 'update-subject/:userId', component: UpdateSubjectComponent},
   { path: 'subject-view/:subjectId', component: SubjectViewComponent},
+  { path: 'delete-subject/:subjectName',component:DeleteSubjectComponent},
   { path: 'create-exercise', component: CreateExerciseComponent},
   { path: 'delete-exercise/:exerciseName',component:DeleteExerciseComponent},
   { path: 'work-rating/:exerciseId',component: WorkRatingComponent},
