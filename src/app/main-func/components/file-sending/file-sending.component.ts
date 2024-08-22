@@ -69,7 +69,7 @@ export class FileSendingComponent implements OnInit,OnDestroy{
 
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
-    if (this.isFileTypeAllowed(file)) {
+    if (file && this.isFileTypeAllowed(file)) {
       this.uploadFile(file);
     } else {
       this.showError('Please upload a valid file.');
@@ -78,11 +78,13 @@ export class FileSendingComponent implements OnInit,OnDestroy{
 
   uploadFile(file: File): void {
     console.log(this.exerciseId)
+    this.processing = true;
     if (file) {
       this.fileName = file.name;
       this.subscription = this.mainFuncService.uploadFile(this.userId,this.exerciseId,this.token,file)
         .subscribe({
           next: data => {
+            this.processing = false;
             if (data.status === 'success') {
               console.log('The project has been successfully uploaded.');
               this.UploadFileEvent.emit(data.file);
@@ -91,6 +93,7 @@ export class FileSendingComponent implements OnInit,OnDestroy{
             }
           },
           error: err => {
+            this.processing = false;
             console.error('Error occurred during file upload:', err);
             this.showError('An unexpected error occurred during file upload.');
           }
@@ -106,9 +109,9 @@ export class FileSendingComponent implements OnInit,OnDestroy{
 
   private showError(message: string): void {
     this.errorMessage = 'Error:' + message;
-    if (this.errorMessage) {
-      this.errorMessage = 'Error:' + message;
-    }
+    // if (this.errorMessage) {
+    //   this.errorMessage = 'Error:' + message;
+    // }
   }
 
   goBack(event?: MouseEvent) {

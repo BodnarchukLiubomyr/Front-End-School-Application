@@ -1,1 +1,38 @@
-<p>get-subjects works!</p>
+<div *ngIf="subjects && subjects.length > 0; else noSubjects">
+    <p>{{className}}</p>
+    <h2>School class users</h2>
+    <button routerLink="/main-part" class="button-white">
+      <h3 class="link-text text-blue">Back</h3>
+    </button>
+    <div class="excel-container">
+      <table class="excel-table">
+      <thead>
+        <tr>
+          <th>Subject name</th>
+          <th>Teacher</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr *ngFor="let subject of subjects">
+              <td>{{ subject.name }}</td>
+              <td>{{ subject.teacherLastname }} {{ subject.teacherFirstname }}</td>
+              <td>
+                <div class="button-container">
+                  <button [routerLink]="['/update-subject', subject.id]" class="update-button">Update</button>
+                  <button (click)="onDelete(subject.name)" class="delete-button">Delete</button>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <ng-template #noSubjects>
+    <p>No class users available.</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

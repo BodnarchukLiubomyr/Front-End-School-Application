@@ -16,6 +16,8 @@ import {
   MainPartComponent,
   SubjectViewComponent,
   SubjectsComponent,
+  UpdateSubjectComponent,
+  DeleteSubjectComponent,
   NavbarComponent,
   FileMarksComponent,
   FileSendingComponent,
@@ -31,6 +33,7 @@ import {
   ChatComponent,
   CreateChatComponent,
   GetChatsComponent,
+  GetSubjectsComponent,
 } from "./index"
 
 
@@ -47,6 +50,9 @@ import {
     MainPartComponent,
     SubjectViewComponent,
     SubjectsComponent,
+    GetSubjectsComponent,
+    UpdateSubjectComponent,
+    DeleteSubjectComponent,
     NavbarComponent,
     FileMarksComponent,
     FileSendingComponent,

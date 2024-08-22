@@ -87,10 +87,26 @@ export class MainFuncService {
   getSubjects(userId: string, token: string): Observable<any> {
     return this.http.get(
       this.backendApi + '/api/v1/school-application/get-subjects/'+userId,
+      { responseType: 'json' }
+    );
+  }
+
+  getClassSubjects(className: string): Observable<any> {
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-class-subjects/'+className,
+      { responseType: 'json' }
+    );
+  }
+
+  updateSubject(userId:string,name:string,teacherLastname:string,teacherFirstname:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-subject/'+userId,
       {
-        headers: new HttpHeaders({ 'Authorization': 'Bearer ' + token }),
-        responseType: 'json'
-      }
+        name,
+        teacherLastname,
+        teacherFirstname
+      },
+      httpOptions
     );
   }
 

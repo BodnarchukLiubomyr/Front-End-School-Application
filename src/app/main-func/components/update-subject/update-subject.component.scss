@@ -1,14 +1,14 @@
-.find-class-form {
+.update-subject-form {
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 35px;
+    padding: 35px 35px;
     gap: 32px;
   
     position: relative;
     width: 340.25px;
-    height: 440px;
+    height: 480px;
   
     background: #FFFFFF;
   
@@ -24,7 +24,7 @@
   
     position: relative;
     width: 270.25px;
-    height: 214px;
+    height: 435px;
   }
   
   .field-container {
@@ -124,8 +124,9 @@
   .button-container {
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    padding-top: 25px;
     gap: 10px;
+    margin: 0 auto;
   }
   
   .button {
@@ -138,13 +139,8 @@
   
     width: 100%;
   
-    background: #008ACE;
+    background: #9400D3;
     border-radius: 3px;
-  }
-  
-  .button.disabled {
-    background: #b3b2b2;
-    cursor: not-allowed;
   }
   
   .button-white {
@@ -161,30 +157,22 @@
     border-radius: 3px;
   }
   
+  .button.disabled {
+    background: #b3b2b2;
+    cursor: not-allowed;
+  }
+  
+  
   .link-text-container {
     display: flex;
     flex-direction: row;
     gap: 5px;
-  
-  }
-  
-  .link-text-container__flex-end {
-    @extend .link-text-container;
-    justify-content: flex-end;
   }
   
   .text-white {
     color: #FFFFFF;
   }
   
-  .text-blue {
-    color: #008ACE;
-  }
-  
-  .text-grey-70 {
+  .text-grey {
     color: #474A59;
-  }
-  
-  .text-grey-60 {
-    color: #6C6F80;
   }
