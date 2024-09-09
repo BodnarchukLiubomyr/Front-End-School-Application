@@ -1,12 +1,12 @@
 <div *ngIf="schoolClass && schoolClass.length > 0; else noSchoolClass">
-    <h2><strong>School class: {{ className }}</strong></h2>
+    <h2><strong>{{'class'| translate}}: {{ className }}</strong></h2>
     <div class="excel-container">
       <table class="excel-table">
       <thead>
         <tr>
-          <th>Last Name</th>
-          <th>First Name</th>
-          <th>Email</th>
+          <th>{{'lastname'| translate}}</th>
+          <th>{{'firstname'| translate}}</th>
+          <th>{{'email'| translate}}</th>
         </tr>
       </thead>
         <tbody>
@@ -21,7 +21,7 @@
   </div>
   
   <ng-template #noSchoolClass>
-    <p>No class users available.</p>
+    <p>{{'no-class-users'| translate}}</p>
   </ng-template>
   
   <div *ngIf="errorMessage">

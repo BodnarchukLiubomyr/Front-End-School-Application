@@ -34,7 +34,10 @@ import {
   CreateChatComponent,
   GetChatsComponent,
   GetSubjectsComponent,
+  TranslateComponent,
+  DeleteUserComponent
 } from "./index"
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -68,12 +71,15 @@ import {
     CreateChatComponent,
     ChatComponent,
     GetChatsComponent,
+    TranslateComponent,
+    DeleteUserComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MainFuncRoutingModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule
   ]
 })
 export class MainFuncModule { }

@@ -25,14 +25,14 @@
 
   <div class="w-[345px] h-[106px] flex flex-col items-center justify-center space-y-2">
     <div>
-      <p class="text-center text-zinc-700 text-[16px] font-normal leading-normal">Save file here or
+      <p class="text-center text-zinc-700 text-[16px] font-normal leading-normal">{{'save-file'| translate}}
         <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
         <button (click)="fileUpload.click()" class="text-sky-600 text-[16px] font-semibold leading-normal">
-          browse
+          {{'browse'| translate}}
         </button>
-        from your device
+        {{'from-device'| translate}}
       </p>
-      <P>Allow .doc,.docx,.pptx,.pdf format of file</P>
+      <P>{{'allow-file'| translate}}</P>
     </div>
   </div>
 

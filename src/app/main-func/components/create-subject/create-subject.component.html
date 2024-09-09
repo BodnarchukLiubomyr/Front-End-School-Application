@@ -17,10 +17,10 @@
     <div class="create-subject-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Create subject</h3>
+          <h3 class="title-text">{{'create-subject'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="subjectName" class="label">Subject name</label>
+              <label for="subjectName" class="label">{{'subject-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -30,16 +30,16 @@
             <div class="error-label-container"
               *ngIf="form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)">
               <div *ngIf="form.controls['subjectName'].errors?.['required']" class="label text-red">
-                Enter a valid subject name.
+                {{'valid-subject-name'| translate}}
               </div>
               <div *ngIf="form.controls['subjectName'].errors?.['pattern']" class="label text-red">
-                Subject name is not valid.
+                {{'not-valid-subject-name'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="email" class="label">E-mail</label>
+              <label for="email" class="label">{{'email'| translate}}</label>
               <label for="email" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -49,16 +49,16 @@
             <div class="error-label-container"
               *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
               <div *ngIf="form.controls['email'].errors?.['required']" class="label text-red">
-                Enter a valid email.
+                {{'valid-email'| translate}}
               </div>
               <div *ngIf="form.controls['email'].errors?.['pattern']" class="label text-red">
-                Email is not valid.
+                {{'email-not-valid'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="className" class="label">Class name</label>
+              <label for="className" class="label">{{'class-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -68,19 +68,19 @@
             <div class="error-label-container"
               *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
               <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
-                Enter a valid class name.
+                {{'valid-classname'| translate}}
               </div>
               <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
-                Class name is not valid.
+                {{'classname-not-valid'| translate}}
               </div>
             </div>
           </div>
           <div class="button-container">
             <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">Create</h3>
+              <h3 class="link-text text-white">{{'create'| translate}}</h3>
             </button>
             <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">Back</h3>
+              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
             </button>
           </div>
         </div>

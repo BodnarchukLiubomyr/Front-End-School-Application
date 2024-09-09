@@ -1,32 +1,33 @@
 <app-navbar></app-navbar>
 <div class="row-separator"></div>
+<app-translate></app-translate>
 <div class="title-layout" *ngIf="!isAdmin()">
-  <h3 class="title-layout-text-holder" style="font-size: 24px;">My subjects</h3>
+  <h3 class="title-layout-text-holder" style="font-size: 24px;">{{'my-subjects'| translate}}</h3>
 </div>
 <app-subjects *ngIf="!isAdmin()"></app-subjects>
 
 <div class="center-container" *ngIf="isAdmin()">
   <div class="button-container">
-    <p class="education-heading">Education</p>
+    <p class="education-heading">{{'education'| translate}}</p>
     <div class="button-row">
       <div class="row-separator"></div>
-      <button class="button" (click)="navigateToCreateClass()" *ngIf="isAdmin()">Create class</button>
+      <button class="button" (click)="navigateToCreateClass()" *ngIf="isAdmin()">{{'create-class'| translate}}</button>
       <div class="button-separator"></div>
-      <button class="button" (click)="navigateToAddUserToClass()" *ngIf="isAdmin()">Add student to class</button>
+      <button class="button" (click)="navigateToAddUserToClass()" *ngIf="isAdmin()">{{'add-student-to-class'| translate}}</button>
       <div class="button-separator"></div>
-      <button class="button" (click)="navigateToFindClass()" *ngIf="isAdmin()">Find class</button>
-      <!-- <div class="button-separator"></div>
-      <button class="button" (click)="transferUsers()" *ngIf="isAdmin()">Transfer students to next classes</button> -->
+      <button class="button" (click)="navigateToFindClass()" *ngIf="isAdmin()">{{'find-class'| translate}}</button>
       <div class="button-separator"></div>
-      <button class="button" (click)="navigateToCreateSubject()" *ngIf="isAdmin">Create subject</button>
+      <button class="button" (click)="transferUsers()" *ngIf="isAdmin()">{{'transfer-students'| translate}}</button>
+      <div class="button-separator"></div>
+      <button class="button" (click)="navigateToCreateSubject()" *ngIf="isAdmin">{{'create-subject'| translate}}</button>
     </div>
     <div class="row-separator"></div>
     <p class="education-heading">Registration</p>
     <div class="button-row">
       <div class="row-separator"></div>
-      <button class="button" (click)="navigateToSignUpUser()" *ngIf="isAdmin()">Sign-up student</button>
+      <button class="button" (click)="navigateToSignUpUser()" *ngIf="isAdmin()">{{'sign-up-student'| translate}}</button>
       <div class="button-separator"></div>
-      <button class="button" (click)="navigateToSignUpTeacher()" *ngIf="isAdmin()">Sign-up teacher</button>
+      <button class="button" (click)="navigateToSignUpTeacher()" *ngIf="isAdmin()">{{'sign-up-teacher'| translate}}</button>
     </div>
   </div>
 </div>

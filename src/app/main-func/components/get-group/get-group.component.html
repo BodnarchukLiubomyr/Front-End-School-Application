@@ -1,9 +1,9 @@
-<p>My group</p>
+<p>{{'my-group'| translate}}</p>
 <div class="group-container">
   <div *ngFor="let group of groups" class="group-card">
     <button [routerLink]="['/group-chat', group.id]">{{group.groupName}}</button>
     <div class="button-separator"></div>
-    <button class="delete-button" (click)="onDelete(group.groupName)" *ngIf="isTeacher()">Delete group</button>
+    <button class="delete-button" (click)="onDelete(group.groupName)" *ngIf="isTeacher()">{{'delete-group'| translate}}</button>
   </div>
   <div *ngIf="errorMessage">
     <p>Error: {{ errorMessage }}</p>

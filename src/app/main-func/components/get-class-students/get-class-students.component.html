@@ -2,16 +2,16 @@
     <p>{{schoolClass.name}}</p>
     <h2>School class users</h2>
     <button routerLink="/main-part" class="button-white">
-      <h3 class="link-text text-blue">Back</h3>
+      <h3 class="link-text text-blue">{{'back'| translate}}</h3>
     </button>
     <div class="excel-container">
       <table class="excel-table">
       <thead>
         <tr>
-          <th>Last Name</th>
-          <th>First Name</th>
-          <th>Email</th>
-          <th>Delete</th>
+          <th>{{'lastname'| translate}}</th>
+          <th>{{'firstname'| translate}}</th>
+          <th>{{'email'| translate}}</th>
+          <th>{{'delete'| translate}}</th>
         </tr>
       </thead>
         <tbody>
@@ -20,7 +20,7 @@
               <td>{{ user.firstname }}</td>
               <td>{{ user.email }}</td>
               <td>
-                <button (click)="onDelete(user.lastname,user.firstname)" class="delete-button">Delete user</button>
+                <button (click)="onDelete(user.lastname,user.firstname)" class="delete-button">{{'delete-user'| translate}}</button>
               </td>
             </tr>
         </tbody>
@@ -29,7 +29,7 @@
   </div>
   
   <ng-template #noSchoolClass>
-    <p>No class users available.</p>
+    <p>{{'no-class-users'| translate}}.</p>
   </ng-template>
   
   <div *ngIf="errorMessage">

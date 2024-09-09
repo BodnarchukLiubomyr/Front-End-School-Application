@@ -2,17 +2,17 @@
     <div class="subject-row">
       <div *ngFor="let subject of subjects" class="subject-card">
         <h3>{{ subject.name }}</h3>
-        <p>Teacher: {{ subject.teacherLastname }} {{ subject.teacherFirstname }}</p>
-        <p>Class: {{ subject.className }}</p>
-        <button class="button" [routerLink]="['/subject-view', subject.id]">Go to Subject View</button>
-        <p>My group</p>
-        <button class="button" [routerLink]="['/get-group', subject.id, userId]">Go to Group</button>
+        <p>{{'teacher'| translate}}: {{ subject.teacherLastname }} {{ subject.teacherFirstname }}</p>
+        <p>{{'class'| translate}}: {{ subject.className }}</p>
+        <button class="button" [routerLink]="['/subject-view', subject.id]">{{'subject-view'| translate}}</button>
+        <p>{{'my-group'| translate}}</p>
+        <button class="button" [routerLink]="['/get-group', subject.id, userId]">{{'go-to-group'| translate}}</button>
       </div>
     </div>
   </div>
   
   <ng-template #noSubjects>
-    <p>No subjects available.</p>
+    <p>{{'no-subjects'| translate}}</p>
   </ng-template>
   
   <div *ngIf="errorMessage">
