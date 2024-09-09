@@ -1,6 +1,6 @@
 <div class="group-chat-container">
     <div class="group-chat-users">
-      <h3>Group Users:</h3>
+      <h3>{{'group-users'| translate}}:</h3>
       <div class="user-list">
         <span *ngFor="let user of groupUsers" class="user-name"><strong>{{ user.lastname }} {{ user.firstname }}</strong></span>
       </div>
@@ -14,9 +14,9 @@
     </div>
     <div class="message-input">
       <textarea [value]="newMessageContent || ''" (input)="onMessageInput($event)" placeholder="Type your message..."></textarea>
-      <button (click)="sendMessage()">Send Message</button>
+      <button (click)="sendMessage()">{{'send-message'| translate}}</button>
       <button (click)="goBack($event)" class="button-white">
-        <h3 class="link-text text-blue">Back</h3>
+        <h3 class="link-text text-blue">{{'back'| translate}}</h3>
       </button>
     </div>
   </div>

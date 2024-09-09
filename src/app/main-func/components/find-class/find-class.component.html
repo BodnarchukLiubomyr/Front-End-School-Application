@@ -18,10 +18,10 @@
     <div class="find-class-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Find class</h3>
+          <h3 class="title-text">{{'find-class'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="className" class="label">Class name</label>
+              <label for="className" class="label">{{'class-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
   
@@ -33,10 +33,10 @@
               *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
   
               <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
-                Enter a valid class name.
+                {{'valid-classname'| translate}}
               </div>
               <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
-                Class name is not valid.
+                {{'classname-not-valid'| translate}}
               </div>
             </div>
           </div>
@@ -44,13 +44,13 @@
   
         <div class="button-container">
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-            <h3 class="link-text text-white">Find class</h3>
+            <h3 class="link-text text-white">{{'find-class'| translate}}</h3>
           </button>
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid" (click)="getSubjets()">
-            <h3 class="link-text text-white">Get class subjects</h3>
+            <h3 class="link-text text-white">{{'get-class-subjects'| translate}}</h3>
           </button>
           <button class="button-white" (click)="goBack($event)">
-            <h3 class="link-text text-blue">Back</h3>
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
           </button>
         </div>
       </form>

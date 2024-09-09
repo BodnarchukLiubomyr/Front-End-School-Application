@@ -17,10 +17,10 @@
     <div class="update-subject-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(subjectId)">
         <div class="title-input">
-          <h3 class="title-text">Create subject</h3>
+          <h3 class="title-text">{{'update-subject'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="name" class="label">Subject name</label>
+              <label for="name" class="label">{{'subject-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -30,13 +30,13 @@
             <div class="error-label-container"
               *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
               <div *ngIf="form.controls['name'].errors?.['pattern']" class="label text-red">
-                Subject name is not valid.
+                {{'not-valid-subject-name'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="teacherLastname" class="label">Teacher lastname</label>
+              <label for="teacherLastname" class="label">{{'teacher-lastname'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -46,13 +46,13 @@
             <div class="error-label-container"
               *ngIf="form.controls['teacherLastname'].invalid && (form.controls['teacherLastname'].dirty || form.controls['teacherLastname'].touched)">
               <div *ngIf="form.controls['teacherLastname'].errors?.['pattern']" class="label text-red">
-                Teacher lastname is not valid.
+                {{'teacher-lastname-not-valid'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="" class="label">Teacher firstname</label>
+              <label for="" class="label">{{'teacher-firstname'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -62,16 +62,16 @@
             <div class="error-label-container"
               *ngIf="form.controls['teacherFirstname'].invalid && (form.controls['teacherFirstname'].dirty || form.controls['teacherFirstname'].touched)">
               <div *ngIf="form.controls['teacherFirstname'].errors?.['pattern']" class="label text-red">
-                Teacher firstname is not valid.
+                {{'teacher-firstname-not-valid'| translate}}
               </div>
             </div>
           </div>
           <div class="button-container">
             <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">Update</h3>
+              <h3 class="link-text text-white">{{'update'| translate}}</h3>
             </button>
             <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">Back</h3>
+              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
             </button>
           </div>
         </div>

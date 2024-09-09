@@ -18,10 +18,10 @@
     <div class="rate-file-form">
       <form [formGroup]="form" novalidate (ngSubmit)="rateFile(fileName)">
         <div class="title-input">
-          <h3 class="title-text">Rate file</h3>
+          <h3 class="title-text">{{'rate-file'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="mark" class="label">Mark</label>
+              <label for="mark" class="label">{{'mark'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -31,7 +31,7 @@
             <div class="error-label-container"
               *ngIf="form.controls['mark'].invalid && (form.controls['mark'].dirty || form.controls['mark'].touched)">
               <div *ngIf="form.controls['mark'].errors?.['required']" class="label text-red">
-                Enter a valid marks.
+                {{'valid-marks'| translate}}
               </div>
             </div>
           </div>
@@ -39,11 +39,11 @@
   
         <div class="button-container">
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-            <h3 class="link-text text-white">Rate</h3>
+            <h3 class="link-text text-white">{{'rate'| translate}}</h3>
           </button>
   
           <button class="button-white" (click)="goBack($event)">
-            <h3 class="link-text text-blue">Back</h3>
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
           </button>
         </div>
       </form>

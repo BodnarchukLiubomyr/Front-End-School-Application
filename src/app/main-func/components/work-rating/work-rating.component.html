@@ -1,15 +1,15 @@
 <div *ngIf="fileWorks && fileWorks.length > 0; else noFileWorks">
     <button (click)="goBack($event)" class="button-back">
-      <h3 class="link-text text-blue">Back</h3>
+      <h3 class="link-text text-blue">{{'back'| translate}}</h3>
     </button>
-    <h2 class="h2">File Works</h2>
+    <h2 class="h2">{{'file-works'| translate}}</h2>
     <div class="excel-container">
       <table class="excel-table">
         <thead>
           <tr>
-            <th>File Name</th>
-            <th>Mark</th>
-            <th>Rate</th>
+            <th>{{'file-name'| translate}}</th>
+            <th>{{'mark'| translate}}</th>
+            <th>{{'rate'| translate}}</th>
           </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
               <p>{{ fileWork.mark }}</p>
             </td>
             <td>
-              <button [routerLink]="['/file-marks', fileWork.fileName]" class="button">Rate file</button>
+              <button [routerLink]="['/file-marks', fileWork.fileName]" class="button">{{'rate-file'| translate}}</button>
             </td>
           </tr>
         </tbody>
@@ -30,7 +30,7 @@
   </div>
   
   <ng-template #noFileWorks>
-    <p>No exercises available.</p>
+    <p>{{'no-files-available'| translate}}.</p>
   </ng-template>
   
   <div *ngIf="errorMessage">

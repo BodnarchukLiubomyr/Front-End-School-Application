@@ -18,10 +18,10 @@
     <div class="add-user-to-group-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Add user to group</h3>
+          <h3 class="title-text">{{'add-user-to-group'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="groupName" class="label">Group name</label>
+              <label for="groupName" class="label">{{'group-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -31,19 +31,19 @@
             <div class="error-label-container"
               *ngIf="form.controls['groupName'].invalid && (form.controls['groupName'].dirty || form.controls['groupName'].touched)">
               <div *ngIf="form.controls['groupName'].errors?.['required']" class="label text-red">
-                Enter a valid group name.
+                {{'valid-group'| translate}}.
               </div>
               <div *ngIf="form.controls['groupName'].errors?.['pattern']" class="label text-red">
-                Group name is not valid.
+                {{'not-valid-group'| translate}}.
               </div>
               <div *ngIf="form.controls['groupName'].errors?.['maxlength']" class="label text-red">
-                Group name should contain at most 60 symbols.
+                {{'group-contain'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="email" class="label">E-mail</label>
+              <label for="email" class="label">{{'email'| translate}}</label>
               <label for="email" class="label text-red">*</label>
             </div>
   
@@ -56,17 +56,17 @@
               *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
   
               <div *ngIf="form.controls['email'].errors?.['required']" class="label text-red">
-                Enter a valid email.
+                {{'valid-email'| translate}}
               </div>
   
               <div *ngIf="form.controls['email'].errors?.['pattern']" class="label text-red">
-                Email is not valid.
+                {{'email-not-valid'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="className" class="label">Class name</label>
+              <label for="className" class="label">{{'class-name'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
   
@@ -78,10 +78,10 @@
               *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
   
               <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
-                Enter a valid class name.
+                {{'valid-classname'| translate}}
               </div>
               <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
-                Class name is not valid.
+                {{'classname-not-valid'| translate}}
               </div>
             </div>
           </div>
@@ -89,11 +89,11 @@
   
         <div class="button-container">
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-            <h3 class="link-text text-white">Add user</h3>
+            <h3 class="link-text text-white">{{'add-user'| translate}}</h3>
           </button>
   
           <button routerLink="/main-part" class="button-white">
-            <h3 class="link-text text-blue">Back</h3>
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
           </button>
         </div>
       </form>

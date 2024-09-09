@@ -17,10 +17,10 @@
     <div class="create-class-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Create class</h3>
+          <h3 class="title-text">{{'create-class'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="classNumber" class="label">Class number</label>
+              <label for="classNumber" class="label">{{'class-number'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -30,16 +30,16 @@
             <div class="error-label-container"
               *ngIf="form.controls['classNumber'].invalid && (form.controls['classNumber'].dirty || form.controls['classNumber'].touched)">
               <div *ngIf="form.controls['classNumber'].errors?.['required']" class="label text-red">
-                Enter a valid class number.
+                {{'valid-class-number'| translate}}
               </div>
               <div *ngIf="form.controls['classNumber'].errors?.['pattern']" class="label text-red">
-                Class number is not valid.
+                {{'not-valid-class-number'| translate}}
               </div>
             </div>
           </div>
           <div class="field-container">
             <div>
-              <label for="classLetter" class="label">Class letter</label>
+              <label for="classLetter" class="label">{{'class-letter'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -49,19 +49,19 @@
             <div class="error-label-container"
               *ngIf="form.controls['classLetter'].invalid && (form.controls['classLetter'].dirty || form.controls['classLetter'].touched)">
               <div *ngIf="form.controls['classLetter'].errors?.['required']" class="label text-red">
-                Enter a valid class letter.
+                {{'valid-class-letter'| translate}}
               </div>
               <div *ngIf="form.controls['classLetter'].errors?.['pattern']" class="label text-red">
-                Class letter is not valid.
+                {{'not-valid-class-letter'| translate}}
               </div>
             </div>
           </div>
           <div class="button-container">
             <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">Create</h3>
+              <h3 class="link-text text-white">{{'create'| translate}}</h3>
             </button>
             <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">Back</h3>
+              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
             </button>
           </div>
         </div>

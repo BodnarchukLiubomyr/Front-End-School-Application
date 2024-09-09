@@ -1,4 +1,4 @@
-<p>My chats</p>
+<p>{{'my-chats'| translate}}</p>
 <div *ngFor="let chat of userChats" class="chat-card">
   <a [routerLink]="['/chat', chat.id]">
     {{ chat.users[0].firstname }} {{ chat.users[0].lastname }} and {{ chat.users[1].firstname }} {{ chat.users[1].lastname }}

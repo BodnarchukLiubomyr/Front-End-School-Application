@@ -1,7 +1,6 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../../auth';
 import { StorageService } from '../../../shared';
 
 @Component({
@@ -20,8 +19,7 @@ export class NavbarComponent implements OnDestroy{
 
   constructor(
     private storageService: StorageService,
-    private router: Router,
-    private authService: AuthService)
+    private router: Router)
     {
       this.subscription = new Subscription();
     }

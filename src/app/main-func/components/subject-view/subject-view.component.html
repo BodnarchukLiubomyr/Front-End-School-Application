@@ -1,12 +1,12 @@
 <button class="button" [routerLink]="['/create-exercise']" *ngIf="isTeacher()">Create Exercise</button>
 <div *ngIf="exercises && exercises.length > 0; else noExercises">
     <div *ngFor="let exercise of exercises" class="exercise-card">
-      <h2>Exercise Details</h2>
+      <h2>{{'exercise-details'| translate}}</h2>
       <div class="exercise-info">
-        <p>Name of Exercise: {{ exercise.name }}</p>
-        <p>Description: {{ exercise.description }}</p>
-        <p>Date: {{ exercise.date }}</p>
-        <h2>Educational material</h2>
+        <p>{{'exercise-name'| translate}}: {{ exercise.name }}</p>
+        <p>{{'description'| translate}}: {{ exercise.description }}</p>
+        <p>{{'date'| translate}}: {{ exercise.date }}</p>
+        <h2>{{'material'| translate}}</h2>
         <app-get-teacher-file [exerciseId]="exercise.id"></app-get-teacher-file>
       </div>
       <div *ngIf="isStudent()">
@@ -14,16 +14,16 @@
         <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
       </div>
       <div class="buttons">
-        <button class="button" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">Check students' works</button>
+        <button class="button" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">{{'check-works'| translate}}</button>
         <div class="button-separator"></div>
-        <button class="delete-button" (click)="onDelete(exercise.name)" *ngIf="isTeacher()">Delete exercise</button>
+        <button class="delete-button" (click)="onDelete(exercise.name)" *ngIf="isTeacher()">{{'delete-exercise'| translate}}</button>
       </div>
       <app-file-sending [exerciseId]="exercise.id"></app-file-sending>
     </div>
   </div>
   
   <ng-template #noExercises>
-    <p>No exercises available.</p>
+    <p>{{'no-exercise'| translate}}.</p>
   </ng-template>
   
   <div *ngIf="errorMessage">
