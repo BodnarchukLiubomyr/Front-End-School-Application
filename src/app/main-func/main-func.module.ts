@@ -34,8 +34,8 @@ import {
   CreateChatComponent,
   GetChatsComponent,
   GetSubjectsComponent,
-  TranslateComponent,
-  DeleteUserComponent
+  DeleteUserComponent,
+  TranslateComponent
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -74,12 +74,15 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateComponent,
     DeleteUserComponent
   ],
+  exports: [
+    TranslateComponent, // Export it so other modules can use it
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MainFuncRoutingModule,
     MaterialModule,
-    TranslateModule
+    TranslateModule,
   ]
 })
 export class MainFuncModule { }

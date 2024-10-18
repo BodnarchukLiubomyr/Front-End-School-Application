@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +14,8 @@ import {
   CheckMailComponent,
   ForgotComponent
  } from './index';
+import { TranslateModule } from '@ngx-translate/core';
+import { MainFuncModule } from '../main-func/main-func.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {
     CommonModule,
     AuthRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    MainFuncModule
   ]
 })
 export class AuthModule { }

@@ -1,4 +1,39 @@
 {
+    "change-password": "Change Password",
+    "new-password": "Enter new password",
+    "valid-password": "Enter a valid password.",
+    "password-symbols": "Password should contain at least 8 symbols.",
+    "password-uppercase": "Password should contain at least one uppercase letter.",
+    "password-lowercase": "Password should contain at least one lowercase letter.",
+    "password-digit": "Password should contain at least one digit.",
+    "password-spaces": "Password shouldn't contain spaces.",
+    "repeat-password": "Repeat new password",
+    "password-not-match": "Passwords don't match.",
+
+    "email-confirmed": "Your email was successfully confirmed.",
+    "check-email": "Check your email",
+    "password-reset-instructions": "We've sent password reset instructions to:",
+    "check-spum": "If it doesn't arrive soon, check your spam folder or",
+    "send-email": "send the email again",
+    "back-to": "Back to log in",
+
+    "verify-email": "Verify your email",
+    "sent-link": "We have sent verification link to your e-mail",
+    "verify-adress": "Please verify your e-mail address to continue using School-App.",
+    "click": "Click here",
+    "not-receive-email": "if you didn't receive an e-mail.",
+
+    "forgot-password": "Forgot password?",
+    "mail-adress": "Enter the mail address and we'll send you reset instructions.",
+    "email": "E-mail",
+    "password": "Password",
+    "reset-password": "Reset password",
+
+    "log-in": "Log in",
+    "email-not-found": "Email not found in the database.",
+
+    "sign-up": "Sign up",
+    
     "class-name":"Class name",
     "valid-email":"Enter a valid email",
     "email-not-valid":"Email is not valid",
@@ -96,6 +131,7 @@
     "firstname-lowercase":"Firstname should contain at least one lowercase letter.",
     "firstname-spaces":"Firstname shouldn't contain spaces.",
     "school-class":"School class",
+    "class-users":"School class users",
     "no-class-users":"No class users available",
     "user-deleting":"Delete user",
     "group-deleting":"Delete group",
