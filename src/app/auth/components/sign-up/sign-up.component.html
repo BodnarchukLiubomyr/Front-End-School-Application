@@ -17,12 +17,12 @@
     <div class="sign-up-form">
       <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Sign up student</h3>
+          <h3 class="title-text">{{'sign-up-student'| translate}}</h3>
           <div class="row">
             <div class="column">
           <div class="field-container">
             <div>
-              <label for="firstname" class="label">Firstname</label>
+              <label for="firstname" class="label">{{'firstname'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -34,7 +34,7 @@
         <div class="column">
           <div class="field-container">
             <div>
-              <label for="lastname" class="label">Lastname</label>
+              <label for="lastname" class="label">{{'lastname'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -48,7 +48,7 @@
         <div class="column">
           <div class="field-container">
             <div>
-              <label for="email" class="label">E-mail</label>
+              <label for="email" class="label">{{'email'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -58,10 +58,10 @@
             <div class="error-label-container"
               *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
               <div *ngIf="form.controls['email'].errors?.['required']" class="label text-red">
-                Enter a valid email.
+                {{'valid-email'| translate}}
               </div>
               <div *ngIf="form.controls['email'].errors?.['pattern']" class="label text-red">
-                Email is not valid.
+                {{'email-not-valid'| translate}}
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@
         <div class="column">
           <div class="field-container">
             <div>
-              <label for="password" class="label">Password</label>
+              <label for="password" class="label">{{'password'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -90,22 +90,22 @@
               *ngIf="form.controls['password'].invalid && (form.controls['password'].dirty || form.controls['password'].touched)">
   
               <div *ngIf="form.controls['password'].errors?.['required']" class="label text-red">
-                Enter a valid password.
+                {{'valid-password'| translate}}
               </div>
               <div *ngIf="form.controls['password'].errors?.['minlength']" class="label text-red">
-                Password should contain at least 8 symbols.
+                {{'password-symbols'| translate}}
               </div>
               <div *ngIf="form.controls['password'].errors?.['uppercase']" class="label text-red">
-                Password should contain at least one uppercase letter.
+                {{'password-uppercase'| translate}}
               </div>
               <div *ngIf="form.controls['password'].errors?.['lowercase']" class="label text-red">
-                Password should contain at least one lowercase letter.
+                {{'assword-lowercase'| translate}}
               </div>
               <div *ngIf="form.controls['password'].errors?.['number']" class="label text-red">
-                Password should contain at least one digit.
+                {{'password-digit'| translate}}
               </div>
               <div *ngIf="form.controls['password'].errors?.['nospaces']" class="label text-red">
-                Password shouldn't contain spaces.
+                {{'password-spaces'| translate}}
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@
       </div>
           <div class="field-container">
             <div>
-              <label for="passwordConfirm" class="label">Repeat password</label>
+              <label for="passwordConfirm" class="label">{{'repeat-password'| translate}}</label>
             </div>
             <div class="field"
               [ngClass]="{'border-error': form.controls['passwordConfirm'].invalid && (form.controls['passwordConfirm'].dirty || form.controls['passwordConfirm'].touched)}">
@@ -132,20 +132,20 @@
             <div class="error-label-container"
               *ngIf="form.controls['passwordConfirm'].invalid && (form.controls['passwordConfirm'].dirty || form.controls['passwordConfirm'].touched)">
               <div *ngIf="form.controls['passwordConfirm'].errors?.['required']" class="label text-red">
-                Enter a valid password.
+                {{'valid-password'| translate}}
               </div>
               <div *ngIf="form.controls['passwordConfirm'].errors?.['matching']" class="label text-red">
-                Passwords don't match.
+                {{'password-not-match'| translate}}
               </div>
             </div>
           </div>
         </div>
         <div class="button-container">
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-            <h3 class="link-text text-white">Sign up</h3>
+            <h3 class="link-text text-white">{{'sign-up'| translate}}</h3>
           </button>
           <button class="button-white" (click)="goBack($event)">
-            <h3 class="link-text text-blue">Back</h3>
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
           </button>
         </div>
       </form>

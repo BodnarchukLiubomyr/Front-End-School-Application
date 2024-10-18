@@ -18,16 +18,16 @@
     <div class="forgot-password-form">
       <form [formGroup]="forgotForm" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Forgot password?</h3>
+          <h3 class="title-text">{{'forgot-password'| translate}}</h3>
   
           <div class="link-text-container">
             <p class="regular-text text-grey-60">
-             Enter the mail address and we'll send you reset instructions.</p>
+              {{'mail-adress'| translate}}</p>
           </div>
   
           <div class="field-container">
             <div>
-              <label for="email" class="label">E-mail</label>
+              <label for="email" class="label">{{'email'| translate}}</label>
               <label for="email" class="label text-red">*</label>
             </div>
   
@@ -40,11 +40,11 @@
               *ngIf="forgotForm.controls['email'].invalid && (forgotForm.controls['email'].dirty || forgotForm.controls['email'].touched)">
   
               <div *ngIf="forgotForm.controls['email'].errors?.['required']" class="label text-red">
-                Enter a valid email.
+                {{'valid-email'| translate}}
               </div>
   
               <div *ngIf="forgotForm.controls['email'].errors?.['pattern']" class="label text-red">
-                Email is not valid.
+                {{'email-not-valid'| translate}}
               </div>
             </div>
           </div>
@@ -52,11 +52,11 @@
   
         <div class="button-container">
           <button type="submit" [disabled]="!forgotForm.valid" class="button" [class.disabled]="forgotForm.invalid">
-            <h3 class="link-text text-white">Reset password</h3>
+            <h3 class="link-text text-white">{{'reset-password'| translate}}</h3>
           </button>
   
           <button routerLink="/log-in" class="button-white">
-            <h3 class="link-text text-blue">Back</h3>
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
           </button>
         </div>
       </form>

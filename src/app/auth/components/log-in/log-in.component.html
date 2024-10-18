@@ -1,4 +1,5 @@
 <div class="flex-column-frame">
+  <app-translate></app-translate>
     <div class="alert-container">
       <div class="alert-body alert-bg-error" role="alert" *ngIf="isLogInFailed">
         <span class="alert-icon-container">
@@ -18,10 +19,10 @@
     <div class="log-in-form">
       <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">Log in</h3>
+          <h3 class="title-text">{{'log-in'| translate}}</h3>
           <div class="field-container">
             <div>
-              <label for="email" class="label">E-mail</label>
+              <label for="email" class="label">{{'email'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -31,20 +32,20 @@
             <div class="error-label-container"
               *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
               <div *ngIf="loginForm.controls['email'].errors?.['required']" class="label text-red">
-                Enter a valid email.
+                {{'valid-email'| translate}}
               </div>
               <div *ngIf="loginForm.controls['email'].errors?.['pattern']" class="label text-red">
-                Email is not valid.
+                {{'email-not-valid'| translate}}
               </div>
               <div *ngIf="loginForm.controls['email'].errors?.['unavailable']" class="label text-red">
-                Email not found in the database.
+                {{'email-not-found'| translate}}
               </div>
             </div>
           </div>
   
           <div class="field-container">
             <div>
-              <label for="password" class="label">Password</label>
+              <label for="password" class="label">{{'password'| translate}}</label>
               <label for="password" class="label text-red">*</label>
             </div>
             <div class="field"
@@ -69,34 +70,34 @@
               *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
   
               <div *ngIf="loginForm.controls['password'].errors?.['required']" class="label text-red">
-                Enter a valid password.
+                {{'valid-password'| translate}}
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['minlength']" class="label text-red">
-                Password should contain at least 8 symbols.
+                {{'password-symbols'| translate}}
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['uppercase']" class="label text-red">
-                Password should contain at least one uppercase letter.
+                {{'password-uppercase'| translate}}
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['lowercase']" class="label text-red">
-                Password should contain at least one lowercase letter.
+                {{'password-lowercase'| translate}}
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['number']" class="label text-red">
-                Password should contain at least one digit.
+                {{'password-digits'| translate}}
               </div>
               <div *ngIf="loginForm.controls['password'].errors?.['nospaces']" class="label text-red">
-                Password shouldn't contain spaces.
+                {{'password-spaces'| translate}}
               </div>
             </div>
           </div>
         </div>
   
         <div class="link-text-container__flex-end">
-          <a routerLink="/password/forgot" class="regular-text text-green-60 text-sm">Forgot password?</a>
+          <a routerLink="/password/forgot" class="regular-text text-green-60 text-sm">{{'forgot-password'| translate}}</a>
         </div>
   
         <div class="button-container">
           <button type="submit" [disabled]="loginForm.invalid" class="button" [class.disabled]="loginForm.invalid">
-            <h3 class="link-text text-white">Log in</h3>
+            <h3 class="link-text text-white">{{'log-in'| translate}}</h3>
           </button>
         </div>
       </form>

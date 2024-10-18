@@ -6,7 +6,7 @@
             <use xlink:href="assets/icons.svg#success-icon"></use>
           </svg>
         </span>
-        <span class="alert-text">Your email was successfully confirmed.</span>
+        <span class="alert-text">{{'email-confirmed'| translate}}</span>
         <span class="alert-button-container" (click)="closeSuccessAlert()">
           <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <use xlink:href="assets/icons.svg#close-icon"></use>
@@ -35,16 +35,16 @@
         </div>
       </div>
       <div class="title-text-container">
-        <h3 class="title-text">Verify your email</h3>
-        <div class="text-container regular-text">We have sent verification link to your e-mail
+        <h3 class="title-text">{{'verify-email'| translate}}</h3>
+        <div class="text-container regular-text">{{'sent-link'| translate}}
           <strong>{{email}}</strong>
-          Please verify your e-mail address to continue using School-App.
+          {{'verify-adress'| translate}}
         </div>
         <div class="link-text-container">
           <button (click)="sendConfirmEmail()" class="link-text" type="button">
-            Click here
+            {{'click'| translate}}
           </button>
-          <span class="regular-text">if you didn't receive an e-mail.</span>
+          <span class="regular-text">{{'not-receive-email'| translate}}</span>
         </div>
       </div>
     </div>
