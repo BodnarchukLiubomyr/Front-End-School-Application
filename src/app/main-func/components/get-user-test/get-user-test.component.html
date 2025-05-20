@@ -1,0 +1,59 @@
+<ng-container *ngIf="dataLoaded; else loading">
+  <div *ngIf="userQuestions.length > 0; else noQuestions" class="quiz-container">
+  <div class="question-card">
+    <div class="timer-circle">
+      <div class="timer-text">{{ formatRemainingTime() }}</div>
+    </div>
+
+    <h3 class="question-progress">Question {{ currentQuestionIndex + 1 }} of {{ userQuestions.length }}</h3>
+    <h4 class="question-text">{{ userQuestions[currentQuestionIndex]?.description }}</h4>
+
+    <div *ngIf="userQuestions[currentQuestionIndex]?.choices?.length > 0" class="choices-container">
+      <div *ngFor="let choice of userQuestions[currentQuestionIndex]?.choices" class="choice-item">
+        <ng-container *ngIf="userQuestions[currentQuestionIndex].answers.length > 1; else singleChoice">
+          <label>
+            <input type="checkbox"
+                   [name]="'question-' + userQuestions[currentQuestionIndex].id"
+                   [value]="choice"
+                   [checked]="isChecked(userQuestions[currentQuestionIndex].id, choice)"
+                   (change)="handleCheckboxChange(userQuestions[currentQuestionIndex].id, choice)">
+            {{ choice }}
+          </label>
+        </ng-container>
+        <ng-template #singleChoice>
+          <label>
+            <input type="radio"
+                   [name]="'question-' + userQuestions[currentQuestionIndex].id"
+                   [value]="choice"
+                   [checked]="isChecked(userQuestions[currentQuestionIndex].id, choice)"
+                   (change)="handleAnswerChange(userQuestions[currentQuestionIndex].id, choice)">
+            {{ choice }}
+          </label>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button (click)="handlePreviousQuestion()" [disabled]="currentQuestionIndex === 0">Previous</button>
+      <button
+        [ngClass]="{'submit-button': currentQuestionIndex === userQuestions.length - 1}"
+        (click)="handleNextQuestion()">
+        {{ currentQuestionIndex === userQuestions.length - 1 ? 'Submit' : 'Next' }}
+      </button>
+    </div>
+  </div>
+</div>
+</ng-container>
+
+<ng-template #loading>
+  <p>{{ 'loading' | translate }}</p>
+</ng-template>
+
+<ng-template #noQuestions>
+  <p>{{ 'no-questions' | translate }}</p>
+</ng-template>
+
+
+
+
+  

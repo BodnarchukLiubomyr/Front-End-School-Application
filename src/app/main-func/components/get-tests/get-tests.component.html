@@ -1,0 +1,33 @@
+<div *ngIf="tests && tests.length > 0; else noTests">
+    <div class="test-row">
+      <div *ngFor="let test of tests" class="test-card">
+        <h3>{{ test.testName }}</h3>
+        <button [routerLink]="['/create-question', test.id]" class="create-button" *ngIf="isTeacher()">{{'create-question'| translate}}</button>
+        <button [routerLink]="['/update-test', test.id]" class="update-button"*ngIf="isTeacher()">{{'update'| translate}}</button>
+        <button (click)="onDelete(test.id,test.testName)" class="delete-button"*ngIf="isTeacher()">{{'delete'| translate}}</button>
+        <div *ngIf="usertests[test.id]?.isUnfinished">
+          <button 
+            (click)="continueTest(test.id, userId)">
+            {{'continue'| translate}}
+          </button>
+        </div>
+        
+        <p *ngIf="isStudent() && usertests[test.id] != null && usertests[test.id]?.completedAt != null">
+          {{'result'| translate}}: {{usertests[test.id]?.result}}
+        </p>
+        
+        <button *ngIf="isStudent() && usertests[test.id]==null" 
+                [routerLink]="['/assign-test', test.id, userId]">
+          {{'start'| translate}}
+        </button>
+      </div>
+    </div>
+</div>
+  
+  <ng-template #noTests>
+    <p>{{'no-tests'| translate}}</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

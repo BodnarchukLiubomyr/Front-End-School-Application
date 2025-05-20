@@ -1,0 +1,96 @@
+<div class="question-form-container">
+  <div class="alert-container">
+    <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateQuestionFailed">
+      <span class="alert-icon-container">
+        <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <use xlink:href="assets/icons.svg#error-icon"></use>
+        </svg>
+      </span>
+      <span class="alert-text">{{ errorMessage }}</span>
+      <span class="alert-button-container" (click)="closeErrorAlert()">
+        <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <use xlink:href="assets/icons.svg#close-icon"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+  <h2>Create Question</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div>
+        <label for="description" class="label">{{'description'| translate}}</label>
+      </div>
+      <div class="field"
+        [ngClass]="{'border-error': form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)}">
+        <input class="field-text" id="description" name="description" type="text" autocomplete="description" formControlName="description">
+      </div>
+      <div class="error-label-container"
+        *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)">
+        <div *ngIf="form.controls['description'].errors?.['required']" class="label text-red">
+          {{'valid-description'| translate}}
+        </div>
+        <div *ngIf="form.controls['description'].errors?.['pattern']" class="label text-red">
+          {{'description-not-valid'| translate}}
+        </div>
+        <div *ngIf="form.controls['description'].errors?.['maxlength']" class="label text-red">
+          {{'description-contain'| translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'choices'| translate}}</label>
+      <div formArrayName="choices">
+        <div *ngFor="let choice of choices.controls; let i = index" class="choice-item">
+          <input [formControlName]="i" type="text" placeholder="Enter choice" />
+          <button type="button" class="remove-btn" (click)="removeChoice(i)">{{'remove'| translate}}</button>
+        </div>
+      </div>
+      <button type="button" class="add-btn" (click)="addChoice()">{{'add-choice'| translate}}</button>
+    </div>
+
+    <div class="form-group">
+      <label>Answers</label>
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers.controls; let i = index" class="answer-item">
+          <input [formControlName]="i" type="text" placeholder="Enter answer" />
+          <button type="button" class="remove-btn" (click)="removeAnswer(i)">{{'remove'| translate}}</button>
+        </div>
+      </div>
+      <button type="button" class="add-btn" (click)="addAnswer()">{{'add-answer'| translate}}</button>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <app-get-categories [testId]="testId" (categorySelected)="onCategorySelected($event)"></app-get-categories>
+      <p *ngIf="categoryName" class="selected-category">
+        {{'selected-category'| translate}}: <strong>{{ categoryName }}</strong>
+      </p>
+      <button class="button" [routerLink]="['/create-category', testId]">{{'add-category'| translate}}</button>
+    </div>
+    
+
+    <div class="form-group">
+      <label for="totalMark">{{'total-mark'| translate}}</label>
+      <div class="field"
+        [ngClass]="{'border-error': form.controls['totalMark'].invalid && (form.controls['totalMark'].dirty || form.controls['totalMark'].touched)}">
+        <input class="field-text" id="totalMark" name="totalMark" type="number" autocomplete="totalMark" formControlName="totalMark" min="0" max="12">
+      </div>
+      <div class="error-label-container"
+        *ngIf="form.controls['totalMark'].invalid && (form.controls['totalMark'].dirty || form.controls['totalMark'].touched)">
+        <div *ngIf="form.controls['totalMark'].errors?.['required']" class="label text-red">
+          {{'valid-marks'| translate}}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isCreateQuestionFailed" class="alert error-alert">
+      {{ errorMessage }}
+      <button (click)="closeErrorAlert()" type="button">{{'close'| translate}}</button>
+    </div>
+
+    <button type="submit" className="btn btn-outline-success mr-2">
+      {{'save-question'| translate}}
+    </button>
+  </form>
+</div>
+

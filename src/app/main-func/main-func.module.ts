@@ -35,7 +35,20 @@ import {
   GetChatsComponent,
   GetSubjectsComponent,
   DeleteUserComponent,
-  TranslateComponent
+  TranslateComponent,
+  CreateQuestionComponent,
+  CreateEducationalTestComponent,
+  GetTestsComponent,
+  DeleteEducationalTestComponent,
+  TestStepperComponent,
+  DeleteCategoryComponent,
+  DeleteQuestionComponent,
+  GetQuestionsComponent,
+  CreateCategoryComponent,
+  TestEntranceComponent,
+  GetCategoriesComponent,
+  GetTestResultComponent,
+  GetUserTestComponent
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -72,10 +85,23 @@ import { TranslateModule } from '@ngx-translate/core';
     ChatComponent,
     GetChatsComponent,
     TranslateComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    CreateQuestionComponent,
+    GetQuestionsComponent,
+    CreateEducationalTestComponent,
+    GetTestsComponent,
+    DeleteEducationalTestComponent,
+    CreateCategoryComponent,
+    DeleteCategoryComponent,
+    DeleteQuestionComponent,
+    TestStepperComponent,
+    TestEntranceComponent,
+    GetCategoriesComponent,
+    GetTestResultComponent,
+    GetUserTestComponent
   ],
   exports: [
-    TranslateComponent, // Export it so other modules can use it
+    TranslateComponent,
   ],
   imports: [
     CommonModule,
@@ -83,6 +109,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MainFuncRoutingModule,
     MaterialModule,
     TranslateModule,
-  ]
+]
 })
 export class MainFuncModule { }

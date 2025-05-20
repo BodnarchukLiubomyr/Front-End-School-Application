@@ -1,3 +1,5 @@
+<button class="button" [routerLink]="['/create-test',subjectId]" *ngIf="isTeacher()">Create Test</button>
+<app-get-tests [subjectId]="subjectId"></app-get-tests>
 <button class="button" [routerLink]="['/create-exercise']" *ngIf="isTeacher()">Create Exercise</button>
 <div *ngIf="exercises && exercises.length > 0; else noExercises">
     <div *ngFor="let exercise of exercises" class="exercise-card">

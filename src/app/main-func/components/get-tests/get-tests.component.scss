@@ -1,0 +1,64 @@
+.test-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  height: 200px;
+  h3 {
+    margin-bottom: 5px;
+  }
+}
+
+.test-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.delete-button {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid orange;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    background-color: orange;
+    color: white;
+  }
+
+  .update-button {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid blueviolet;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    background-color: blueviolet;
+    color: white;
+  }
+
+  .create-button {
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid green;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    background-color: green;
+    color: white;
+  }
+
