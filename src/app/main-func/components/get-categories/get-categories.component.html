@@ -1,0 +1,16 @@
+<div *ngIf="categories && categories.length > 0; else noCategories">
+    <label for="categoryDropdown">{{'select-category'| translate}}:</label>
+    <select id="categoryDropdown" (change)="onCategoryChange($event)">
+      <option *ngFor="let category of categories" [value]="category.name">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+  <ng-template #noCategories>
+    <p>{{'no-categories-available'| translate}}.</p>
+  </ng-template>
+  <div *ngIf="isGetCategoriesFailed" class="error-alert">
+    {{ errorMessage }}
+  </div>
+  
+    

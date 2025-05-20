@@ -285,7 +285,7 @@ export class MainFuncService {
 
   createChat(userId: string,lastname: string,firstname: string): Observable<any>{
     return this.http.post(
-      this.backendApi + '/api/v1/school-app/create-chat/' + userId,
+      this.backendApi + '/api/v1/school-application/create-chat/' + userId,
       {
         lastname,
         firstname
@@ -296,14 +296,14 @@ export class MainFuncService {
 
   getAllUserChats(userId: string): Observable<any>{
     return this.http.get(
-      this.backendApi + '/api/v1/school-app/get-chats/'+ userId,
+      this.backendApi + '/api/v1/school-application/get-chats/'+ userId,
       { responseType: "json"}
     );
   }
 
   getChatHistory(chatId: string):Observable<any>{
     return this.http.get(
-      this.backendApi + '/api/v1/school-app/chat/'+chatId,
+      this.backendApi + '/api/v1/school-application/chat/'+chatId,
       {
         responseType: "json"
       }
@@ -311,7 +311,7 @@ export class MainFuncService {
   }
 
   sendMessage(chatId: string, userId: string, content: string): Observable<any> {
-    return this.http.post(this.backendApi+'/api/v1/school-app/send/'+ chatId +'/'+ userId,
+    return this.http.post(this.backendApi+'/api/v1/school-application/send/'+ chatId +'/'+ userId,
     {
       content,
       observe: 'response'
@@ -319,4 +319,169 @@ export class MainFuncService {
       httpOptions
     );
   }
+
+  createQuestion(testId: string,description: string,choices: string[],answers: string[],categoryName: string,totalMark: string,): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-question/' + testId,
+      {
+        description,
+        choices,
+        answers,
+        categoryName,
+        totalMark,
+      },
+      httpOptions
+    );
+  }
+
+  getTestQuestions(testId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-test-questions/'+testId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  deleteQuestion(id:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-question/'+ id,
+      {responseType:'json'}
+    )
+  }
+
+  createEducationalTest(subjectId: string,testName: string,startTime: string,endTime: string,duration:string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-test/'+subjectId,
+      {
+        testName,
+        startTime,
+        endTime,
+        duration
+      },
+      httpOptions
+    );
+  }
+
+  getTests(subjectId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-tests/'+subjectId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  deleteTest(testId: string,testName:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-test/'+ testId+'/'+ testName,
+      {responseType:'json'}
+    )
+  }
+
+  createCategory(testId: string,name: string,mark: string,count:string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-category/'+testId,
+      {
+        name,
+        mark,
+        count
+      },
+      httpOptions
+    );
+  }
+
+  getTestCategories(testId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-categories/'+testId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  deleteCategory(categoryId:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-category/'+ categoryId,
+      {responseType:'json'}
+    )
+  }
+
+  assignTestToUser(testId: string,userId: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/assign-user/'+testId+'/'+userId,
+      httpOptions
+    );
+  }
+
+  submitTest(userTestId: string, answers: Record<string, string>): Observable<any> {
+    return this.http.put(
+      this.backendApi + '/api/v1/school-application/submit-test/' + userTestId,
+      answers,
+      { observe: 'response' }
+    );
 }
+
+  getUserQuestions(testId: string,userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-user-questions/'+testId+'/'+userId,
+      {responseType:'json'}
+    );
+  }
+
+  getTestResult(testId: string,userId: string):Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-test-result/'+testId+'/'+userId,
+      {responseType:'json'}
+    )
+  }
+
+  ifTestExist(testId: string,userId: string):Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/check-test-exist/'+testId+'/'+userId,
+      {responseType:'json'}
+    )
+  }
+
+  saveTestProgress(userId: string,testId: string,remainingTime: number,answers: Record<number, string>
+  ) {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/save-progress',
+      {
+        userId,
+        testId,
+        remainingTime,
+        answers
+      },
+      httpOptions
+    );
+  }
+
+  getUserTest(testId: string,userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-user-test/'+testId+'/'+userId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  getTime(testId: string,userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-time/'+testId+'/'+userId,
+      {
+        responseType: 'text'
+      }
+    );
+  }
+
+  autoSubmitTest(testId: string,userId: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/auto-submit/'+testId+'/'+userId,
+      httpOptions
+    );
+  }
+  
+}
+
+

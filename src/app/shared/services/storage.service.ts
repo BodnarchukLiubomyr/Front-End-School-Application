@@ -5,6 +5,10 @@ const CLASS_NAME_KEY = 'className';
 const EXERCISE_KEY = "exercise";
 const SUBJECT_KEY = 'subject';
 const FILE_KEY = 'file'
+const EDUCATIONAL_TEST_KEY = "test";
+const QUESTION_KEY = "question";
+const USER_TEST_KEY = "userTest";
+const TEST_SESSION_KEY = 'userTestSession';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +31,6 @@ export class StorageService {
     if (user) {
       return JSON.parse(user);
     }
-
     return {};
   }
 
@@ -36,7 +39,6 @@ export class StorageService {
     if (user) {
       return true;
     }
-
     return false;
   }
 
@@ -59,7 +61,6 @@ export class StorageService {
     if (exercise) {
       return JSON.parse(exercise);
     }
-
     return {};
   }
 
@@ -73,7 +74,6 @@ export class StorageService {
     if (subject) {
       return JSON.parse(subject);
     }
-
     return {};
   }
 
@@ -87,7 +87,64 @@ export class StorageService {
     if (file) {
       return JSON.parse(file);
     }
+    return {};
+  }
+
+  public saveEducationalTest(test: any): void {
+    window.localStorage.removeItem(EDUCATIONAL_TEST_KEY);
+    window.localStorage.setItem(EDUCATIONAL_TEST_KEY, JSON.stringify(test));
+  }
+
+  public getEducationalTest(): any {
+    const test = window.localStorage.getItem(EDUCATIONAL_TEST_KEY);
+    if (test) {
+      return JSON.parse(test);
+    }
+    return {};
+  }
+
+  public saveQuestion(question: any): void {
+    window.localStorage.removeItem(QUESTION_KEY);
+    window.localStorage.setItem(QUESTION_KEY, JSON.stringify(question));
+  }
+
+  public getQuestion(): any {
+    const question = window.localStorage.getItem(QUESTION_KEY);
+    if (question) {
+      return JSON.parse(question);
+    }
 
     return {};
   }
+
+  public saveUserTest(userTest: any): void {
+    window.localStorage.removeItem(USER_TEST_KEY);
+    window.localStorage.setItem(USER_TEST_KEY, JSON.stringify(userTest));
+  }
+
+  public getUserTest(): any {
+    const userTest = window.localStorage.getItem(USER_TEST_KEY);
+    if (userTest) {
+      return JSON.parse(userTest);
+    }
+    return {};
+  }
+
+  public saveTestSession(sessionData: any): void {
+    window.localStorage.removeItem(TEST_SESSION_KEY);
+    window.localStorage.setItem(TEST_SESSION_KEY, JSON.stringify(sessionData));
+  }
+  
+  public getTestSession(): any {
+    const session = window.localStorage.getItem(TEST_SESSION_KEY);
+    if (session) {
+      return JSON.parse(session);
+    }
+    return null;
+  }
+  
+  public clearTestSession(): void {
+    window.localStorage.removeItem(TEST_SESSION_KEY);
+  }
+  
 }

@@ -31,6 +31,16 @@ import {
   GetSubjectsComponent,
   DeleteSubjectComponent,
   UpdateSubjectComponent,
+  CreateQuestionComponent,
+  CreateEducationalTestComponent,
+  GetTestsComponent,
+  DeleteEducationalTestComponent,
+  TestStepperComponent,
+  TestEntranceComponent,
+  CreateCategoryComponent,
+  GetUserTestComponent,
+  DeleteCategoryComponent,
+  GetCategoriesComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -63,6 +73,16 @@ const routes: Routes = [
   { path: 'create-chat/:userId', component: CreateChatComponent},
   { path: 'chat/:chatId', component: ChatComponent},
   { path: 'get-chats/:userId', component: GetChatsComponent},
+  { path: 'create-question/:testId', component: CreateQuestionComponent},
+  { path: 'delete-question/:questionId', component: CreateQuestionComponent},
+  { path: 'get-categories/:testId', component: GetCategoriesComponent},
+  { path: 'create-test/:subjectId', component: CreateEducationalTestComponent},
+  { path: 'get-tests/:subjectId', component: GetTestsComponent},
+  { path: 'delete-test/:testId', component: DeleteEducationalTestComponent},
+  { path: 'create-category/:testId', component: CreateCategoryComponent},
+  { path: 'delete-category/:categoryId', component: DeleteCategoryComponent},
+  { path: 'test-stepper', component: TestStepperComponent},
+  { path: 'assign-test/:testId/:userId', component: GetUserTestComponent},
 ];
 
 @NgModule({

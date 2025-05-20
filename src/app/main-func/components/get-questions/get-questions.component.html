@@ -1,0 +1,32 @@
+<section class="container">
+    <div class="row mt-5">
+      <div class="col-md-6 mb-2" style="color: gray;">
+        <h4>All questions</h4>
+      </div>
+      <div class="col-md-4 d-flex justify-content-end">
+        <a href="/create-question/{{ testId }}" class="btn btn-primary">
+          <i class="fas fa-plus"></i>{{'add-question'| translate}}
+        </a>
+      </div>
+    </div>
+    <hr />
+    
+    <div *ngFor="let question of questions; let i = index">
+      <pre>
+        <h4 style="color: gray;">{{ i + 1 }}. {{ question.question }}</h4>
+      </pre>
+      <ul>
+        <li *ngFor="let choice of question.choices">{{ choice }}</li>
+      </ul>
+      <p class="text-success">{{'correct-answer'| translate}}: {{ question.correctAnswers }}</p>
+  
+      <div class="btn-group mb-4">
+        <a href="/update-question/{{ question.id }}" class="btn btn-sm btn-outline-warning mr-2">
+          {{'edit-question'| translate}}
+        </a>
+        <button class="btn btn-sm btn-outline-danger" (click)="onDelete(question.name)">
+          {{'delete-question'| translate}}
+        </button>
+      </div>
+    </div>
+  </section>

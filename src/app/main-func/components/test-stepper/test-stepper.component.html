@@ -1,0 +1,23 @@
+<div class="p-5">
+    <h4 class="mb-4">
+      <pre>{{ userTest.questions[currentQuestionIndex]?.question }}</pre>
+    </h4>
+  
+    <div class="mt-4">
+      <button
+        class="btn btn-sm btn-primary me-2"
+        (click)="handlePreviousQuestion()"
+        [disabled]="currentQuestionIndex === 0">
+        Previous question
+      </button>
+      
+      <button
+        class="btn btn-sm"
+        [ngClass]="{'btn-info': currentQuestionIndex !== userTest.questions.length - 1, 'btn-warning': currentQuestionIndex === userTest.questions.length - 1}"
+        (click)="handleNextQuestion()"
+        [disabled]="isNextButtonDisabled()">
+        {{ currentQuestionIndex === userTest.questions.length - 1 ? 'Submit quiz' : 'Next question' }}
+      </button>
+    </div>
+  </div>
+  

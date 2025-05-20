@@ -23,7 +23,7 @@ export class AuthService {
 
   signUp(firstname: string,lastname: string,email: string, password: string, passwordConfirm: string): Observable<any> {
     return this.http.post(
-      this.backendApi + '/api/v1/school-application/sign-up',
+      this.backendApi + '/api/v1/school-application/sign-up-student',
       {
         firstname,
         lastname,

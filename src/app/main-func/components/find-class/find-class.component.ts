@@ -44,7 +44,7 @@ export class FindClassComponent implements OnDestroy{
   onSubmit(): void {
     const { className } = this.form.value;
     console.log(className);
-    this.router.navigate(['get-class', className]);
+    this.router.navigate(['get-users-class', className]);
   }
 
   getSubjets(){
