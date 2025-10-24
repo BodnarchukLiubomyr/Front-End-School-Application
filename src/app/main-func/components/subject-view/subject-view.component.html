@@ -1,33 +1,47 @@
-<button class="button" [routerLink]="['/create-test',subjectId]" *ngIf="isTeacher()">Create Test</button>
+<div class="action-buttons" *ngIf="isTeacher()">
+  <button class="primary-btn" [routerLink]="['/create-test', subjectId]">
+    ➕ {{'create-test' | translate}}
+  </button>
+  <button class="primary-btn" [routerLink]="['/create-exercise']">
+    ➕ {{'create-exercise' | translate}}
+  </button>
+</div>
 <app-get-tests [subjectId]="subjectId"></app-get-tests>
-<button class="button" [routerLink]="['/create-exercise']" *ngIf="isTeacher()">Create Exercise</button>
 <div *ngIf="exercises && exercises.length > 0; else noExercises">
-    <div *ngFor="let exercise of exercises" class="exercise-card">
-      <h2>{{'exercise-details'| translate}}</h2>
-      <div class="exercise-info">
-        <p>{{'exercise-name'| translate}}: {{ exercise.name }}</p>
-        <p>{{'description'| translate}}: {{ exercise.description }}</p>
-        <p>{{'date'| translate}}: {{ exercise.date }}</p>
-        <h2>{{'material'| translate}}</h2>
-        <app-get-teacher-file [exerciseId]="exercise.id"></app-get-teacher-file>
-      </div>
-      <div *ngIf="isStudent()">
-        <app-get-student-file [exerciseId]="exercise.id"></app-get-student-file>
-        <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
-      </div>
-      <div class="buttons">
-        <button class="button" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">{{'check-works'| translate}}</button>
-        <div class="button-separator"></div>
-        <button class="delete-button" (click)="onDelete(exercise.name)" *ngIf="isTeacher()">{{'delete-exercise'| translate}}</button>
-      </div>
-      <app-file-sending [exerciseId]="exercise.id"></app-file-sending>
+  <div *ngFor="let exercise of exercises" class="exercise-card">
+    <div class="exercise-header">
+      <h2>{{ exercise.name }}</h2>
+      <p class="exercise-date">{{'date'| translate}}: {{ exercise.date }}</p>
     </div>
+
+    <div class="exercise-info">
+      <p><strong>{{'description'| translate}}:</strong> {{ exercise.description }}</p>
+      <h3>{{'material'| translate}}</h3>
+      <app-get-teacher-file [exerciseId]="exercise.id"></app-get-teacher-file>
+    </div>
+
+    <div *ngIf="isStudent()" class="student-section">
+    
+      <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
+    </div>
+
+    <div class="exercise-footer">
+      <button class="secondary-btn" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">
+        {{'check-works'| translate}}
+      </button>
+      <button class="danger-btn" (click)="onDelete(exercise.name)" *ngIf="isTeacher()">
+        {{'delete-exercise'| translate}}
+      </button>
+    </div>
+
+    <app-file-sending [exerciseId]="exercise.id"></app-file-sending>
   </div>
-  
-  <ng-template #noExercises>
-    <p>{{'no-exercise'| translate}}.</p>
-  </ng-template>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
-  </div>
+</div>
+
+<ng-template #noExercises>
+  <p class="empty-text">{{'no-exercise'| translate}}</p>
+</ng-template>
+
+<div *ngIf="errorMessage" class="error-box">
+  ⚠️ {{ errorMessage }}
+</div>

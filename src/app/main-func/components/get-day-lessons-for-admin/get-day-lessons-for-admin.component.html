@@ -1,0 +1,43 @@
+<button routerLink="/main-part" class="button-white">
+      <h3 class="link-text text-blue">{{'back'| translate}}</h3>
+    </button>
+<div class="schedule-container" *ngIf="studentDays && studentDays.length">
+  <div class="schedule-row" *ngFor="let day of studentDays">
+    <div class="day-box">
+      <div class="day-header">
+        <h3 class="day-title">{{ day.day }}</h3>
+        <div class="day-actions" *ngIf="isAdmin()">
+          <button class="btn add" [routerLink]="['/create-lesson', day.id]">➕</button>
+          <button class="btn update" [routerLink]="['/update-day', day.id]">✏️</button>
+          <button class="btn delete" (click)="onDeleteDay(day.id, day.day)">🗑</button>
+        </div>
+      </div>
+    </div>
+    <div class="lessons-box">
+      <div class="lesson-slot" 
+        *ngFor="let slot of [].constructor(day.lessonsCount); let i = index">
+        <ng-container *ngIf="getLesson(day.lessons, i+1) as lesson; else emptySlot">
+          <li class="lesson-item">
+            <div class="lesson-content">
+              <span class="lesson-time">{{lesson.startTime}} - {{lesson.endTime}}</span>
+              <span class="lesson-name">{{lesson.name}}</span>
+            </div>
+            <div class="lesson-actions">
+              <button class="btn update" [routerLink]="['/update-lesson',lesson.id]" *ngIf="isAdmin()">✏️</button>
+              <button class="btn delete" (click)="onDeleteLesson(lesson.lessonsOrder, day.id)" *ngIf="isAdmin()">🗑</button>
+            </div>
+          </li>
+        </ng-container>
+        <ng-template #emptySlot>
+          <div class="lesson-item empty-slot">
+            <span>Empty #{{ i+1 }}</span>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

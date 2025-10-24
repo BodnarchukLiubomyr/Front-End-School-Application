@@ -1,0 +1,102 @@
+<div class="flex-column-frame">
+  <div class="alert-container">
+    <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateStudentDayFailed">
+      <span class="alert-icon-container">
+        <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <use xlink:href="assets/icons.svg#error-icon"></use>
+        </svg>
+      </span>
+      <span class="alert-text">{{ errorMessage }}</span>
+      <span class="alert-button-container" (click)="closeErrorAlert()">
+        <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <use xlink:href="assets/icons.svg#close-icon"></use>
+        </svg>
+      </span>
+    </div>
+  </div>
+  <div class="create-day-form">
+    <form [formGroup]="form" novaliday (ngSubmit)="onSubmit()">
+      <div class="title-input">
+        <h3 class="title-text">{{'create-student-day'| translate}}</h3>
+        <div class="row">
+          <div class="column">
+            <div class="field-container">
+                <div>
+                  <label for="lessonsCount" class="label">{{'lessons-count'| translate}}</label>
+                  <label for="password" class="label text-red">*</label>
+                </div>
+                <div class="field"
+                  [ngClass]="{'border-error': form.controls['lessonsCount'].invalid && (form.controls['lessonsCount'].dirty || form.controls['lessonsCount'].touched)}">
+                  <input class="field-text" id="lessonsCount" name="lessonsCount" type="lessonsCount" autocomplete="lessonsCount" formControlName="lessonsCount">
+                </div>
+                <div class="error-label-container"
+                  *ngIf="form.controls['lessonsCount'].invalid && (form.controls['lessonsCount'].dirty || form.controls['lessonsCount'].touched)">
+                  <div *ngIf="form.controls['lessonsCount'].errors?.['required']" class="label text-red">
+                    {{'valid-count'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['lessonsCount'].errors?.['pattern']" class="label text-red">
+                    {{'not-valid-count'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['lessonsCount'].errors?.['maxlength']" class="label text-red">
+                    {{'count-contain'| translate}}
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="column">
+            <div class="field-container">
+              <div>
+                <label for="day" class="label">{{'day'| translate}}</label>
+                <label for="password" class="label text-red">*</label>
+              </div>
+              <div class="field"
+                [ngClass]="{'border-error': form.controls['day'].invalid && (form.controls['day'].dirty || form.controls['day'].touched)}">
+                <input class="field-text" id="day" name="day" type="day" autocomplete="day" formControlName="day">
+              </div>
+              <div class="error-label-container"
+                *ngIf="form.controls['day'].invalid && (form.controls['day'].dirty || form.controls['day'].touched)">
+                <div *ngIf="form.controls['day'].errors?.['required']" class="label text-red">
+                  {{'valid-day'| translate}}
+                </div>
+                <div *ngIf="form.controls['day'].errors?.['pattern']" class="label text-red">
+                  {{'not-valid-day'| translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column">  
+            <div class="field-container">
+              <div>
+                <label for="className" class="label">{{'class-name'| translate}}</label>
+                <label for="password" class="label text-red">*</label>
+              </div>
+              <div class="field"
+                [ngClass]="{'border-error': form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)}">
+                <input class="field-text" id="className" name="className" type="className" autocomplete="className" formControlName="className">
+              </div>
+              <div class="error-label-container"
+                *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
+                <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
+                  {{'valid-class-name'| translate}}
+                </div>
+                <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
+                  {{'not-valid-class-name'| translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
+            <h3 class="link-text text-white">{{'create'| translate}}</h3>
+          </button>
+          <button class="button-white" (click)="goBack($event)">
+            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

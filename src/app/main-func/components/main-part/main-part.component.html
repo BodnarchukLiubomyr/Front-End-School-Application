@@ -2,32 +2,52 @@
 <div class="row-separator"></div>
 <app-translate></app-translate>
 <div class="title-layout" *ngIf="!isAdmin()">
-  <h3 class="title-layout-text-holder" style="font-size: 24px;">{{'my-subjects'| translate}}</h3>
+  <h3 class="title-layout-text-holder">{{ 'my-subjects' | translate }}</h3>
 </div>
-<app-subjects *ngIf="!isAdmin()"></app-subjects>
+
+<div class="content-row">
+  <app-subjects *ngIf="!isAdmin()"></app-subjects>
+  <div class="schedule-wrapper" *ngIf="isStudent()">
+    <app-get-day-lessons [userId]="userId"></app-get-day-lessons>
+  </div>
+</div>
+<button class="button" [routerLink]="['/get-lessons', userId]" *ngIf="isStudent()">{{ 'get-lessons' | translate }}</button>
+<button class="button primary" (click)="navigateToGetLessonForTeacher()" *ngIf="isTeacher()">
+  {{ 'get-lessons' | translate }}
+</button>
 
 <div class="center-container" *ngIf="isAdmin()">
-  <div class="button-container">
-    <p class="education-heading">{{'education'| translate}}</p>
+  <div class="admin-panel">
+    <p class="section-heading">{{ 'education' | translate }}</p>
     <div class="button-row">
-      <div class="row-separator"></div>
-      <button class="button" (click)="navigateToCreateClass()" *ngIf="isAdmin()">{{'create-class'| translate}}</button>
-      <div class="button-separator"></div>
-      <button class="button" (click)="navigateToAddUserToClass()" *ngIf="isAdmin()">{{'add-student-to-class'| translate}}</button>
-      <div class="button-separator"></div>
-      <button class="button" (click)="navigateToFindClass()" *ngIf="isAdmin()">{{'find-class'| translate}}</button>
-      <div class="button-separator"></div>
-      <button class="button" (click)="transferUsers()" *ngIf="isAdmin()">{{'transfer-students'| translate}}</button>
-      <div class="button-separator"></div>
-      <button class="button" (click)="navigateToCreateSubject()" *ngIf="isAdmin">{{'create-subject'| translate}}</button>
+      <button class="button" (click)="navigateToCreateClass()">{{ 'create-class' | translate }}</button>
+      <button class="button" (click)="navigateToAddUserToClass()">{{ 'add-student-to-class' | translate }}</button>
+      <button class="button" (click)="navigateToFindClass()">{{ 'find-class' | translate }}</button>
+      <button class="button" (click)="transferUsers()">{{ 'transfer-students' | translate }}</button>
+      <button class="button" (click)="navigateToCreateSubject()">{{ 'create-subject' | translate }}</button>
+      <button class="button" (click)="navigateToCreateStudentDay()">{{ 'create-student-day' | translate }}</button>
     </div>
-    <div class="row-separator"></div>
-    <p class="education-heading">{{'registration'| translate}}</p>
+    <p class="section-heading">{{ 'registration' | translate }}</p>
     <div class="button-row">
-      <div class="row-separator"></div>
-      <button class="button" (click)="navigateToSignUpUser()" *ngIf="isAdmin()">{{'sign-up-student'| translate}}</button>
-      <div class="button-separator"></div>
-      <button class="button" (click)="navigateToSignUpTeacher()" *ngIf="isAdmin()">{{'sign-up-teacher'| translate}}</button>
+      <button class="button" (click)="navigateToSignUpUser()">{{ 'sign-up-student' | translate }}</button>
+      <button class="button" (click)="navigateToSignUpTeacher()">{{ 'sign-up-teacher' | translate }}</button>
+    </div>
+
+    <div class="class-list-container">
+      <h2 class="available-classes-title" (click)="toggleClassList($event)">
+        {{ 'available-classes' | translate }}
+        <span class="arrow" [class.open]="isClassListOpen">▼</span>
+      </h2>
+
+      <ul class="class-list" *ngIf="isClassListOpen">
+        <li *ngFor="let schoolClass of classes" class="class-item">
+          <span>{{ schoolClass.name }}</span>
+          <button (click)="navigateToGetLessons(schoolClass.name)">
+            {{ 'show' | translate }}
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+

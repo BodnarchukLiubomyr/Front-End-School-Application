@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
 import { Location } from '@angular/common';
+import { IMessage } from '@stomp/stompjs';
 
 @Component({
   selector: 'app-group-chat',
@@ -13,7 +14,7 @@ import { Location } from '@angular/common';
 export class GroupChatComponent implements OnInit, OnDestroy{
   @Input() tasks: any[] = [];
   groupId = '';
-  chatHistory: { userName: string, message: string }[] = [];
+  chatHistory: { userName: string, message: string, timestamp: string }[] = [];
   userId = '';
   newMessageContent: any = '';
   message: string | undefined;
@@ -37,6 +38,7 @@ export class GroupChatComponent implements OnInit, OnDestroy{
       this.userId = this.storageService.getUser().id;
       this.getChatHistory();
       this.getUsersOfGroup();
+      this.subscribeToIncomingMessages();
     });
   }
 
@@ -45,27 +47,24 @@ export class GroupChatComponent implements OnInit, OnDestroy{
     this.newMessageContent = target.value || '';
   }
 
-  loadChatHistory() {
-
-    this.getChatHistory();
-    setInterval(() => {
-      this.getChatHistory();
-    }, 2000);
-  }
-
   getChatHistory(): void {
     this.subscription = this.mainFuncService.getGroupChatHistory(this.groupId)
       .subscribe({
-        next: (data: { content: string, sender: string, timestamp: string }[]) => {
+        next: (data: { user: { firstname: string, lastname: string }, content: string,timestamp: string }[]) => {
           console.log('Received data:', data);
           const newMessages = data.map((message) => ({
-            userName: message.sender || 'Unknown User',
-            message: message.content
+            userName: (message.user && `${message.user.firstname} ${message.user.lastname}`) || 'Unknown User',
+            message: message.content,
+            timestamp: message.timestamp
           }));
 
           if (newMessages.length > this.chatHistory.length) {
             this.chatHistory = newMessages;
           }
+          setTimeout(() => {
+            const container = document.querySelector('.chat-history');
+            if (container) container.scrollTop = container.scrollHeight;
+          });
         },
         error: err => {
           if (err.status == 500) {
@@ -75,29 +74,28 @@ export class GroupChatComponent implements OnInit, OnDestroy{
       });
   }
 
+  subscribeToIncomingMessages(): void {
+      this.subscription = this.mainFuncService.subscribeToGroupMessages(this.groupId)
+        .subscribe((message: IMessage) => {
+          const body = JSON.parse(message.body);
+          const newMessage = {
+            userName: body.user?.firstname && body.user?.lastname
+              ? `${body.user.firstname} ${body.user.lastname}`
+              : body.sender || 'Unknown User',
+            message: body.content,
+            timestamp: body.timestamp
+          };
+          this.chatHistory.push(newMessage);
+        });
+    }
+
   sendMessage() {
+    if (!this.newMessageContent.trim()) return;
+
     const messageContent = this.newMessageContent;
     this.newMessageContent = '';
 
-    this.subscription = this.mainFuncService.sendGroupMessage(this.groupId, this.userId, messageContent)
-    .subscribe({
-      next: data => {
-          const newMessage = {
-           userName: (data.user && `${data.user.firstname} ${data.user.lastname}`) || 'Unknown User',
-           message: data.content
-          };
-          console.log(newMessage)
-          console.log('Message sent:', data);
-
-          this.chatHistory.unshift(newMessage);
-        },
-        error: err => {
-          if (err.status == 500) {
-            this.errorMessage = err.error.message;
-          }
-        }
-      }
-    );
+    this.mainFuncService.sendGroupChatMessage(this.groupId, this.userId, messageContent);
   }
 
   getUsersOfGroup(){

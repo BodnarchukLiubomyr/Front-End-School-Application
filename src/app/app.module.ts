@@ -13,6 +13,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { RxStompConfig } from '@stomp/rx-stomp';
+import { myRxStompConfig } from './main-func/rx-stomp.config';
 
 const appInitializerFn = (appConfig: ConfigService) => {
   return () => {
@@ -61,6 +64,15 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useValue: {}
     },
     { provide: MAT_DIALOG_DATA, useValue: {} },
+    {
+      provide: RxStompConfig,
+      useValue: myRxStompConfig,
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [RxStompConfig]
+    },
     provideAnimationsAsync(),
     HttpClient
   ],

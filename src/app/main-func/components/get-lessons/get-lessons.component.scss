@@ -1,0 +1,67 @@
+.schedule-container {
+  margin: 30px;
+  overflow-x: auto;
+  border-radius: 16px;
+}
+
+.schedule-grid {
+  display: grid;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.schedule-cell {
+  border: 1px solid #e5e5e5;
+  padding: 14px;
+  text-align: center;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.schedule-cell.header {
+  font-weight: 600;
+  background: linear-gradient(to right, #f3f7ff, #eaf2ff);
+  font-size: 16px;
+  color: #333;
+}
+
+.schedule-cell.header.corner {
+  background: #f3f7ff;
+}
+
+.schedule-cell.time {
+  background: #f9fafc;
+  font-weight: 600;
+  font-size: 14px;
+  color: #555;
+}
+
+.lesson-cell {
+  min-height: 70px;
+}
+
+.lesson-card {
+  background: #eaf4ff;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: background 0.2s ease-in-out;
+}
+
+.lesson-card:hover {
+  background: #d9ecff;
+}
+
+.lesson-name {
+  font-weight: 500;
+  color: #222;
+}
+
+

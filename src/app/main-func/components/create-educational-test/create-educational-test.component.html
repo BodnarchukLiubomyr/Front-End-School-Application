@@ -93,7 +93,6 @@
               </div>
               <div class="field"
                 [ngClass]="{'border-error': form.controls['duration'].invalid && (form.controls['duration'].dirty || form.controls['duration'].touched)}">
-                <!-- Expect duration in ISO 8601 format (e.g., PT1H30M for 1 hour 30 minutes) -->
                 <input class="field-text" id="duration" name="duration" type="text" autocomplete="duration" formControlName="duration" placeholder="duration">
               </div>
               <div class="error-label-container"

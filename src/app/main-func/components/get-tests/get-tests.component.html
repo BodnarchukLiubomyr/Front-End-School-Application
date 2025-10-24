@@ -11,11 +11,11 @@
             {{'continue'| translate}}
           </button>
         </div>
-        
+
         <p *ngIf="isStudent() && usertests[test.id] != null && usertests[test.id]?.completedAt != null">
           {{'result'| translate}}: {{usertests[test.id]?.result}}
         </p>
-        
+
         <button *ngIf="isStudent() && usertests[test.id]==null" 
                 [routerLink]="['/assign-test', test.id, userId]">
           {{'start'| translate}}
@@ -23,11 +23,11 @@
       </div>
     </div>
 </div>
-  
+
   <ng-template #noTests>
     <p>{{'no-tests'| translate}}</p>
   </ng-template>
-  
+
   <div *ngIf="errorMessage">
     <p>Error: {{ errorMessage }}</p>
   </div>

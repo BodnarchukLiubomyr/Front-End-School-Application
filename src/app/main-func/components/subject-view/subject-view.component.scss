@@ -1,70 +1,94 @@
-.exercise-card {
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 700px;
-  height: 450px;
-  margin-bottom: 20px;
-
-  h3 {
-    margin-bottom: 5px;
-  }
-
-  .exercise-info {
-    float: left;
-    width: 60%;
-  }
-
-  .buttons {
-    float: right;
-    width: 40%;
-  }
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-p {
-  color: #777;
+.empty-text {
+  text-align: center;
   font-style: italic;
+  color: #777;
 }
 
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
+.error-box {
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 500;
+}
+
+.exercise-card, .test-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 1.25rem;
+  margin: 1rem auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 800px;
+  height: 480px;
+}
+
+.exercise-card:hover, .test-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exercise-date {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.exercise-footer, .test-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Buttons */
+.primary-btn, .secondary-btn, .danger-btn {
+  padding: 8px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
   cursor: pointer;
-  color: #FFFFFF;
-  background-color: #3CB371;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.button:hover {
-  background-color: #7FFFD4;
-  border-color: #7FFFD4;
-  color: #FFFFFF;
+.primary-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+}
+.primary-btn:hover {
+  background: #1e40af;
+  transform: scale(1.05);
 }
 
-.delete-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  color: #FFFFFF;
-  background-color: #FF8C00;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+.secondary-btn {
+  background: #6b7280;
+  color: #fff;
+  border: none;
+}
+.secondary-btn:hover {
+  background: #4b5563;
+  transform: scale(1.05);
 }
 
-.delete-button:hover {
-  background-color: #FFA07A;
-  border-color: #FF8C00;
-  color: #FFFFFF;
+.danger-btn {
+  background: #dc2626;
+  color: #fff;
+  border: none;
 }
-
-.button-separator {
-  height: 10px;
+.danger-btn:hover {
+  background: #991b1b;
+  transform: scale(1.05);
 }
