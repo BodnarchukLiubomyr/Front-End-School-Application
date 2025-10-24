@@ -21,7 +21,7 @@
     </div>
 
     <div *ngIf="isStudent()" class="student-section">
-    
+      <app-get-student-file [exerciseId]="exercise.id"></app-get-student-file>
       <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
     </div>
 
