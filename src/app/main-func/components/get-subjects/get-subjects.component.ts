@@ -50,6 +50,7 @@ export class GetSubjectsComponent implements OnInit, OnDestroy{
         this.subjects = data;
         console.log('Subjects:', this.subjects);
         this.className = this.storageService.getClassName();
+        this.sortedSchoolClassUsers();
       },
       error: err => {
         if (err.status == 500) {

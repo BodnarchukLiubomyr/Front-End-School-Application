@@ -86,10 +86,9 @@ export class FileSendingComponent implements OnInit,OnDestroy{
           next: data => {
             this.processing = false;
             if (data.status === 'success') {
-              console.log('The project has been successfully uploaded.');
               this.UploadFileEvent.emit(data.file);
               this.isFileUploaded = true;
-              this.goBack();
+              setTimeout(() => this.goBack(), 1500);
             }
           },
           error: err => {

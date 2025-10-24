@@ -1,0 +1,177 @@
+.create-lesson-form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 35px 35px;
+    gap: 32px;
+  
+    position: relative;
+    width: 340.25px;
+    height: 560px;
+  
+    background: #FFFFFF;
+  
+    box-shadow: 0px 3px 12px rgba(29, 30, 38, 0.1), 0px 6px 18px rgba(29, 30, 38, 0.1);
+  }
+  
+  .title-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 18px;
+  
+    position: relative;
+    width: 270.25px;
+    height: 435px;
+  }
+  
+  .field-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 1px;
+  
+    width: 270px;
+    height: 78px;
+  }
+  
+  .label {
+    height: 18px;
+  
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+  
+    color: #474A59;
+  }
+  
+  .text-red {
+    color: #E54322;
+  }
+  
+  .field {
+    box-sizing: border-box;
+  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 9px 6px 9px 12px;
+    gap: 12px;
+  
+    width: 270px;
+    height: 42px;
+  
+    border: 1px solid #ACAFBF;
+  }
+  
+  .field:focus-within {
+    border: 1px solid #008ACE;
+  }
+  
+  .border-error {
+    border: 1px solid #E54322;
+  }
+  
+  .field-text {
+    width: 216px;
+    height: 24px;
+  
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    outline: none;
+  
+    color: #303240;
+  }
+  
+  .input-icon-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .input-icon {
+    position: absolute;
+    width: 18px;
+    height: 15.06px;
+    left: 3px;
+    top: 4px;
+  
+    fill: #6C6F80;
+  }
+  
+  .error-label-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+  
+    width: 270px;
+    height: 18px;
+  }
+  
+  .error-label-container .label:not(:first-child) {
+    display: none;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+  }
+  
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px;
+    gap: 10px;
+  
+    width: 100%;
+  
+    background: #9400D3;
+    border-radius: 3px;
+  }
+  
+  .button-white {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 24px;
+    gap: 10px;
+    width: 100%;
+    border-color: #008ACE;
+    border-width: 2px;
+    background: #f4f7f8;
+    border-radius: 3px;
+  }
+  
+  .button.disabled {
+    background: #b3b2b2;
+    cursor: not-allowed;
+  }
+  
+  
+  .link-text-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  
+  .text-white {
+    color: #FFFFFF;
+  }
+  
+  .text-grey {
+    color: #474A59;
+  }

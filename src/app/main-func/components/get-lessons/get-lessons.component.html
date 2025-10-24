@@ -1,0 +1,30 @@
+<div class="schedule-container" *ngIf="lessonsByDay && timeSlots.length">
+  <div class="schedule-grid" [style.gridTemplateColumns]="'140px repeat(' + weekDays.length + ', 1fr)'">
+    <div class="schedule-cell header corner"></div>
+    <div class="schedule-cell header" *ngFor="let weekDay of weekDays">
+      {{ weekDay }}
+    </div>
+    <ng-container *ngFor="let slot of timeSlots">
+      <div class="schedule-cell time">{{ slot }}</div>
+      <div class="schedule-cell lesson-cell" *ngFor="let day of weekDays">
+        <ng-container *ngIf="lessonsByDay[day] as lessons">
+          <ng-container *ngFor="let lesson of lessons">
+            <div
+              class="lesson-card"
+              *ngIf="(lesson.startTime + ' - ' + lesson.endTime) === slot"
+            >
+              <span class="lesson-name">{{ lesson.name }}</span>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+
+
+
+
+

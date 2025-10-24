@@ -41,6 +41,16 @@ import {
   GetUserTestComponent,
   DeleteCategoryComponent,
   GetCategoriesComponent,
+  CreateLessonComponent,
+  CreateDayComponent,
+  GetLessonsComponent,
+  UpdateLessonComponent,
+  DeleteLessonComponent,
+  UpdateDayComponent,
+  GetDayLessonsComponent,
+  DeleteDayComponent,
+  DeleteQuestionComponent,
+  GetDayLessonsForAdminComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -74,7 +84,7 @@ const routes: Routes = [
   { path: 'chat/:chatId', component: ChatComponent},
   { path: 'get-chats/:userId', component: GetChatsComponent},
   { path: 'create-question/:testId', component: CreateQuestionComponent},
-  { path: 'delete-question/:questionId', component: CreateQuestionComponent},
+  { path: 'delete-question/:questionId', component: DeleteQuestionComponent},
   { path: 'get-categories/:testId', component: GetCategoriesComponent},
   { path: 'create-test/:subjectId', component: CreateEducationalTestComponent},
   { path: 'get-tests/:subjectId', component: GetTestsComponent},
@@ -83,6 +93,15 @@ const routes: Routes = [
   { path: 'delete-category/:categoryId', component: DeleteCategoryComponent},
   { path: 'test-stepper', component: TestStepperComponent},
   { path: 'assign-test/:testId/:userId', component: GetUserTestComponent},
+  { path: 'create-lesson/:studentDayId', component: CreateLessonComponent},
+  { path: 'create-studentDay', component: CreateDayComponent},
+  { path: 'get-lessons/:userId', component: GetLessonsComponent},
+  { path: 'get-day-lessons-for-admin', component: GetDayLessonsForAdminComponent},
+  { path: 'get-day-lessons', component: GetDayLessonsComponent},
+  { path: 'update-lesson/:lessonId', component: UpdateLessonComponent},
+  { path: 'delete-lesson/:lessonOrder/:studentDayId', component: DeleteLessonComponent},
+  { path: 'update-day/:studentDayId', component: UpdateDayComponent},
+  { path: 'delete-day/:studentDayId/:day', component: DeleteDayComponent},
 ];
 
 @NgModule({

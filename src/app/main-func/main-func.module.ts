@@ -48,7 +48,16 @@ import {
   TestEntranceComponent,
   GetCategoriesComponent,
   GetTestResultComponent,
-  GetUserTestComponent
+  GetUserTestComponent,
+  CreateLessonComponent,
+  CreateDayComponent,
+  UpdateDayComponent,
+  UpdateLessonComponent,
+  DeleteDayComponent,
+  DeleteLessonComponent,
+  GetLessonsComponent,
+  GetDayLessonsComponent,
+  GetDayLessonsForAdminComponent,
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -98,7 +107,16 @@ import { TranslateModule } from '@ngx-translate/core';
     TestEntranceComponent,
     GetCategoriesComponent,
     GetTestResultComponent,
-    GetUserTestComponent
+    GetUserTestComponent,
+    CreateLessonComponent,
+    CreateDayComponent,
+    UpdateDayComponent,
+    UpdateLessonComponent,
+    GetLessonsComponent,
+    GetDayLessonsForAdminComponent,
+    GetDayLessonsComponent,
+    DeleteDayComponent,
+    DeleteLessonComponent
   ],
   exports: [
     TranslateComponent,

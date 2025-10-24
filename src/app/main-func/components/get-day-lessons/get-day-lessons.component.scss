@@ -1,0 +1,71 @@
+.page-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.schedule-container {
+  width: 320px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  overflow-y: auto;
+  max-height: 85vh;
+  position: sticky;
+  top: 20px;
+}
+
+.day-header {
+  background-color: #1976d2;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-row {
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.time-slot {
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.lesson-card {
+  background-color: #eaf4ff;
+  border-radius: 6px;
+  padding: 6px;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.schedule-container::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
+

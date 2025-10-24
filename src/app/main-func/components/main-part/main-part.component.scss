@@ -1,53 +1,171 @@
-.button-separator {
-    width: 10px;
-  }
-  
-  .row-separator{
-    height: 15px;
-  }
-  
-  .button-row {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px;
-  }
-  
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 2px solid #008ACE;
-    color: #FFFFFF;
-    background-color: #008ACE;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  .button:hover {
-    background-color: #006699;
-    border-color: #006699;
-    color: #FFFFFF;
-  }
-  
-  .button-container {
-    display: flex;
+.row-separator {
+  height: 20px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.admin-panel {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.section-heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+  margin: 20px 0 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.button {
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #fff;
+  background: #008ACE;
+}
+
+.button:hover {
+  background: #006699;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.button.primary {
+  margin: 20px auto;
+  display: block;
+  background: #4CAF50;
+}
+
+.button.primary:hover {
+  background: #3d8b40;
+}
+
+.class-list-container {
+  margin-top: 30px;
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.available-classes-title {
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1976d2;
+}
+
+.available-classes-title .arrow {
+  transition: transform 0.3s ease;
+}
+
+.available-classes-title .arrow.open {
+  transform: rotate(180deg);
+}
+
+.class-list {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  list-style: none;
+  min-width: 220px;
+  animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.class-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.class-item:hover {
+  background: #f6f8fa;
+}
+
+.class-item button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.class-item button:hover {
+  background: #125a9c;
+}
+
+/* Student Title */
+.title-layout-text-holder {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.content-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.schedule-wrapper {
+  flex: 0 0 350px; 
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 992px) {
+  .content-row {
     flex-direction: column;
-    align-items: center;
   }
-  
-  .education-heading {
-    font-size: 18px;
-    margin-bottom: 10px;
+
+  .schedule-wrapper {
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
   }
+}

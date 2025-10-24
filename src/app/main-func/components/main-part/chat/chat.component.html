@@ -1,7 +1,10 @@
 <div class="chat-container">
   <div class="chat-history">
     <div *ngFor="let message of chatHistory" class="message">
-      <div class="user-name"><strong>{{ message.userName }}:</strong></div>
+      <div class="user-name">
+        <strong>{{ message.userName }}: </strong>
+        <span class="message-time">{{ message.timestamp | date:'shortTime' }}</span>
+      </div>
       <div class="message-content">{{ message.message }}</div>
       <div class="message-divider"></div>
     </div>

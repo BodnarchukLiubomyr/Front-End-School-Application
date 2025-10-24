@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
-import { DeleteSubjectComponent } from '../delete-subject/delete-subject.component';
 import { DeleteEducationalTestComponent } from '../delete-educational-test/delete-educational-test.component';
 
 @Component({
@@ -74,7 +73,7 @@ export class GetTestsComponent implements OnInit,OnDestroy{
               },
             });
         }
-        
+
       },
       error: err => {
         if (err.status == 500) {

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigService } from '../../shared';
 import { saveAs } from 'file-saver';
+import { RxStompService } from '@stomp/ng2-stompjs';
+import { IMessage } from '@stomp/stompjs';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +19,7 @@ export class MainFuncService {
 
   constructor(
     private http: HttpClient,
+    private rxStompService: RxStompService,
     env: ConfigService)
   {
     this.backendApi = env.config.backendApi;
@@ -62,6 +65,13 @@ export class MainFuncService {
     return this.http.get(
       this.backendApi + '/api/v1/school-application/get-classname/'+ subjectId,
       {responseType: 'text'}
+    );
+  }
+
+  getClasses():Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-all-classes',
+      {responseType: 'json'}
     );
   }
 
@@ -309,15 +319,29 @@ export class MainFuncService {
       }
     );
   }
+  
+  subscribeToChatMessages(chatId: string): Observable<IMessage> {
+    return this.rxStompService.watch(`/topic/chat/${chatId}`);
+  }
+  
+  subscribeToGroupMessages(groupId: string): Observable<IMessage> {
+    return this.rxStompService.watch(`/topic/group/${groupId}`);
+  }
 
-  sendMessage(chatId: string, userId: string, content: string): Observable<any> {
-    return this.http.post(this.backendApi+'/api/v1/school-application/send/'+ chatId +'/'+ userId,
-    {
-      content,
-      observe: 'response'
-    },
-      httpOptions
-    );
+  sendPrivateChatMessage(chatId: string, userId: string, content: string): void {
+    const messagePayload = { chatId, userId, content };
+    this.rxStompService.publish({
+      destination: `/app/chat/send`,
+      body: JSON.stringify(messagePayload)
+    });
+  }
+  
+  sendGroupChatMessage(groupId: string, userId: string, content: string): void {
+    const messagePayload = { groupId, userId, content };
+    this.rxStompService.publish({
+      destination: `/app/group/group-send`,
+      body: JSON.stringify(messagePayload)
+    });
   }
 
   createQuestion(testId: string,description: string,choices: string[],answers: string[],categoryName: string,totalMark: string,): Observable<any>{
@@ -482,6 +506,102 @@ export class MainFuncService {
     );
   }
   
+  createLesson(studentDayId: string,lessonsOrder: string,startTime: string,className:string,subjectName:string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-lesson/'+studentDayId,
+      {
+        lessonsOrder,
+        startTime,
+        className,
+        subjectName
+      },
+      httpOptions
+    );
+  }
+
+  updateLesson(lessonId:string,lessonsOrder:string,startTime:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-lesson/'+lessonId,
+      {
+        lessonsOrder,
+        startTime,
+      },
+      httpOptions
+    );
+  }
+
+  getStudentDayLessons(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-lessons/'+userId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  getDayLessons(className: string): Observable<any>{
+    const params = new HttpParams()
+    .set('className', className);
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-day-lessons',
+      { params, responseType: "json" }
+    );
+  }
+
+  getTeacherLessons(userId: string): Observable<any>{
+    const params = new HttpParams()
+    .set('userId', userId);
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-lessons-for-teacher',
+      { params, responseType: "json" }
+    );
+  }
+
+  deleteLesson(lessonsOrder: string, studentDayId:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-lesson/'+lessonsOrder+'/'+studentDayId,
+      {responseType:'json'}
+    )
+  }
+
+  createStudentDay(lessonsCount: string,day: string,className: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-studentDay',
+      {
+        lessonsCount,
+        day,
+        className
+      },
+      httpOptions
+    );
+  }
+
+  updateStudentDay(studentDayId:string,lessonsCount:string,day:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-studentDay/'+studentDayId,
+      {
+        lessonsCount,
+        day
+      },
+      httpOptions
+    );
+  }
+
+  getTodayLessons(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-studentDay/'+userId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  deleteStudentDay(studentDayId:string,day:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-studentDay/'+studentDayId+'/'+ day,
+      {responseType:'json'}
+    )
+  }
 }
 
 

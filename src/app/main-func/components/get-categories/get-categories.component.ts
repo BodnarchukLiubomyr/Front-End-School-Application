@@ -52,6 +52,11 @@ export class GetCategoriesComponent {
       next: data => {
         this.categories = data;
         console.log('Categories:', this.categories);
+
+        if (this.categories.length > 0) {
+        const firstCategory = this.categories[0].name;
+        this.categorySelected.emit(firstCategory);
+      }
       },
       error: err => {
         if (err.status == 500) {

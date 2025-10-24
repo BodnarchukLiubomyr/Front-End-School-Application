@@ -14,7 +14,10 @@ export class MainPartComponent implements OnInit{
   userId = '';
   userRole: string | undefined;
   roles: string[] = [];
+  classes:any
+  selectedClassNames: string[] = [];
   errorMessage = '';
+  isClassListOpen = false;
   private subscription: Subscription;
 
   constructor(
@@ -27,6 +30,20 @@ export class MainPartComponent implements OnInit{
 
   ngOnInit(): void {
     this.userId = this.storageService.getUser().id;
+    this.getClasses();
+    document.addEventListener('click', this.onClickOutside.bind(this));
+  }
+
+  toggleClassList(event: MouseEvent): void {
+    event.stopPropagation();
+    this.isClassListOpen = !this.isClassListOpen;
+  }
+
+  private onClickOutside(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.class-list-container')) {
+      this.isClassListOpen = false;
+    }
   }
 
   isAdmin(): boolean {
@@ -55,6 +72,19 @@ export class MainPartComponent implements OnInit{
     this.router.navigate(['sign-up-teacher'])
   }
 
+  navigateToGetLessonForTeacher(): void {
+  this.router.navigate(
+    ['/get-day-lessons-for-admin'], 
+    { queryParams: { userId: this.userId } }
+  );
+}
+
+navigateToGetLessons(className:string): void {
+  this.router.navigate(
+    ['/get-day-lessons-for-admin'], { queryParams: { className }}
+  );
+}
+
   navigateToCreateClass(){
     this.router.navigate(['create-class'])
   }
@@ -70,6 +100,25 @@ export class MainPartComponent implements OnInit{
   navigateToCreateSubject(): void {
     this.router.navigate(['create-subject']);
   }
+
+  navigateToCreateStudentDay(): void {
+    this.router.navigate(['create-studentDay']);
+  }
+
+  getClasses(){
+    this.subscription = this.mainFuncService.getClasses()
+      .subscribe({
+        next: data => {
+          console.log('Classes:', data);
+          this.classes = data
+        },
+        error: err => {
+          if (err.status == 500) {
+            this.errorMessage = err.error.message;
+          }
+        }
+      });
+}
 
   transferUsers(): void {
       this.subscription = this.mainFuncService.transferUsersToNextClass()

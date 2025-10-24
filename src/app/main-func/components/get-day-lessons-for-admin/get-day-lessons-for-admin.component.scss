@@ -1,0 +1,118 @@
+.schedule-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.schedule-row {
+  display: flex;
+  align-items: flex-start;
+  background: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 10px;
+}
+
+.day-box {
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  width: 180px;
+  margin-right: 16px;
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.lessons-box {
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 12px;
+}
+
+.lesson-slot {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 8px;
+}
+
+.lesson-slot:last-child {
+  border-bottom: none;
+}
+
+.lesson-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+  background: #eaf4ff;
+  border-radius: 6px;
+}
+
+.lesson-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-time {
+  font-size: 15px;
+  font-weight: 500;
+  color: #555;
+}
+
+.lesson-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.lesson-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.empty-slot {
+  color: #aaa;
+  font-style: italic;
+}
+
+.lesson-actions button,
+.day-actions button {
+  margin-left: 6px;
+}
+
+.btn.delete {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn.delete:hover {
+  background-color: #d32f2f;
+}
+
+@media (max-width: 992px) {
+  .schedule-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+

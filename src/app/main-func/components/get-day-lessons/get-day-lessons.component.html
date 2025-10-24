@@ -1,0 +1,26 @@
+<div class="page-wrapper">
+  <div class="schedule-container" *ngIf="studentDay && timeSlots.length">  
+    <div class="day-header">
+      <h3>{{ studentDay.day }}</h3>
+    </div>
+
+    <div class="schedule-list">
+      <div *ngFor="let slot of timeSlots" class="lesson-row">
+        <div class="time-slot">{{ slot }}</div>
+
+        <ng-container *ngFor="let lesson of studentDay.lessons">
+          <div 
+            class="lesson-card" 
+            *ngIf="(lesson.startTime + ' - ' + lesson.endTime) === slot"
+          >
+            <span class="lesson-name">{{ lesson.name }}</span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -9,6 +9,7 @@ const EDUCATIONAL_TEST_KEY = "test";
 const QUESTION_KEY = "question";
 const USER_TEST_KEY = "userTest";
 const TEST_SESSION_KEY = 'userTestSession';
+const STUDENT_DAY_KEY = 'studentDay';
 
 @Injectable({
   providedIn: 'root'
@@ -145,6 +146,19 @@ export class StorageService {
   
   public clearTestSession(): void {
     window.localStorage.removeItem(TEST_SESSION_KEY);
+  }
+
+  public saveStudentDay(studentDay: any): void {
+    window.localStorage.removeItem(STUDENT_DAY_KEY);
+    window.localStorage.setItem(STUDENT_DAY_KEY, JSON.stringify(studentDay));
+  }
+
+  public getStudentDay(): any {
+    const studentDay = window.localStorage.getItem(STUDENT_DAY_KEY);
+    if (studentDay) {
+      return JSON.parse(studentDay);
+    }
+    return {};
   }
   
 }
