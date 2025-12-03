@@ -13,7 +13,6 @@
       <h2>{{ exercise.name }}</h2>
       <p class="exercise-date">{{'date'| translate}}: {{ exercise.date }}</p>
     </div>
-
     <div class="exercise-info">
       <p><strong>{{'description'| translate}}:</strong> {{ exercise.description }}</p>
       <h3>{{'material'| translate}}</h3>
@@ -21,11 +20,14 @@
     </div>
 
     <div *ngIf="isStudent()" class="student-section">
-      <app-get-student-file [exerciseId]="exercise.id"></app-get-student-file>
+      
       <app-get-mark [exerciseId]="exercise.id"></app-get-mark>
     </div>
 
     <div class="exercise-footer">
+      <button class="secondary-btn" [routerLink]="['/update-exercise', exercise.id]" *ngIf="isTeacher()">
+        {{'update-exercise'| translate}}
+      </button>
       <button class="secondary-btn" [routerLink]="['/work-rating', exercise.id]" *ngIf="isTeacher()">
         {{'check-works'| translate}}
       </button>

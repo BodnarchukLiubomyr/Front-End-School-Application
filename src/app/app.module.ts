@@ -16,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { RxStompConfig } from '@stomp/rx-stomp';
 import { myRxStompConfig } from './main-func/rx-stomp.config';
+import { ToastrModule } from 'ngx-toastr';
 
 const appInitializerFn = (appConfig: ConfigService) => {
   return () => {
@@ -41,6 +42,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AppRoutingModule,
     FormsModule,
     MaterialModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      timeOut: 5000,
+      progressBar: true,
+      closeButton: true,
+      preventDuplicates: true,
+    }),
     TranslateModule.forRoot(
       {
       loader:{

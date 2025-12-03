@@ -8,7 +8,7 @@ import { MainFuncService } from '../../services/main-func.service';
   styleUrl: './delete-question.component.scss'
 })
 export class DeleteQuestionComponent {
-  questionName = '';
+  description = '';
 
   constructor(
     private mainFuncService: MainFuncService,
@@ -18,11 +18,11 @@ export class DeleteQuestionComponent {
   {}
 
   ngOnInit(): void {
-    this.questionName = this.data.questionName;
+    this.description = this.data.description;
   }
 
   deleteQuestion() : void{
-    this.mainFuncService.deleteQuestion(this.questionName).subscribe({
+    this.mainFuncService.deleteQuestion(this.description).subscribe({
       next: (data) => {
         console.log(data);
         window.location.reload();

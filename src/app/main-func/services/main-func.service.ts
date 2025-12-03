@@ -141,6 +141,18 @@ export class MainFuncService {
     );
   }
 
+  updateExercise(exerciseId: string,name:string,description: string, date: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-exercise/' + exerciseId,
+      {
+        name,
+        description,
+        date
+      },
+      httpOptions
+    );
+  }
+
   getExercises(subjectId: string): Observable<any>{
     return this.http.get(
       this.backendApi + '/api/v1/school-application/get-exercises/'+subjectId,
@@ -251,6 +263,13 @@ export class MainFuncService {
     )
   }
 
+  getUserGroups(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-user-groups/'+userId,
+      { responseType: 'json'}
+    )
+  }
+
   getTeacherGroups(subjectId: string): Observable<any>{
     return this.http.get(
       this.backendApi + '/api/v1/school-application/get-teacher-groups/'+subjectId,
@@ -319,6 +338,21 @@ export class MainFuncService {
       }
     );
   }
+
+  getUnreadChats(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/chatUnread/'+ userId,
+      { responseType: "json"}
+    );
+  }
+
+  clearUnread(chatId: string, userId: string): Observable<any>{
+    const params = new HttpParams().set('userId', userId)
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/unread-message/'+chatId +'/unread',
+      { params,responseType: 'json' } 
+    )
+  }
   
   subscribeToChatMessages(chatId: string): Observable<IMessage> {
     return this.rxStompService.watch(`/topic/chat/${chatId}`);
@@ -360,10 +394,24 @@ export class MainFuncService {
 
   getTestQuestions(testId: string): Observable<any>{
     return this.http.get(
-      this.backendApi + '/api/v1/school-application/get-test-questions/'+testId,
+      this.backendApi + '/api/v1/school-application/get-questions/'+testId,
       {
         responseType: "json"
       }
+    );
+  }
+
+  updateQuestion(questionId:string,description: string,choices: string[],answers: string[],categoryName: string,totalMark: string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-question/'+questionId,
+      {
+        description,
+        choices,
+        answers,
+        categoryName,
+        totalMark,
+      },
+      httpOptions
     );
   }
 

@@ -19,6 +19,7 @@ export class GetQuestionsComponent implements OnInit,OnDestroy{
   isGetTestsFailed = false;
   errorMessage = '';
 
+  currentQuestionIndex = 0;
   questions: any;
 
   constructor(
@@ -49,7 +50,6 @@ export class GetQuestionsComponent implements OnInit,OnDestroy{
       next: data => {
         this.questions = data;
         console.log('Questions:', this.questions);
-        this.questions = this.storageService.getEducationalTest().id;
       },
       error: err => {
         if (err.status == 500) {
@@ -60,10 +60,10 @@ export class GetQuestionsComponent implements OnInit,OnDestroy{
     })
   }
 
-  onDelete(questionName: string): void{
+  onDelete(description: string): void{
     this.dialog.open(DeleteQuestionComponent, {
       data: {
-        questionName: questionName
+        description: description
     },
     });
   }

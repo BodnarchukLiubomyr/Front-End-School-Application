@@ -51,6 +51,9 @@ import {
   DeleteDayComponent,
   DeleteQuestionComponent,
   GetDayLessonsForAdminComponent,
+  GetQuestionsComponent,
+  UpdateQuestionComponent,
+  UpdateExerciseComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -68,6 +71,7 @@ const routes: Routes = [
   { path: 'subject-view/:subjectId', component: SubjectViewComponent},
   { path: 'delete-subject/:subjectName',component:DeleteSubjectComponent},
   { path: 'create-exercise', component: CreateExerciseComponent},
+  { path: 'update-exercise/:exerciseId', component: UpdateExerciseComponent},
   { path: 'delete-exercise/:exerciseName',component:DeleteExerciseComponent},
   { path: 'work-rating/:exerciseId',component: WorkRatingComponent},
   { path: 'file-sending/:userId/:exerciseId', component: FileSendingComponent},
@@ -84,6 +88,8 @@ const routes: Routes = [
   { path: 'chat/:chatId', component: ChatComponent},
   { path: 'get-chats/:userId', component: GetChatsComponent},
   { path: 'create-question/:testId', component: CreateQuestionComponent},
+  { path: 'get-questions/:testId', component: GetQuestionsComponent},
+  { path: 'update-question/:questionId', component: UpdateQuestionComponent},
   { path: 'delete-question/:questionId', component: DeleteQuestionComponent},
   { path: 'get-categories/:testId', component: GetCategoriesComponent},
   { path: 'create-test/:subjectId', component: CreateEducationalTestComponent},

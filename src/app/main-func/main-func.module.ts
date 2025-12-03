@@ -58,6 +58,8 @@ import {
   GetLessonsComponent,
   GetDayLessonsComponent,
   GetDayLessonsForAdminComponent,
+  UpdateQuestionComponent,
+  UpdateExerciseComponent,
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -68,6 +70,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CreateClassComponent,
     CreateExerciseComponent,
     CreateSubjectComponent,
+    UpdateExerciseComponent,
     DeleteExerciseComponent,
     FindClassComponent,
     GetClassComponent,
@@ -97,6 +100,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DeleteUserComponent,
     CreateQuestionComponent,
     GetQuestionsComponent,
+    UpdateQuestionComponent,
     CreateEducationalTestComponent,
     GetTestsComponent,
     DeleteEducationalTestComponent,

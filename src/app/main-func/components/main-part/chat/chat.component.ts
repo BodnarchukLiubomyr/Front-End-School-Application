@@ -5,6 +5,7 @@ import { StorageService } from '../../../../shared';
 import { MainFuncService } from '../../../services/main-func.service';
 import { Location } from '@angular/common';
 import { IMessage } from '@stomp/stompjs';
+import { NotificationService } from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-chat',
@@ -27,6 +28,7 @@ export class ChatComponent implements OnInit,OnDestroy{
     private mainFuncService: MainFuncService,
     private storageService: StorageService,
     private route: ActivatedRoute,
+    private notificationService: NotificationService,
     private location:Location)
     {
       this.subscription = new Subscription();
@@ -56,7 +58,16 @@ export class ChatComponent implements OnInit,OnDestroy{
             message: message.content,
             timestamp: message.timestamp
           }));
-
+          
+            this.mainFuncService.clearUnread(this.chatId, this.userId).subscribe(() => {
+              this.notificationService.notificationSubject.next({
+                chatId: Number(this.chatId),
+                cleared: true,
+                senderId: Number(this.userId)
+              });
+            });
+            localStorage.removeItem(`chat-unread-${this.chatId}`);
+          
           if (newMessages.length > this.chatHistory.length) {
             this.chatHistory = newMessages;
           }

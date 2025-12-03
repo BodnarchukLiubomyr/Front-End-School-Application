@@ -2,9 +2,9 @@
     <div class="test-row">
       <div *ngFor="let test of tests" class="test-card">
         <h3>{{ test.testName }}</h3>
-        <button [routerLink]="['/create-question', test.id]" class="create-button" *ngIf="isTeacher()">{{'create-question'| translate}}</button>
-        <button [routerLink]="['/update-test', test.id]" class="update-button"*ngIf="isTeacher()">{{'update'| translate}}</button>
-        <button (click)="onDelete(test.id,test.testName)" class="delete-button"*ngIf="isTeacher()">{{'delete'| translate}}</button>
+        <button [routerLink]="['/get-questions', test.id]" class="get-button" *ngIf="isTeacher()">{{'get-questions'| translate}}</button>
+        <button [routerLink]="['/update-test', test.id]" class="update-button" *ngIf="isTeacher()">{{'update'| translate}}</button>
+        <button (click)="onDelete(test.id,test.testName)" class="delete-button" *ngIf="isTeacher()">{{'delete'| translate}}</button>
         <div *ngIf="usertests[test.id]?.isUnfinished">
           <button 
             (click)="continueTest(test.id, userId)">

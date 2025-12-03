@@ -1,32 +1,53 @@
-<section class="container">
-    <div class="row mt-5">
-      <div class="col-md-6 mb-2" style="color: gray;">
-        <h4>All questions</h4>
-      </div>
-      <div class="col-md-4 d-flex justify-content-end">
-        <a href="/create-question/{{ testId }}" class="btn btn-primary">
-          <i class="fas fa-plus"></i>{{'add-question'| translate}}
-        </a>
-      </div>
-    </div>
-    <hr />
-    
-    <div *ngFor="let question of questions; let i = index">
-      <pre>
-        <h4 style="color: gray;">{{ i + 1 }}. {{ question.question }}</h4>
-      </pre>
-      <ul>
-        <li *ngFor="let choice of question.choices">{{ choice }}</li>
-      </ul>
-      <p class="text-success">{{'correct-answer'| translate}}: {{ question.correctAnswers }}</p>
-  
-      <div class="btn-group mb-4">
-        <a href="/update-question/{{ question.id }}" class="btn btn-sm btn-outline-warning mr-2">
-          {{'edit-question'| translate}}
-        </a>
-        <button class="btn btn-sm btn-outline-danger" (click)="onDelete(question.name)">
-          {{'delete-question'| translate}}
+<div class="col-md-6 mb-2" style="color: gray;"> 
+  <h4>All questions</h4>
+</div>
+<div class="col-md-4 d-flex justify-content-end">
+  <button class="secondary-btn" [routerLink]="['/create-question', testId]">
+    {{ 'add-question' | translate }}
+  </button>
+</div>
+
+<div *ngIf="questions.length > 0; else noQuestions" class="quiz-container">
+  <div *ngFor="let question of questions; let i = index" class="question-card mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="text-primary">Question {{ i + 1 }}</h5>
+      <div class="btn-group">
+        <button class="primary-btn" [routerLink]="['/update-question', question.id]">
+          {{ 'edit-question' | translate }}
+        </button>
+        <button class="danger-btn" (click)="onDelete(question.description)">
+          {{ 'delete-question' | translate }}
         </button>
       </div>
     </div>
-  </section>
+
+    <h4 class="question-text">{{ question.description }}</h4>
+
+    <div *ngIf="question.choices?.length > 0" class="choices-container">
+      <div *ngFor="let choice of question.choices" class="choice-item">
+        <ng-container *ngIf="question.answers.length > 1; else singleChoice">
+          <label>
+            <input type="checkbox" [name]="'question-' + question.id" [value]="choice">
+            {{ choice }}
+          </label>
+        </ng-container>
+        <ng-template #singleChoice>
+          <label>
+            <input type="radio" [name]="'question-' + question.id" [value]="choice">
+            {{ choice }}
+          </label>
+        </ng-template>
+      </div>
+    </div>
+
+    <p class="text-success">
+      {{ 'correct-answer' | translate }}: {{ question.answers.join(', ') }}
+    </p>
+  </div>
+</div>
+
+<ng-template #noQuestions>
+  <p>{{ 'no-questions' | translate }}</p>
+</ng-template>
+
