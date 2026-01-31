@@ -1,0 +1,70 @@
+<div class="flex-column-frame">
+    <div class="alert-container">
+      <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateRelationFailed">
+        <span class="alert-icon-container">
+          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <use xlink:href="assets/icons.svg#error-icon"></use>
+          </svg>
+        </span>
+        <span class="alert-text">{{ errorMessage }}</span>
+        <span class="alert-button-container" (click)="closeErrorAlert()">
+          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <use xlink:href="assets/icons.svg#close-icon"></use>
+          </svg>
+        </span>
+      </div>
+    </div>
+    <div class="create-class-form">
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <div class="title-input">
+          <h3 class="title-text">{{'create-relation'| translate}}</h3>
+          <div class="field-container">
+            <div>
+              <label for="parentsEmail" class="label">{{'parents-email'| translate}}</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['parentsEmail'].invalid && (form.controls['parentsEmail'].dirty || form.controls['parentsEmail'].touched)}">
+              <input class="field-text" id="parentsEmail" name="parentsEmail" type="parentsEmail" autocomplete="parentsEmail" formControlName="parentsEmail">
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['parentsEmail'].invalid && (form.controls['parentsEmail'].dirty || form.controls['parentsEmail'].touched)">
+              <div *ngIf="form.controls['parentsEmail'].errors?.['required']" class="label text-red">
+                {{'valid-parents-email'| translate}}
+              </div>
+              <div *ngIf="form.controls['parentsEmail'].errors?.['pattern']" class="label text-red">
+                {{'not-valid-parents-email'| translate}}
+              </div>
+            </div>
+          </div>
+          <div class="field-container">
+            <div>
+              <label for="studentEmail" class="label">{{'student-email'| translate}}</label>
+              <label for="password" class="label text-red">*</label>
+            </div>
+            <div class="field"
+              [ngClass]="{'border-error': form.controls['studentEmail'].invalid && (form.controls['studentEmail'].dirty || form.controls['studentEmail'].touched)}">
+              <input class="field-text" id="studentEmail" name="studentEmail" type="studentEmail" autocomplete="studentEmail" formControlName="studentEmail">
+            </div>
+            <div class="error-label-container"
+              *ngIf="form.controls['studentEmail'].invalid && (form.controls['studentEmail'].dirty || form.controls['studentEmail'].touched)">
+              <div *ngIf="form.controls['studentEmail'].errors?.['required']" class="label text-red">
+                {{'valid-student-email'| translate}}
+              </div>
+              <div *ngIf="form.controls['studentEmail'].errors?.['pattern']" class="label text-red">
+                {{'not-valid-student-email'| translate}}
+              </div>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
+              <h3 class="link-text text-white">{{'create'| translate}}</h3>
+            </button>
+            <button class="button-white" (click)="goBack($event)">
+              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

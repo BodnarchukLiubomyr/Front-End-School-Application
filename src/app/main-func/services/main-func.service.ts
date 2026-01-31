@@ -339,6 +339,15 @@ export class MainFuncService {
     );
   }
 
+  getChat(messageId: string):Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-chat/'+messageId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
   getUnreadChats(userId: string): Observable<any>{
     return this.http.get(
       this.backendApi + '/api/v1/school-application/chatUnread/'+ userId,
@@ -647,6 +656,62 @@ export class MainFuncService {
   deleteStudentDay(studentDayId:string,day:string):Observable<any>{
     return this.http.delete(
       this.backendApi + '/api/v1/school-application/delete-studentDay/'+studentDayId+'/'+ day,
+      {responseType:'json'}
+    )
+  }
+
+  createRelation(parentsEmail: string,studentEmail: string): Observable<any>{
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/create-relation',
+      {
+        parentsEmail,
+        studentEmail
+      },
+      httpOptions
+    );
+  }
+
+  displayStudentMarks(parentsEmail: string,subjectName: string,): Observable<any>{
+    const params = new HttpParams().set('subjectName', subjectName)
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-student-marks/'+parentsEmail,
+      {
+        params,responseType: "json"
+      }
+    );
+  }
+
+  getStudentSubjects(userId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-student-subjects/'+userId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  getClassMarks(subjectId: string,): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-class-marks/'+subjectId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  updateMessage(messageId:string,content:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-message/'+messageId,
+      {
+        content
+      },
+      httpOptions
+    );
+  }
+
+  deleteMessage(messageId:string,content:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-message/'+ messageId,
       {responseType:'json'}
     )
   }

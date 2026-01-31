@@ -1,0 +1,32 @@
+<div class="results-container" *ngIf="info">
+  <div class="header-card">
+    <h2 class="student-name">{{ info.userName }}</h2>
+    <p class="subtitle">{{'student-results-overview'| translate}}</p>
+  </div>
+
+  <div class="results-card">
+    <h3 class="section-title">Subjects</h3>
+    <ul class="subject-list">
+      <li *ngFor="let s of info.subjectNames" class="subject-item">
+        {{ s }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="results-card">
+    <h3 class="section-title">Exercises & Marks</h3>
+
+    <div class="exercise-row" *ngFor="let ex of info.exerciseNames; let i = index">
+      <div class="exercise-name">{{ ex }}</div>
+      <div class="exercise-mark" >
+        {{ info.marks[i] }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isDisplayStudentMarksFailed" class="error-box">
+  <p>{{ errorMessage }}</p>
+  <button (click)="closeErrorAlert()">Close</button>
+</div>
+

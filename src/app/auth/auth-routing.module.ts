@@ -8,7 +8,8 @@ import {
   SignUpTeacherComponent,
   ChangePasswordComponent,
   CheckMailComponent,
-  ForgotComponent
+  ForgotComponent,
+  SignUpParentComponent
  } from './index';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'password/forgot/check-mail/:email', component: CheckMailComponent },
   { path: 'password/forgot', component: ForgotComponent },
   { path: 'password/change/:token', component: ChangePasswordComponent },
+  { path: 'sign-up-parent', component: SignUpParentComponent},
   { path: '', redirectTo: 'log-in', pathMatch: 'full' },
 ];
 @NgModule({

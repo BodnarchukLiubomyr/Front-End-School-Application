@@ -1,0 +1,101 @@
+.results-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.header-card {
+  background: linear-gradient(135deg, #4a90e2, #005bbb);
+  padding: 25px;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.student-name {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 5px;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.results-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.subject-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subject-item {
+  background: #eef5ff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-left: 4px solid #4a90e2;
+}
+
+.exercise-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.exercise-name {
+  font-size: 16px;
+  color: #444;
+}
+
+.exercise-mark {
+  font-size: 16px;
+  font-weight: bold;
+  width: 50px;
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 8px;
+  color: white;
+}
+
+.good {
+  background: #4caf50;
+}
+
+.medium {
+  background: #ffb300;
+}
+
+.bad {
+  background: #e53935;
+}
+
+.error-box {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #ffdddd;
+  border-left: 5px solid #ff4444;
+  border-radius: 10px;
+}

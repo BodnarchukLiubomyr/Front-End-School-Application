@@ -1,0 +1,17 @@
+<div *ngIf="subjectNames && subjectNames.length > 0; else noSubjects">
+    <div class="subject-row">
+      <div *ngFor="let subjectName of subjectNames" class="subject-card">
+        <button class="button" [routerLink]="['/get-student-marks', parentsEmail]" [queryParams]="{ subjectName: subjectName }">
+          {{ subjectName }}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noSubjects>
+    <p>{{'no-subjects'| translate}}</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

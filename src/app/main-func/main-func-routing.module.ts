@@ -54,6 +54,11 @@ import {
   GetQuestionsComponent,
   UpdateQuestionComponent,
   UpdateExerciseComponent,
+  CreateRelationComponent,
+  GetStudentSubjectsComponent,
+  GetClassMarksComponent,
+  UpdateMessageComponent,
+  DeleteMessageComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -87,6 +92,8 @@ const routes: Routes = [
   { path: 'create-chat/:userId', component: CreateChatComponent},
   { path: 'chat/:chatId', component: ChatComponent},
   { path: 'get-chats/:userId', component: GetChatsComponent},
+  { path: 'update-message/:messageId', component: UpdateMessageComponent},
+  { path: 'delete-message/:messageId', component: DeleteMessageComponent},
   { path: 'create-question/:testId', component: CreateQuestionComponent},
   { path: 'get-questions/:testId', component: GetQuestionsComponent},
   { path: 'update-question/:questionId', component: UpdateQuestionComponent},
@@ -108,6 +115,10 @@ const routes: Routes = [
   { path: 'delete-lesson/:lessonOrder/:studentDayId', component: DeleteLessonComponent},
   { path: 'update-day/:studentDayId', component: UpdateDayComponent},
   { path: 'delete-day/:studentDayId/:day', component: DeleteDayComponent},
+  { path: 'create-relation', component: CreateRelationComponent},
+  { path: 'get-student-marks/:parentsEmail', component: GetLessonsComponent},
+  { path: 'get-student-subjects/:userId', component: GetStudentSubjectsComponent},
+  { path: 'get-class-marks/:subjectId', component: GetClassMarksComponent},
 ];
 
 @NgModule({

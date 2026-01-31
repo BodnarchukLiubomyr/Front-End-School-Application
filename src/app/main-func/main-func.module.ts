@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainFuncRoutingModule } from './main-func-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 
 import {
@@ -60,6 +60,12 @@ import {
   GetDayLessonsForAdminComponent,
   UpdateQuestionComponent,
   UpdateExerciseComponent,
+  DisplayStudentMarksComponent,
+  GetStudentSubjectsComponent,
+  CreateRelationComponent,
+  UpdateMessageComponent,
+  DeleteMessageComponent,
+  GetClassMarksComponent,
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -120,7 +126,13 @@ import { TranslateModule } from '@ngx-translate/core';
     GetDayLessonsForAdminComponent,
     GetDayLessonsComponent,
     DeleteDayComponent,
-    DeleteLessonComponent
+    DeleteLessonComponent,
+    DisplayStudentMarksComponent,
+    CreateRelationComponent,
+    GetStudentSubjectsComponent,
+    UpdateMessageComponent,
+    DeleteMessageComponent,
+    GetClassMarksComponent
   ],
   exports: [
     TranslateComponent,
@@ -131,6 +143,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MainFuncRoutingModule,
     MaterialModule,
     TranslateModule,
+    FormsModule
 ]
 })
 export class MainFuncModule { }

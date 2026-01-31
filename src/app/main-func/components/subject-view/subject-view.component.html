@@ -7,6 +7,9 @@
   </button>
 </div>
 <app-get-tests [subjectId]="subjectId"></app-get-tests>
+<button class="secondary-btn" [routerLink]="['/get-class-marks', subjectId]" *ngIf="isTeacher()">
+  {{'update-exercise'| translate}}
+</button>
 <div *ngIf="exercises && exercises.length > 0; else noExercises">
   <div *ngFor="let exercise of exercises" class="exercise-card">
     <div class="exercise-header">
