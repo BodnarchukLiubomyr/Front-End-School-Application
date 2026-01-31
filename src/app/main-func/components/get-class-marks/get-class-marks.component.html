@@ -1,0 +1,52 @@
+<div class="results-container" *ngIf="info">
+
+  <div class="header-card">
+    <h2 class="student-name">{{ info.schoolClassName }}</h2>
+    <p class="subtitle">{{'results-overview'| translate}}</p>
+  </div>
+
+  <h3 class="section-title">{{ info.subjectName }}</h3>
+
+  <div class="results-card">
+    <table class="marks-table">
+      <thead>
+        <tr>
+          <th class="user-col">Student</th>
+          <th *ngFor="let ex of info.exerciseNames">
+            {{ ex }}
+          </th>
+          <th *ngFor="let test of info.userTestNames">
+            {{ test }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of info.userNames; let userIndex = index">
+          <td class="user-name">
+            {{ user }}
+          </td>
+
+          <td
+            *ngFor="let ex of info.exerciseNames; let exIndex = index"
+            class="mark-cell"
+          >
+            {{ getMark(userIndex, exIndex) }}
+          </td>
+          <td
+            *ngFor="let test of info.userTestNames; let testIndex = index"
+            class="mark-cell"
+          >
+            {{ getTestMark(userIndex, testIndex) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="isGetClassMarksFailed" class="error-box">
+  <p>{{ errorMessage }}</p>
+  <button (click)="closeErrorAlert()">Close</button>
+</div>
+

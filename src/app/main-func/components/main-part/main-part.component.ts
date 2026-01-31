@@ -64,12 +64,22 @@ export class MainPartComponent implements OnInit{
     return userRole === 'STUDENT';
   }
 
+  isParent(): boolean {
+    const userRole = this.storageService.getUser().role;
+    console.log("Role:",userRole);
+    return userRole === 'PARENT';
+  }
+
   navigateToSignUpUser():void{
     this.router.navigate(['sign-up'])
   }
 
   navigateToSignUpTeacher():void{
     this.router.navigate(['sign-up-teacher'])
+  }
+
+  navigateToSignUpParent():void{
+    this.router.navigate(['sign-up-parent'])
   }
 
   navigateToGetLessonForTeacher(): void {

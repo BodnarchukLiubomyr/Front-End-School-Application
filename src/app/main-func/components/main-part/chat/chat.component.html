@@ -1,19 +1,25 @@
-<div class="chat-container">
-  <div class="chat-history">
-    <div *ngFor="let message of chatHistory" class="message">
-      <div class="user-name">
-        <strong>{{ message.userName }}: </strong>
-        <span class="message-time">{{ message.timestamp | date:'shortTime' }}</span>
-      </div>
-      <div class="message-content">{{ message.message }}</div>
-      <div class="message-divider"></div>
+<div class="chat-container"> 
+  <div class="chat-history">  
+  <div *ngFor="let message of chatHistory" class="message"> 
+    <div class="user-name"> 
+      <strong>{{ message.userName }}:</strong> 
+      <span class="message-time">
+        {{ message.timestamp | date:'shortTime' }}
+      </span> 
+    </div> 
+    <div class="message-content">
+      {{ message.message }}
     </div>
-  </div>
-  <div class="message-input">
-    <textarea [value]="newMessageContent || ''" (input)="onMessageInput($event)" placeholder="Type your message..."></textarea>
-    <button (click)="sendMessage()">{{'send-message'| translate}}</button>
-    <button (click)="goBack($event)" class="button-white">
-      <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-    </button>
-  </div>
+    <button class="btn update"(click)="onEditMessage(message)">✏️</button>
+    <button class="btn delete" (click)="onDeleteMessage(message.id,message.message)">🗑</button>
+    <div class="message-divider"></div> 
+  </div> 
+</div> 
+<div class="message-input"> 
+  <textarea [value]="newMessageContent || ''" (input)="onMessageInput($event)" placeholder="Type your message...">
+  </textarea> 
+  <button (click)="sendMessage()">{{'send-message'| translate}}</button> 
+  <button (click)="goBack($event)" class="button-white"> <h3 class="link-text text-blue">{{'back'| translate}}</h3> 
+  </button> 
+</div> 
 </div>

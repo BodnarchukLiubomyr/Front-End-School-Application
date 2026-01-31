@@ -1,0 +1,36 @@
+.marks-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.marks-table th,
+.marks-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.marks-table thead {
+  background: #f5f7fa;
+}
+
+.user-col {
+  text-align: left;
+  font-weight: 600;
+}
+
+.user-name {
+  text-align: left;
+  font-weight: 500;
+}
+
+.mark-cell {
+  font-weight: bold;
+}
+
+.mark-cell:empty {
+  color: #ccc;
+}

@@ -7,5 +7,6 @@ export * from './components/sign-up-teacher/sign-up-teacher.component'
 export * from './components/change-password/change-password.component'
 export * from './components/check-mail/check-mail.component'
 export * from './components/forgot/forgot.component'
+export * from './components/sign-up-parent/sign-up-parent.component'
 
 export * from './services/auth.service';

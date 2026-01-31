@@ -6,6 +6,9 @@ import { MainFuncService } from '../../../services/main-func.service';
 import { Location } from '@angular/common';
 import { IMessage } from '@stomp/stompjs';
 import { NotificationService } from '../../../../shared/services/notification.service';
+import { DeleteMessageComponent } from '../../delete-message/delete-message.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateMessageComponent } from '../../update-message/update-message.component';
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +18,7 @@ import { NotificationService } from '../../../../shared/services/notification.se
 export class ChatComponent implements OnInit,OnDestroy{
   @Input() tasks: any[] = [];
   chatId = '';
-  chatHistory: { userName: string, message: string, timestamp: string }[] = [];
+  chatHistory: { id: string; userName: string, message: string, timestamp: string }[] = [];
   newMessageContent: string = '';
   errorMessage = '';
   userId = '';
@@ -29,7 +32,9 @@ export class ChatComponent implements OnInit,OnDestroy{
     private storageService: StorageService,
     private route: ActivatedRoute,
     private notificationService: NotificationService,
-    private location:Location)
+    private location:Location,
+    private dialog: MatDialog
+  )
     {
       this.subscription = new Subscription();
     }
@@ -51,9 +56,10 @@ export class ChatComponent implements OnInit,OnDestroy{
   fetchChatHistory() {
     this.subscription = this.mainFuncService.getChatHistory(this.chatId)
       .subscribe({
-        next: (data: { user: { firstname: string, lastname: string }, content: string,timestamp: string }[]) => {
+        next: (data: { id: string; user: { firstname: string, lastname: string }, content: string,timestamp: string }[]) => {
           console.log('Received data:', data);
           const newMessages = data.map((message) => ({
+            id: message.id,
             userName: (message.user && `${message.user.firstname} ${message.user.lastname}`) || 'Unknown User',
             message: message.content,
             timestamp: message.timestamp
@@ -89,6 +95,7 @@ export class ChatComponent implements OnInit,OnDestroy{
       .subscribe((message: IMessage) => {
         const body = JSON.parse(message.body);
         const newMessage = {
+          id: body.id,
           userName: body.user?.firstname && body.user?.lastname
             ? `${body.user.firstname} ${body.user.lastname}`
             : body.sender || 'Unknown User',
@@ -116,6 +123,35 @@ export class ChatComponent implements OnInit,OnDestroy{
     const calculatedHeight = Math.max(lines * lineHeight, minHeight);
     return `${calculatedHeight}px`;
   }
+  
+  onEditMessage(message: { id: string; message: string }) {
+  const dialogRef = this.dialog.open(UpdateMessageComponent, {
+    width: '400px',
+    data: {
+      messageId: message.id,
+      content: message.message
+    }
+  });
+
+  dialogRef.afterClosed().subscribe((updatedContent?: string) => {
+    if (updatedContent) {
+      const msg = this.chatHistory.find(m => m.id === message.id);
+      if (msg) {
+        msg.message = updatedContent; // ✅ instant UI update
+      }
+    }
+  });
+}
+
+
+  onDeleteMessage(messageId: string,content: string) {
+  this.dialog.open(DeleteMessageComponent, {
+        data: {
+          messageId: messageId,
+          content: content
+      },
+      });
+}
 
   goBack(event: MouseEvent) {
     event.preventDefault();

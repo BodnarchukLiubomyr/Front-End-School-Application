@@ -6,10 +6,11 @@
 </div>
 
 <div class="content-row">
-  <app-subjects *ngIf="!isAdmin()"></app-subjects>
+  <app-subjects *ngIf="isStudent() || isTeacher()"></app-subjects>
   <div class="schedule-wrapper" *ngIf="isStudent()">
     <app-get-day-lessons [userId]="userId"></app-get-day-lessons>
   </div>
+  <app-get-student-subjects [userId]="userId" *ngIf="isParent()"></app-get-student-subjects>
 </div>
 <button class="button" [routerLink]="['/get-lessons', userId]" *ngIf="isStudent()">{{ 'get-lessons' | translate }}</button>
 <button class="button primary" (click)="navigateToGetLessonForTeacher()" *ngIf="isTeacher()">
@@ -31,6 +32,7 @@
     <div class="button-row">
       <button class="button" (click)="navigateToSignUpUser()">{{ 'sign-up-student' | translate }}</button>
       <button class="button" (click)="navigateToSignUpTeacher()">{{ 'sign-up-teacher' | translate }}</button>
+      <button class="button" (click)="navigateToSignUpParent()">{{ 'sign-up-parent' | translate }}</button>
     </div>
 
     <div class="class-list-container">

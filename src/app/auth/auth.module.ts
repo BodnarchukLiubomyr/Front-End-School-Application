@@ -12,7 +12,8 @@ import {
   SignUpTeacherComponent,
   ChangePasswordComponent,
   CheckMailComponent,
-  ForgotComponent
+  ForgotComponent,
+  SignUpParentComponent
  } from './index';
 import { TranslateModule } from '@ngx-translate/core';
 import { MainFuncModule } from '../main-func/main-func.module';
@@ -26,7 +27,8 @@ import { MainFuncModule } from '../main-func/main-func.module';
     SignUpTeacherComponent,
     ChangePasswordComponent,
     CheckMailComponent,
-    ForgotComponent
+    ForgotComponent,
+    SignUpParentComponent
   ],
   imports: [
     CommonModule,
