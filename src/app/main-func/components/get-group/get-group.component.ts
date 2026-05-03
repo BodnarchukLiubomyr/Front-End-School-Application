@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
 import { DeleteGroupComponent } from '../delete-group/delete-group.component';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-get-group',
@@ -16,8 +17,10 @@ export class GetGroupComponent implements OnInit,OnDestroy{
   subjectId = '';
   @Input()
   userId = '';
+  unreadMap: { [chatId: number]: boolean } = {};
+  currentUserId = 0;
 
-  groups: any;
+  groups: any[] = [];
   errorMessage = '';
   isGetGroupFailed = false;
   private subscription: Subscription;
@@ -25,6 +28,7 @@ export class GetGroupComponent implements OnInit,OnDestroy{
   constructor(
     private mainFuncService: MainFuncService,
     private storageService: StorageService,
+    private notificationService: NotificationService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog
@@ -36,7 +40,6 @@ export class GetGroupComponent implements OnInit,OnDestroy{
     this.route.params.subscribe((params) => {
       this.subjectId = params['subjectId'];
       this.userId = this.storageService.getUser().id;
-
       if(this.isStudent()){
         this.getGroup();
       }
@@ -44,6 +47,18 @@ export class GetGroupComponent implements OnInit,OnDestroy{
       if(this.isTeacher()){
         this.getTeacherGroups();
       }
+      this.subscription.add(
+      this.notificationService.notification$.subscribe(n => {
+        if (!n.chatId) return;
+        if (n.senderId === this.currentUserId) return;
+        if (n.cleared) {
+          this.unreadMap[n.chatId] = false;
+          localStorage.removeItem(`chat-unread-${n.chatId}`);
+          return;
+        }
+        this.unreadMap[n.chatId] = true;
+        localStorage.setItem(`chat-unread-${n.chatId}`, '1');
+    }));
     });
   }
 
@@ -69,6 +84,16 @@ export class GetGroupComponent implements OnInit,OnDestroy{
       next: data => {
         console.log(data);
         this.groups = data;
+        this.mainFuncService.getUnreadChats(this.userId).subscribe((list: any[]) => {
+          list.forEach(entry => {
+            this.unreadMap[entry.chatId] = true;});
+        });
+        this.groups.forEach(group => {
+          if (localStorage.getItem(`chat-unread-${group.id}`)) {
+            console.log('Received notification in local Storage');
+            this.unreadMap[group.id] = true;
+          }
+        });
       },
       error: err => {
         if (err.status == 500) {
@@ -85,6 +110,16 @@ export class GetGroupComponent implements OnInit,OnDestroy{
       next: data => {
         console.log(data);
         this.groups = data;
+        this.mainFuncService.getUnreadChats(this.userId).subscribe((list: any[]) => {
+          list.forEach(entry => {
+            this.unreadMap[entry.chatId] = true;});
+        });
+        this.groups.forEach(group => {
+          if (localStorage.getItem(`chat-unread-${group.id}`)) {
+            console.log('Received notification in local Storage');
+            this.unreadMap[group.id] = true;
+          }
+        });
       },
       error: err => {
         if (err.status == 500) {

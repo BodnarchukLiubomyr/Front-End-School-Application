@@ -1,6 +1,6 @@
 <div class="flex-column-frame">
     <div class="alert-container">
-      <div class="alert-body alert-bg-error" role="alert" *ngIf="isUpdateSubjectFailed">
+      <div class="alert-body alert-bg-error" role="alert" *ngIf="isFinishSubgroupFailed">
         <span class="alert-icon-container">
           <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <use xlink:href="assets/icons.svg#error-icon"></use>
@@ -14,26 +14,10 @@
         </span>
       </div>
     </div>
-    <div class="update-subject-form">
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(subjectId)">
+    <div class="finish-subgroup-form">
+      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
         <div class="title-input">
-          <h3 class="title-text">{{'update-subject'| translate}}</h3>
-          <div class="field-container">
-            <div>
-              <label for="name" class="label">{{'subject-name'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)}">
-              <input class="field-text" id="name" name="name" type="name" autocomplete="name" formControlName="name">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
-              <div *ngIf="form.controls['name'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-subject-name'| translate}}
-              </div>
-            </div>
-          </div>
+          <h3 class="title-text">{{'finish-subgroup'| translate}}</h3>
           <div class="field-container">
             <div>
               <label for="teacherLastname" class="label">{{'teacher-lastname'| translate}}</label>
@@ -68,7 +52,7 @@
           </div>
           <div class="button-container">
             <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">{{'update'| translate}}</h3>
+              <h3 class="link-text text-white">{{'finish'| translate}}</h3>
             </button>
             <button class="button-white" (click)="goBack($event)">
               <h3 class="link-text text-blue">{{'back'| translate}}</h3>
@@ -78,4 +62,3 @@
       </form>
     </div>
   </div>
-

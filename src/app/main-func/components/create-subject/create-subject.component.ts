@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MainFuncService } from '../../services/main-func.service';
 import { Location } from '@angular/common';
+import { StorageService } from '../../../shared';
 
 @Component({
   selector: 'app-create-subject',
@@ -30,6 +31,11 @@ export class CreateSubjectComponent {
         Validators.pattern(/^(0?[1-9]|1[0-1])-[A-D]$/)
       ]
     }],
+    hasSubgroups: [false],
+    groupAmount: [{ value: '', disabled: true }, [
+    Validators.required,
+    Validators.min(2)
+  ]],
   }
   );
 
@@ -41,6 +47,7 @@ export class CreateSubjectComponent {
     private mainFuncService: MainFuncService,
     private router: Router,
     private fb: FormBuilder,
+    private storageService: StorageService,
     private location: Location
   ) { }
 
@@ -48,13 +55,35 @@ export class CreateSubjectComponent {
     this.isCreateSubjectFailed = false;
   }
 
-  onSubmit(): void {
-    const {subjectName,email,className} = this.form.value;
+  ngOnInit(): void {
 
-    this.subscription = this.mainFuncService.createSubject(subjectName!,email!,className!).subscribe({
+  this.form.get('hasSubgroups')?.valueChanges.subscribe(value => {
+
+    const numberControl = this.form.get('groupAmount');
+
+    if (value) {
+      numberControl?.enable();
+    } else {
+      numberControl?.disable();
+      numberControl?.setValue('');
+    }
+
+  });
+
+}
+
+  onSubmit(): void {
+    const { subjectName, email, className, hasSubgroups, groupAmount } = this.form.getRawValue();
+    this.subscription = this.mainFuncService.createSubject(subjectName!,email!,className!,hasSubgroups!,groupAmount!).subscribe({
       next: data => {
         console.log(data);
-        this.router.navigate(["main-part"]);
+        if(data.hasSubgroups == true){
+          console.log(data.id);
+          this.storageService.saveSubject(data);
+          this.router.navigate(["get-subgroups/"+data.id]);
+        }
+        else
+          this.router.navigate(["main-part"]);
       },
       error: err => {
         if (err.status == 500) {

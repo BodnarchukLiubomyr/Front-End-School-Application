@@ -12,6 +12,8 @@
           <span class="message-time">{{ message.timestamp | date:'shortTime' }}</span>
         </div>
         <div class="message-content">{{ message.message }}</div>
+        <button class="btn update"(click)="onEditMessage(message)">✏️</button>
+        <button class="btn delete" (click)="onDeleteMessage(message.id,message.message)">🗑</button>
         <div class="message-divider"></div>
       </div>
     </div>

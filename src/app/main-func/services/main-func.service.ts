@@ -82,13 +82,15 @@ export class MainFuncService {
     );
   }
 
-  createSubject(subjectName: string, email: string, className: string): Observable<any>{
+  createSubject(subjectName: string, email: string, className: string,hasSubgroups:boolean,groupAmount:string): Observable<any>{
     return this.http.post(
       this.backendApi + '/api/v1/school-application/create-subject',
       {
         subjectName,
         email,
-        className
+        className,
+        hasSubgroups,
+        groupAmount
       },
       httpOptions
     );
@@ -453,6 +455,19 @@ export class MainFuncService {
     );
   }
 
+  updateTest(testId: string,testName:string,startTime: string,endTime: string,duration:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-test/'+testId,
+      {
+        testName,
+        startTime,
+        endTime,
+        duration
+      },
+      httpOptions
+    );
+  }
+
   deleteTest(testId: string,testName:string):Observable<any>{
     return this.http.delete(
       this.backendApi + '/api/v1/school-application/delete-test/'+ testId+'/'+ testName,
@@ -712,6 +727,50 @@ export class MainFuncService {
   deleteMessage(messageId:string,content:string):Observable<any>{
     return this.http.delete(
       this.backendApi + '/api/v1/school-application/delete-message/'+ messageId,
+      {responseType:'json'}
+    )
+  }
+
+  updateGroupMessage(messageId:string,content:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/update-group-message/'+messageId,
+      {
+        content
+      },
+      httpOptions
+    );
+  }
+
+  deleteGroupMessage(messageId:string,content:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-group-message/'+ messageId,
+      {responseType:'json'}
+    )
+  }
+
+  getSubgroups(subjectId: string): Observable<any>{
+    return this.http.get(
+      this.backendApi + '/api/v1/school-application/get-subgroups/'+subjectId,
+      {
+        responseType: "json"
+      }
+    );
+  }
+
+  finishSubgroup(subgroupId:string,teacherLastname:string,teacherFirstname:string): Observable<any> {
+    return this.http.post(
+      this.backendApi + '/api/v1/school-application/finish-subgroup/'+subgroupId,
+      {
+        teacherLastname,
+        teacherFirstname
+      },
+      httpOptions
+    );
+  }
+
+  deleteSubgroups(subjectId:string):Observable<any>{
+    return this.http.delete(
+      this.backendApi + '/api/v1/school-application/delete-subgroups/'+ subjectId,
       {responseType:'json'}
     )
   }

@@ -25,7 +25,7 @@
 
   .update-button {
     padding: 8px 16px;
-    background-color: greenyellow;
+    background-color: green;
     color: white;
     border: none;
     border-radius: 5px;
@@ -35,6 +35,15 @@
   .delete-button {
     padding: 8px 16px;
     background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .get-subgroups-button {
+    padding: 8px 16px;
+    background-color: purple;
     color: white;
     border: none;
     border-radius: 5px;

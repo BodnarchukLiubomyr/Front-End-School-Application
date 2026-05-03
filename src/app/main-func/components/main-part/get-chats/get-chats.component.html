@@ -1,4 +1,7 @@
 <p>{{'my-chats'| translate}}</p>
+<button class="secondary-btn" [routerLink]="['/create-chat', userId]">
+  {{'create-chat'| translate}}
+</button>
 <div *ngFor="let chat of userChats" class="chat-card">
   <a [routerLink]="['/chat', chat.id]">
   <ng-container *ngIf="getOtherUser(chat) as other">

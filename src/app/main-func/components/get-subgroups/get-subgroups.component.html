@@ -1,0 +1,18 @@
+<button (click)="onDelete(subject.id)" class="delete-button">{{'delete'| translate}}</button>
+<div *ngIf="subgroups && subgroups.length > 0; else noSubgroups">
+  <div class="subgroup-row">
+    <div *ngFor="let subgroup of subgroups" class="subgroup-card">
+      <h3>{{ subject.name }}</h3>
+      <p>{{'teacher'| translate}}: {{ subgroup.teacherLastname }} {{ subgroup.teacherFirstname }}</p>
+      <button [routerLink]="['/finish-subgroup', subgroup.id]" class="update-button">{{'update'| translate}}</button>
+    </div>
+  </div>
+</div>
+  
+  <ng-template #noSubgroups>
+    <p>{{'no-subgroups'| translate}}</p>
+  </ng-template>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>
