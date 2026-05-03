@@ -137,7 +137,7 @@ export class ChatComponent implements OnInit,OnDestroy{
     if (updatedContent) {
       const msg = this.chatHistory.find(m => m.id === message.id);
       if (msg) {
-        msg.message = updatedContent; // ✅ instant UI update
+        msg.message = updatedContent;
       }
     }
   });

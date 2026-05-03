@@ -1,6 +1,5 @@
 <div *ngIf="schoolClass && schoolClass.length > 0; else noSchoolClass">
-    <p>{{schoolClass.name}}</p>
-    <h2>{{'class-users'| translate}}class-users</h2>
+    <p>{{className}}</p>
     <button routerLink="/main-part" class="button-white">
       <h3 class="link-text text-blue">{{'back'| translate}}</h3>
     </button>

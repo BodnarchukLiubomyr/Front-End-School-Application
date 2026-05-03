@@ -18,6 +18,7 @@
               <td>{{ subject.teacherLastname }} {{ subject.teacherFirstname }}</td>
               <td>
                 <div class="button-container">
+                  <button [routerLink]="['/get-subgroups', subject.id]" class="get-subgroups-button">{{'get-subgroups'| translate}}</button>
                   <button [routerLink]="['/update-subject', subject.id]" class="update-button">{{'update'| translate}}</button>
                   <button (click)="onDelete(subject.name)" class="delete-button">{{'delete'| translate}}</button>
                 </div>

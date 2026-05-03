@@ -59,6 +59,11 @@ import {
   GetClassMarksComponent,
   UpdateMessageComponent,
   DeleteMessageComponent,
+  UpdateGroupMessageComponent,
+  DeleteGroupMessageComponent,
+  GetSubgroupsComponent,
+  FinishSubgroupComponent,
+  DeleteSubgroupsComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -88,6 +93,8 @@ const routes: Routes = [
   { path: 'add-user-to-group', component: AddUserToGroupComponent},
   { path: 'get-group/:subjectId/:userId', component: GetGroupComponent},
   { path: 'group-chat/:groupId', component: GroupChatComponent},
+  { path: 'update-group-message/:messageId', component: UpdateGroupMessageComponent},
+  { path: 'delete-group-message/:messageId', component: DeleteGroupMessageComponent},
   { path: 'delete-group/:groupName',component:DeleteGroupComponent},
   { path: 'create-chat/:userId', component: CreateChatComponent},
   { path: 'chat/:chatId', component: ChatComponent},
@@ -101,6 +108,7 @@ const routes: Routes = [
   { path: 'get-categories/:testId', component: GetCategoriesComponent},
   { path: 'create-test/:subjectId', component: CreateEducationalTestComponent},
   { path: 'get-tests/:subjectId', component: GetTestsComponent},
+  { path: 'update-test/:testId', component: UpdateGroupMessageComponent},
   { path: 'delete-test/:testId', component: DeleteEducationalTestComponent},
   { path: 'create-category/:testId', component: CreateCategoryComponent},
   { path: 'delete-category/:categoryId', component: DeleteCategoryComponent},
@@ -119,6 +127,9 @@ const routes: Routes = [
   { path: 'get-student-marks/:parentsEmail', component: GetLessonsComponent},
   { path: 'get-student-subjects/:userId', component: GetStudentSubjectsComponent},
   { path: 'get-class-marks/:subjectId', component: GetClassMarksComponent},
+  { path: 'get-subgroups/:subjectId', component: GetSubgroupsComponent},
+  { path: 'finish-subgroup/:subgroupId', component: FinishSubgroupComponent},
+  { path: 'delete-subgroups/:subjectId', component: DeleteSubgroupsComponent},
 ];
 
 @NgModule({

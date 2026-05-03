@@ -21,7 +21,7 @@ export class UpdateSubjectComponent {
       validators: [
         Validators.pattern(/^(?:[^A-Z]*[A-Z]?[^A-Z]*)?(?=.*[a-z])(?!\\d)(?!\\s).{1,}$/)
       ]
-    }],
+    }],  
     teacherFirstname: ['', {
       validators: [
         Validators.pattern(/^(?:[^A-Z]*[A-Z]?[^A-Z]*)?(?=.*[a-z])(?!\\d)(?!\\s).{1,}$/)

@@ -66,6 +66,12 @@ import {
   UpdateMessageComponent,
   DeleteMessageComponent,
   GetClassMarksComponent,
+  UpdateGroupMessageComponent,
+  DeleteGroupMessageComponent,
+  UpdateTestComponent,
+  FinishSubgroupComponent,
+  GetSubgroupsComponent,
+  DeleteSubgroupsComponent,
 } from "./index"
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -109,6 +115,7 @@ import { TranslateModule } from '@ngx-translate/core';
     UpdateQuestionComponent,
     CreateEducationalTestComponent,
     GetTestsComponent,
+    UpdateTestComponent,
     DeleteEducationalTestComponent,
     CreateCategoryComponent,
     DeleteCategoryComponent,
@@ -132,7 +139,12 @@ import { TranslateModule } from '@ngx-translate/core';
     GetStudentSubjectsComponent,
     UpdateMessageComponent,
     DeleteMessageComponent,
-    GetClassMarksComponent
+    UpdateGroupMessageComponent,
+    DeleteGroupMessageComponent,
+    GetClassMarksComponent,
+    FinishSubgroupComponent,
+    GetSubgroupsComponent,
+    DeleteSubgroupsComponent
   ],
   exports: [
     TranslateComponent,

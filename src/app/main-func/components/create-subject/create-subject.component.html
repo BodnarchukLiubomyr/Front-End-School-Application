@@ -75,6 +75,38 @@
               </div>
             </div>
           </div>
+          <div class="field-container">
+                <div>
+                  <label for="hasSubgroups" class="label">{{'has-subgroups'| translate}}</label>
+                  <label for="password" class="label text-red">*</label>
+                </div>
+                <div class="field"
+                  [ngClass]="{'border-error': form.controls['hasSubgroups'].invalid && (form.controls['hasSubgroups'].dirty || form.controls['hasSubgroups'].touched)}">
+                  <input class="checkbox" id="hasSubgroups" name="hasSubgroups" type="checkbox" autocomplete="hasSubgroups" formControlName="hasSubgroups">
+                </div>
+              </div>
+          <div class="field-container">
+                <div>
+                  <label for="groupAmount" class="label">{{'groupAmount'| translate}}</label>
+                  <label for="password" class="label text-red">*</label>
+                </div>
+                <div class="field"
+                  [ngClass]="{'border-error': form.controls['groupAmount'].invalid && (form.controls['groupAmount'].dirty || form.controls['groupAmount'].touched)}">
+                  <input class="field-text" id="groupAmount" name="number" type="number" autocomplete="groupAmount" formControlName="groupAmount">
+                </div>
+                <div class="error-label-container"
+                  *ngIf="form.controls['groupAmount'].invalid && (form.controls['groupAmount'].dirty || form.controls['groupAmount'].touched)">
+                  <div *ngIf="form.controls['groupAmount'].errors?.['required']" class="label text-red">
+                    {{'valid-group-amount'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['groupAmount'].errors?.['pattern']" class="label text-red">
+                    {{'not-valid-group-amount'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['groupAmount'].errors?.['maxlength']" class="label text-red">
+                    {{'group-amount-contain'| translate}}
+                  </div>
+                </div>
+              </div>
           <div class="button-container">
             <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
               <h3 class="link-text text-white">{{'create'| translate}}</h3>

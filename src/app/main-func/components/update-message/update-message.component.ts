@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
-import { Location } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
