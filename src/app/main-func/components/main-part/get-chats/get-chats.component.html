@@ -1,12 +1,47 @@
-<p>{{'my-chats'| translate}}</p>
-<button class="secondary-btn" [routerLink]="['/create-chat', userId]">
-  {{'create-chat'| translate}}
-</button>
-<div *ngFor="let chat of userChats" class="chat-card">
-  <a [routerLink]="['/chat', chat.id]">
-  <ng-container *ngIf="getOtherUser(chat) as other">
-    {{ other.firstname }} {{ other.lastname }}
-  </ng-container>
-  <span *ngIf="unreadMap[chat.id]" class="unread-dot"></span>
-</a>
+<div class="chats-page">
+  <div class="page-header">
+    <div>
+      <h1>{{ 'my-chats' | translate }}</h1>
+      <p>{{ userChats}} conversations</p>
+    </div>
+    <button
+      class="create-chat-btn"
+      [routerLink]="['/create-chat', userId]"
+    >
+      ➕ {{ 'create-chat' | translate }}
+    </button>
+  </div>
+  <div *ngIf="userChats else noChats" class="chat-list">
+    <a *ngFor="let chat of userChats" [routerLink]="['/chat', chat.id]" class="chat-card">
+      <ng-container *ngIf="getOtherUser(chat) as other">
+        <div class="chat-avatar">
+          {{ other.firstname?.charAt(0) }}{{ other.lastname?.charAt(0) }}
+        </div>
+        <div class="chat-info">
+          <div class="chat-name">
+            {{ other.firstname }} {{ other.lastname }}
+          </div>
+          <div class="chat-subtitle">
+            {{ 'open-chat' | translate }}
+          </div>
+        </div>
+        <div class="chat-meta">
+          <span *ngIf="unreadMap[chat.id]" class="unread-badge">New</span>
+          <span class="arrow">→</span>
+        </div>
+      </ng-container>
+    </a>
+  </div>
 </div>
+<ng-template #noChats>
+  <div class="empty-state">
+    <div class="empty-icon">
+      💬
+    </div>
+    <h2>{{ 'my-chats' | translate }}</h2>
+    <p>No conversations yet</p>
+    <button class="create-chat-btn" [routerLink]="['/create-chat', userId]">
+      ➕ {{ 'create-chat' | translate }}
+    </button>
+  </div>
+</ng-template>

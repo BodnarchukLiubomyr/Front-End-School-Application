@@ -7,19 +7,13 @@
     <ng-container *ngFor="let slot of timeSlots">
       <div class="schedule-cell time">{{ slot }}</div>
       <div class="schedule-cell lesson-cell" *ngFor="let day of weekDays">
-        <ng-container *ngIf="lessonsByDay[day] as lessons">
-          <ng-container *ngFor="let lesson of lessons">
-            <div
-              class="lesson-card"
-              *ngIf="(lesson.startTime + ' - ' + lesson.endTime) === slot"
-            >
-              <span class="lesson-name">{{ lesson.name }}</span>
-            </div>
-          </ng-container>
-        </ng-container>
+        <div class="lesson-row" *ngIf="groupedLessons[day] && groupedLessons[day][slot]">
+          <div class="lesson-card" *ngFor="let lesson of groupedLessons[day][slot]">
+            <span class="lesson-name">{{ lesson.name }} ({{ lesson.subgroup?.number }})</span>
+          </div>
+        </div>
       </div>
     </ng-container>
-
   </div>
 </div>
 

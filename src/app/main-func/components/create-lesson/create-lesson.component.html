@@ -107,6 +107,28 @@
             </div>
           </div>
         </div>
+        <div class="field-container">
+                <div>
+                  <label for="groupNumber" class="label">{{'groupNumber'| translate}}</label>
+                  <label for="password" class="label text-red">*</label>
+                </div>
+                <div class="field"
+                  [ngClass]="{'border-error': form.controls['groupNumber'].invalid && (form.controls['groupNumber'].dirty || form.controls['groupNumber'].touched)}">
+                  <input class="field-text" id="groupNumber" name="number" type="number" autocomplete="groupNumber" formControlName="groupNumber">
+                </div>
+                <div class="error-label-container"
+                  *ngIf="form.controls['groupNumber'].invalid && (form.controls['groupNumber'].dirty || form.controls['groupNumber'].touched)">
+                  <div *ngIf="form.controls['groupNumber'].errors?.['required']" class="label text-red">
+                    {{'valid-group-number'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['groupNumber'].errors?.['pattern']" class="label text-red">
+                    {{'not-valid-group-number'| translate}}
+                  </div>
+                  <div *ngIf="form.controls['groupNumber'].errors?.['maxlength']" class="label text-red">
+                    {{'group-number-contain'| translate}}
+                  </div>
+                </div>
+              </div>
         <div class="button-container">
           <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
             <h3 class="link-text text-white">{{'create'| translate}}</h3>

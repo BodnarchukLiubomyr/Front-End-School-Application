@@ -1,38 +1,38 @@
-<div *ngIf="subjects && subjects.length > 0; else noSubjects">
-  <h2>{{className}}</h2>
-    <button routerLink="/main-part" class="button-white">
-      <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-    </button>
-    <div class="excel-container">
-      <table class="excel-table">
-      <thead>
-        <tr>
-          <th>{{'subject-name'| translate}}</th>
-          <th>{{'teacher'| translate}}</th>
-          <th>{{'actions'| translate}}</th>
-        </tr>
-      </thead>
-        <tbody>
-            <tr *ngFor="let subject of subjects">
-              <td>{{ subject.name }}</td>
-              <td>{{ subject.teacherLastname }} {{ subject.teacherFirstname }}</td>
-              <td>
-                <div class="button-container">
-                  <button [routerLink]="['/get-subgroups', subject.id]" class="get-subgroups-button">{{'get-subgroups'| translate}}</button>
-                  <button [routerLink]="['/update-subject', subject.id]" class="update-button">{{'update'| translate}}</button>
-                  <button (click)="onDelete(subject.name)" class="delete-button">{{'delete'| translate}}</button>
-                </div>
-              </td>
-            </tr>
-        </tbody>
-      </table>
+<div *ngIf="subjects && subjects.length > 0; else noSubjects" class="subjects-page">
+  <div class="subjects-header">
+    <div>
+      <h1>{{ className }}</h1>
+      <p class="subjects-subtitle">{{ subjects.length }} {{ 'subjects' | translate }}</p>
+    </div>
+    <button routerLink="/main-part" class="back-button">← {{ 'back' | translate }}</button>
+  </div>
+  <div class="subjects-grid">
+    <div *ngFor="let subject of subjects" class="subject-card">
+      <div class="subject-top">
+        <div class="subject-avatar">
+          {{ subject.name?.charAt(0) }}
+        </div>
+        <div class="subject-info">
+          <h2>{{ subject.name }}</h2>
+          <p>👨‍🏫{{ subject.teacherLastname }}{{ subject.teacherFirstname }}</p>
+        </div>
+      </div>
+      <div class="subject-actions">
+        <button [routerLink]="['/get-subgroups', subject.id]" class="subgroups-btn">{{ 'get-subgroups' | translate }}</button>
+        <button [routerLink]="['/update-subject', subject.id]" class="update-button">✏️ {{ 'update' | translate }}</button>
+        <button (click)="onDelete(subject.name)" class="delete-button"> 🗑 {{ 'delete' | translate }}</button>
+      </div>
     </div>
   </div>
-  
-  <ng-template #noSubjects>
-    <p>{{'no-subjects'| translate}}</p>
-  </ng-template>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
+</div>
+<ng-template #noSubjects>
+  <div class="empty-state">
+    <div class="empty-icon">📚</div>
+    <h2>{{ 'no-subjects' | translate }}</h2>
+    <p>{{ 'subjects-not-found' | translate }}</p>
+    <button routerLink="/main-part" class="back-button">← {{ 'back' | translate }}</button>
   </div>
+</ng-template>
+<div *ngIf="errorMessage" class="error-box">
+  <strong>Error:</strong> {{ errorMessage }}
+</div>

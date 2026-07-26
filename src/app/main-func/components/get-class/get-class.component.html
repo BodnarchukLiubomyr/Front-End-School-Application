@@ -1,29 +1,60 @@
-<div *ngIf="schoolClass && schoolClass.length > 0; else noSchoolClass">
-    <h2><strong>{{'class'| translate}}: {{ className }}</strong></h2>
-    <div class="excel-container">
-      <table class="excel-table">
-      <thead>
-        <tr>
-          <th>{{'lastname'| translate}}</th>
-          <th>{{'firstname'| translate}}</th>
-          <th>{{'email'| translate}}</th>
-        </tr>
-      </thead>
-        <tbody>
-            <tr *ngFor="let user of schoolClass">
-              <td>{{ user.lastname }}</td>
-              <td>{{ user.firstname }}</td>
-              <td>{{ user.email }}</td>
-            </tr>
-        </tbody>
-      </table>
+<div *ngIf="schoolClass && schoolClass.length > 0; else noSchoolClass" class="class-page">
+  <div class="class-header">
+    <div>
+      <h2>{{ 'class' | translate }} {{ className }}</h2>
+      <p>{{ schoolClass.length }} {{ 'students' | translate }}</p>
     </div>
   </div>
-  
-  <ng-template #noSchoolClass>
-    <p>{{'no-class-users'| translate}}</p>
-  </ng-template>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
+  <div class="table-wrapper">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'lastname' | translate }}</th>
+          <th>{{ 'firstname' | translate }}</th>
+          <th>{{ 'email' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of schoolClass; let i = index">
+
+          <td class="index-column">
+            {{ i + 1 }}
+          </td>
+          <td>
+            <div class="user-info">
+              <div class="avatar">
+                {{ user.lastname.charAt(0) }}
+              </div>
+              <span>
+                {{ user.lastname }}
+              </span>
+            </div>
+          </td>
+          <td>
+            {{ user.firstname }}
+          </td>
+          <td>
+            <a class="email-link" href="mailto:{{ user.email }}">
+              {{ user.email }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<ng-template #noSchoolClass>
+  <div class="empty-state">
+    <div class="empty-icon">
+      👨‍🎓
+    </div>
+    <h3>
+      {{ 'no-class-users' | translate }}
+    </h3>
+  </div>
+</ng-template>
+<div *ngIf="errorMessage" class="error-box">
+  <strong>Error:</strong> {{ errorMessage }}
+</div>

@@ -578,14 +578,15 @@ export class MainFuncService {
     );
   }
   
-  createLesson(studentDayId: string,lessonsOrder: string,startTime: string,className:string,subjectName:string): Observable<any>{
+  createLesson(studentDayId: string,lessonsOrder: string,startTime: string,className:string,subjectName:string,groupNumber:string): Observable<any>{
     return this.http.post(
       this.backendApi + '/api/v1/school-application/create-lesson/'+studentDayId,
       {
         lessonsOrder,
         startTime,
         className,
-        subjectName
+        subjectName,
+        groupNumber
       },
       httpOptions
     );
