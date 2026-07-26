@@ -1,33 +1,63 @@
-<div *ngIf="tests && tests.length > 0; else noTests">
-    <div class="test-row">
-      <div *ngFor="let test of tests" class="test-card">
-        <h3>{{ test.testName }}</h3>
-        <button [routerLink]="['/get-questions', test.id]" class="get-button" *ngIf="isTeacher()">{{'get-questions'| translate}}</button>
-        <button [routerLink]="['/update-test', test.id]" class="update-button" *ngIf="isTeacher()">{{'update'| translate}}</button>
-        <button (click)="onDelete(test.id,test.testName)" class="delete-button" *ngIf="isTeacher()">{{'delete'| translate}}</button>
-        <div *ngIf="usertests[test.id]?.isUnfinished">
-          <button 
-            (click)="continueTest(test.id, userId)">
-            {{'continue'| translate}}
-          </button>
+<div *ngIf="tests && tests.length > 0; else noTests" class="tests-page">
+  <div class="page-header">
+    <h1>{{ 'tests' | translate }}</h1>
+    <p>{{ tests.length }} {{ 'available-tests' | translate }}</p>
+  </div>
+  <div class="tests-grid">
+    <div *ngFor="let test of tests" class="test-card">
+      <div class="test-header">
+        <div class="test-icon">
+          📝
         </div>
-
-        <p *ngIf="isStudent() && usertests[test.id] != null && usertests[test.id]?.completedAt != null">
-          {{'result'| translate}}: {{usertests[test.id]?.result}}
-        </p>
-
-        <button *ngIf="isStudent() && usertests[test.id]==null" 
-                [routerLink]="['/assign-test', test.id, userId]">
-          {{'start'| translate}}
+        <div>
+          <h2>{{ test.testName }}</h2>
+          <span *ngIf="usertests[test.id]?.isUnfinished" class="status-badge progress">
+            {{ 'in-progress' | translate }}
+          </span>
+          <span *ngIf="isStudent() && usertests[test.id]?.completedAt" class="status-badge completed">
+            {{ 'completed' | translate }}
+          </span>
+          <span *ngIf="isStudent() && !usertests[test.id]" class="status-badge available">
+            {{ 'available' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="result-section" *ngIf="isStudent()  && usertests[test.id] && usertests[test.id]?.completedAt">
+        <span class="result-label">
+          {{ 'result' | translate }}
+        </span>
+        <div class="result-score">
+          {{ usertests[test.id]?.result }}
+        </div>
+      </div>
+      <div class="actions">
+        <ng-container *ngIf="isTeacher()">
+          <button [routerLink]="['/get-questions', test.id]" class="btn btn-success">
+            📋 {{ 'get-questions' | translate }}
+          </button>
+          <button [routerLink]="['/update-test', test.id]" class="btn btn-primary">
+            ✏️ {{ 'update' | translate }}
+          </button>
+          <button (click)="onDelete(test.id, test.testName)" class="btn btn-danger">
+            🗑 {{ 'delete' | translate }}
+          </button>
+        </ng-container>
+        <button *ngIf="isStudent() && !usertests[test.id]" [routerLink]="['/assign-test', test.id, userId]" class="btn btn-primary">
+          🚀 {{ 'start' | translate }}
+        </button>
+        <button *ngIf="usertests[test.id]?.isUnfinished" (click)="continueTest(test.id, userId)" class="btn btn-warning">
+          ⏳ {{ 'continue' | translate }}
         </button>
       </div>
     </div>
-</div>
-
-  <ng-template #noTests>
-    <p>{{'no-tests'| translate}}</p>
-  </ng-template>
-
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
   </div>
+</div>
+<ng-template #noTests>
+  <div class="empty-state">
+    <div class="empty-icon">📚</div>
+    <h2>{{ 'no-tests' | translate }}</h2>
+  </div>
+</ng-template>
+<div *ngIf="errorMessage" class="error-box">
+  {{ errorMessage }}
+</div>

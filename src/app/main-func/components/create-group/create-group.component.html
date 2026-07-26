@@ -1,92 +1,85 @@
-<div class="flex-column-frame">
-    <div class="alert-container">
-      <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateGroupFailed">
-        <span class="alert-icon-container">
-          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <use xlink:href="assets/icons.svg#error-icon"></use>
-          </svg>
-        </span>
-        <span class="alert-text">{{ errorMessage }}</span>
-        <span class="alert-button-container" (click)="closeErrorAlert()">
-          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <use xlink:href="assets/icons.svg#close-icon"></use>
-          </svg>
-        </span>
-      </div>
-    </div>
-    <div class="create-group-form">
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-        <div class="title-input">
-          <h3 class="title-text">{{'create-group'| translate}}</h3>
-          <div class="field-container">
-            <div>
-              <label for="groupName" class="label">{{'group-name'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['groupName'].invalid && (form.controls['groupName'].dirty || form.controls['groupName'].touched)}">
-              <input class="field-text" id="groupName" name="groupName" type="groupName" autocomplete="groupName" formControlName="groupName">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['groupName'].invalid && (form.controls['groupName'].dirty || form.controls['groupName'].touched)">
-              <div *ngIf="form.controls['groupName'].errors?.['required']" class="label text-red">
-                {{'valid-group'| translate}}
-              </div>
-              <div *ngIf="form.controls['groupName'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-group'| translate}}
-              </div>
-              <div *ngIf="form.controls['groupName'].errors?.['maxlength']" class="label text-red">
-                {{'group-contain'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="field-container">
-            <div>
-              <label for="subjectName" class="label">{{'subject-name'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)}">
-              <input class="field-text" id="subjectName" name="subjectName" type="subjectName" autocomplete="subjectName" formControlName="subjectName">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)">
-              <div *ngIf="form.controls['subjectName'].errors?.['required']" class="label text-red">
-                {{'valid-subject-name'| translate}}
-              </div>
-              <div *ngIf="form.controls['subjectName'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-subject-name'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="field-container">
-            <div>
-              <label for="className" class="label">{{'class-name'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)}">
-              <input class="field-text" id="className" name="className" type="className" autocomplete="className" formControlName="className">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
-              <div *ngIf="form.controls['className'].errors?.['required']" class="label text-red">
-                {{'valid-classname'| translate}}
-              </div>
-              <div *ngIf="form.controls['className'].errors?.['pattern']" class="label text-red">
-                {{'classname-not-valid'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="button-container">
-            <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">{{'create'| translate}}</h3>
-            </button>
-            <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-            </button>
-          </div>
-        </div>
-      </form>
+<div class="page-container">
+  <div class="alert-container" *ngIf="isCreateGroupFailed">
+    <div class="alert-body" role="alert">
+      <span class="alert-icon">⚠️</span>
+      <span class="alert-text">
+        {{ errorMessage }}
+      </span>
+      <button type="button" class="close-btn" (click)="closeErrorAlert()" aria-label="Close">
+        ✕
+      </button>
     </div>
   </div>
+  <div class="create-group-card">
+    <div class="card-header">
+      <div class="icon">👥</div>
+      <h2>
+        {{ 'create-group' | translate }}
+      </h2>
+      <p>
+        Create a new group for your subject and class
+      </p>
+    </div>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()"> <div class="form-group">
+        <label for="groupName">
+          {{ 'group-name' | translate }}
+          <span class="required">*</span>
+        </label>
+        <input id="groupName" name="groupName" type="text" autocomplete="off" formControlName="groupName" placeholder="Enter group name"
+          [class.input-error]="form.controls['groupName'].invalid && (form.controls['groupName'].dirty || form.controls['groupName'].touched)">
+        <div class="error-message" *ngIf="form.controls['groupName'].invalid && (form.controls['groupName'].dirty || form.controls['groupName'].touched)">
+          <span *ngIf="form.controls['groupName'].errors?.['required']">
+            {{ 'valid-group' | translate }}
+          </span>
+          <span *ngIf="form.controls['groupName'].errors?.['pattern']">
+            {{ 'not-valid-group' | translate }}
+          </span>
+          <span *ngIf="form.controls['groupName'].errors?.['maxlength']">
+            {{ 'group-contain' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subjectName">
+          {{ 'subject-name' | translate }}
+          <span class="required">*</span>
+        </label>
+        <input id="subjectName" name="subjectName" type="text" autocomplete="off" formControlName="subjectName" placeholder="Enter subject name"
+          [class.input-error]="form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)">
+        <div class="error-message" *ngIf="form.controls['subjectName'].invalid && (form.controls['subjectName'].dirty || form.controls['subjectName'].touched)">
+          <span *ngIf="form.controls['subjectName'].errors?.['required']">
+            {{ 'valid-subject-name' | translate }}
+          </span>
+          <span *ngIf="form.controls['subjectName'].errors?.['pattern']">
+            {{ 'not-valid-subject-name' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="className">
+          {{ 'class-name' | translate }}
+          <span class="required">*</span>
+        </label>
+        <input id="className" name="className" type="text" autocomplete="off" formControlName="className" placeholder="Example: 7-A"
+          [class.input-error]=" form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
+        <div class="error-message" *ngIf=" form.controls['className'].invalid && (form.controls['className'].dirty || form.controls['className'].touched)">
+          <span *ngIf="form.controls['className'].errors?.['required']">
+            {{ 'valid-classname' | translate }}
+          </span>
+          <span *ngIf="form.controls['className'].errors?.['pattern']">
+            {{ 'classname-not-valid' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="button-container">
+        <button type="submit" class="create-btn" [disabled]="form.invalid">
+          {{ 'create' | translate }}
+        </button>
+        <button type="button" class="back-btn" (click)="goBack($event)">
+          {{ 'back' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

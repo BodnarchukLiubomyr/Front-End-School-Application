@@ -1,16 +1,48 @@
-<p>{{'my-group'| translate}}</p>
-<button class="secondary-btn" routerLink="/create-group">
-  {{'create-group'| translate}}
-</button>
-<div class="group-container">
-  <div *ngFor="let group of groups" class="group-card">
-    <button [routerLink]="['/group-chat', group.id]">{{group.groupName}}</button>
-    <div class="button-separator"></div>
-    <button class="secondary-btn" routerLink="/add-user-to-group">{{'add-user-to-group'| translate}}</button>
-    <button class="delete-button" (click)="onDelete(group.groupName)" *ngIf="isTeacher()">{{'delete-group'| translate}}</button>
-    <span *ngIf="unreadMap[group.id]" class="unread-dot"></span>
+<div class="groups-page">
+  <div class="groups-header">
+    <h1>{{ 'my-group' | translate }}</h1>
+    <button class="create-btn" routerLink="/create-group">
+      + {{ 'create-group' | translate }}
+    </button>
   </div>
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
+  <div class="groups-grid">
+    <div *ngFor="let group of groups" class="group-card">
+      <div class="group-top">
+        <div class="group-avatar">
+          {{ group.groupName?.charAt(0) }}
+        </div>
+        <div class="group-info">
+          <div class="group-name-row">
+            <h3>{{ group.groupName }}</h3>
+            <span *ngIf="unreadMap[group.id]" class="unread-badge">●</span>
+          </div>
+        </div>
+      </div>
+      <div class="group-actions">
+        <button
+          class="primary-btn"
+          [routerLink]="['/group-chat', group.id]"
+        >
+          💬 {{ 'open-chat' | translate }}
+        </button>
+        <button
+          class="secondary-btn"
+          routerLink="/add-user-to-group"
+        >
+          👥 {{ 'add-user-to-group' | translate }}
+        </button>
+        <button
+          class="delete-button"
+          (click)="onDelete(group.groupName)"
+          *ngIf="isTeacher()"
+        >
+          🗑 {{ 'delete-group' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <h2>{{ 'no-groups' | translate }}</h2>
+  <div *ngIf="errorMessage" class="error-box">
+    <strong>Error:</strong> {{ errorMessage }}
   </div>
 </div>

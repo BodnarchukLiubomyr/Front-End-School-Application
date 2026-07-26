@@ -1,54 +1,150 @@
-.subgroup-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 150px;
-    h3 {
-      margin-bottom: 5px;
-    }
-  }
-  
-  .subgroup-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  p {
-    color: #777;
-    font-style: italic;
-    margin-bottom: 5px;
-  }
-  
-  .update-button {
-    display: inline-block;
-    padding: 6px 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 2px solid #b33c9b;
-    color: #FFFFFF;
-    background-color: #9d3cb3;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
 
-  .delete-button {
-    padding: 8px 16px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #90EE90;
-    border-color: #90EE90;
-    color: #FFFFFF;
-  }
+.subject-info h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subgroup-count {
+  display: inline-block;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.subgroup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.subgroup-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+  border: 1px solid #eef2f7;
+}
+
+.subgroup-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.subgroup-badge {
+  background: #ede9fe;
+  color: #7c3aed;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+
+.teacher-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.teacher-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.teacher-info {
+  flex: 1;
+}
+
+.label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #9ca3af;
+  letter-spacing: 1px;
+}
+
+.teacher-name {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.edit-btn {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.delete-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 80px;
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 72px;
+  margin-bottom: 16px;
+}
+
+.error-box {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-left: 5px solid #dc2626;
+}

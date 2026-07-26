@@ -1,57 +1,171 @@
-.excel-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .excel-table {
-    border-collapse: collapse;
-    width: 60%;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .excel-table th, .excel-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .excel-table th {
-    background-color: #f2f2f2;
-  }
+.subjects-page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 24px;
+}
 
-  .update-button {
-    padding: 8px 16px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.subjects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-  .delete-button {
-    padding: 8px 16px;
-    background-color: orange;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.subjects-header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  color: #111827;
+}
 
-  .get-subgroups-button {
-    padding: 8px 16px;
-    background-color: purple;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.subjects-subtitle {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
 
-  .button-container {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 15px;
-  }
+.back-button {
+  border: none;
+  background: white;
+  color: #2563eb;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.back-button:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.subject-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.08),
+    0 6px 12px rgba(0, 0, 0, 0.04);
+}
+
+.subject-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.subject-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(to right, #7c3aed, #8b5cf6);
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.subject-info h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subject-info p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.subject-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subgroups-btn,
+.update-button,
+.delete-button {
+  border: none;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.subgroups-btn {
+  background: linear-gradient(to right, #7c3aed, #8b5cf6);
+  color: white;
+}
+
+.subgroups-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(124, 58, 237, 0.25);
+}
+
+.update-button {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.update-button:hover {
+  background: #bbf7d0;
+}
+
+.delete-button {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.delete-button:hover {
+  background: #fecaca;
+}
+
+.empty-state {
+  margin-top: 90px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.error-box {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 14px;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}

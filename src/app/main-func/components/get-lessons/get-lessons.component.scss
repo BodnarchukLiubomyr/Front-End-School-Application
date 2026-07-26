@@ -64,4 +64,18 @@
   color: #222;
 }
 
+.lesson-row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.lesson-card {
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
 

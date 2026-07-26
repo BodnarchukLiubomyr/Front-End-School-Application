@@ -35,6 +35,11 @@ export class CreateLessonComponent implements OnDestroy{
             Validators.pattern(/^(?:[^A-Z]*[A-Z]?[^A-Z]*)?(?=.*[a-z])(?!\\d)(?!\\s).{1,}$/)
             ]
           }],
+      groupNumber: [{ value: '', disabled: true }, [
+        Validators.required,
+        Validators.min(2),
+        Validators.max(3),
+      ]],
     });
 
     @Input()
@@ -65,9 +70,9 @@ export class CreateLessonComponent implements OnDestroy{
     }
   
     onSubmit(): void {
-      const {lessonsOrder,startTime,className,subjectName} = this.form.value;
+      const {lessonsOrder,startTime,className,subjectName,groupNumber} = this.form.value;
   
-      this.subscription = this.mainFuncService.createLesson(this.studentDayId,lessonsOrder!,startTime!,className!,subjectName!).subscribe({
+      this.subscription = this.mainFuncService.createLesson(this.studentDayId,lessonsOrder!,startTime!,className!,subjectName!,groupNumber!).subscribe({
         next: data => {
           console.log(data);
           this.router.navigate(['/get-day-lessons-for-admin'], { queryParams: { className } });

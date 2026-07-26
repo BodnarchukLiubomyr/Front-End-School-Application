@@ -64,6 +64,7 @@ import {
   GetSubgroupsComponent,
   FinishSubgroupComponent,
   DeleteSubgroupsComponent,
+  UpdateTestComponent,
 } from "./index"
 
 const routes: Routes = [
@@ -108,7 +109,7 @@ const routes: Routes = [
   { path: 'get-categories/:testId', component: GetCategoriesComponent},
   { path: 'create-test/:subjectId', component: CreateEducationalTestComponent},
   { path: 'get-tests/:subjectId', component: GetTestsComponent},
-  { path: 'update-test/:testId', component: UpdateGroupMessageComponent},
+  { path: 'update-test/:testId', component: UpdateTestComponent},
   { path: 'delete-test/:testId', component: DeleteEducationalTestComponent},
   { path: 'create-category/:testId', component: CreateCategoryComponent},
   { path: 'delete-category/:categoryId', component: DeleteCategoryComponent},

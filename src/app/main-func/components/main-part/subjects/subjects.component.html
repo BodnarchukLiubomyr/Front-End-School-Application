@@ -1,20 +1,65 @@
-<div *ngIf="subjects && subjects.length > 0; else noSubjects">
-    <div class="subject-row">
-      <div *ngFor="let subject of subjects" class="subject-card">
-        <h3>{{ subject.name }}</h3>
-        <p>{{'teacher'| translate}}: {{ subject.teacherLastname }} {{ subject.teacherFirstname }}</p>
-        <p>{{'class'| translate}}: {{ subject.className }}</p>
-        <button class="button" [routerLink]="['/subject-view', subject.id]">{{'subject-view'| translate}}</button>
-        <p>{{'my-group'| translate}}</p>
-        <button class="button" [routerLink]="['/get-group', subject.id, userId]">{{'go-to-group'| translate}}</button>
+<div *ngIf="subjects && subjects.length > 0; else noSubjects" class="subjects-page">
+  <div class="page-header">
+    <div>
+      <h1>{{ 'subjects' | translate }}</h1>
+      <p class="page-subtitle">
+        {{ subjects.length }} {{ 'available-subjects' | translate }}
+      </p>
+    </div>
+  </div>
+  <div class="subjects-grid">
+    <div *ngFor="let subject of subjects" class="subject-card">
+      <div class="subject-header">
+        <div class="subject-avatar">
+          {{ subject.name?.charAt(0) }}
+        </div>
+        <div class="subject-main-info">
+          <h2>{{ subject.name }}</h2>
+          <div class="teacher-info">
+            👨‍🏫
+            {{ subject.teacherLastname }}
+            {{ subject.teacherFirstname }}
+          </div>
+        </div>
+      </div>
+      <div class="subject-details">
+        <div class="detail-row">
+          <span class="detail-label">
+            {{ 'class' | translate }}
+          </span>
+          <span class="detail-value">
+            {{ subject.className }}
+          </span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">
+            {{ 'my-group' | translate }}
+          </span>
+          <span class="group-badge">
+            Active
+          </span>
+        </div>
+      </div>
+      <div class="subject-actions">
+        <button class="primary-btn" [routerLink]="['/subject-view', subject.id]">
+          📚 {{ 'subject-view' | translate }}
+        </button>
+        <button class="secondary-btn" [routerLink]="['/get-group', subject.id, userId]">
+          💬 {{ 'go-to-group' | translate }}
+        </button>
       </div>
     </div>
   </div>
-  
-  <ng-template #noSubjects>
-    <p>{{'no-subjects'| translate}}</p>
-  </ng-template>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
+</div>
+
+<ng-template #noSubjects>
+  <div class="empty-state">
+    <div class="empty-icon">📖</div>
+    <h2>{{ 'no-subjects' | translate }}</h2>
+    <p>{{ 'subjects-not-available' | translate }}</p>
   </div>
+</ng-template>
+
+<div *ngIf="errorMessage" class="error-box">
+  <strong>Error:</strong> {{ errorMessage }}
+</div>

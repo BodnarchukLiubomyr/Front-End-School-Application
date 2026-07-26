@@ -20,6 +20,7 @@ export class GetLessonsComponent implements OnDestroy{
     errorMessage = '';
   
     lessonsByDay: { [key: string]: any[] } = {};
+    groupedLessons: {[day: string]: {[slot: string]: any[]}} = {};
     weekDays: string[] = [];
     timeSlots: string[] = [];
   
@@ -54,15 +55,21 @@ export class GetLessonsComponent implements OnDestroy{
           this.weekDays = Object.keys(this.lessonsByDay);
 
           const slotSet = new Set<string>();
-          for (let day of this.weekDays) {
-            for (let lesson of this.lessonsByDay[day]) {
+          this.groupedLessons = {};
+          for (const day of this.weekDays) {
+            this.groupedLessons[day] = {};
+            for (const lesson of this.lessonsByDay[day]) {
               const slot = `${lesson.startTime} - ${lesson.endTime}`;
               slotSet.add(slot);
+              if (!this.groupedLessons[day][slot]) {
+                this.groupedLessons[day][slot] = [];
+              }
+              this.groupedLessons[day][slot].push(lesson);
             }
           }
 
           this.timeSlots = Array.from(slotSet).sort();
-          console.log('Schedule slots:', this.timeSlots);
+          console.log('Grouped lessons:', this.groupedLessons);
         },
         error: err => {
           if (err.status == 500) {

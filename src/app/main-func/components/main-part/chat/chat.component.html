@@ -1,25 +1,41 @@
-<div class="chat-container"> 
-  <div class="chat-history">  
-  <div *ngFor="let message of chatHistory" class="message"> 
-    <div class="user-name"> 
-      <strong>{{ message.userName }}:</strong> 
-      <span class="message-time">
-        {{ message.timestamp | date:'shortTime' }}
-      </span> 
-    </div> 
-    <div class="message-content">
-      {{ message.message }}
+<div class="chat-page">
+  <div class="chat-header">
+    <div class="chat-title-section">
+      <div class="chat-avatar">💬</div>
+      <div>
+        <h2>{{ 'group-chat' | translate }}</h2>
+        <p>{{ chatHistory.length || 0 }} messages</p>
+      </div>
     </div>
-    <button class="btn update"(click)="onEditMessage(message)">✏️</button>
-    <button class="btn delete" (click)="onDeleteMessage(message.id,message.message)">🗑</button>
-    <div class="message-divider"></div> 
-  </div> 
-</div> 
-<div class="message-input"> 
-  <textarea [value]="newMessageContent || ''" (input)="onMessageInput($event)" placeholder="Type your message...">
-  </textarea> 
-  <button (click)="sendMessage()">{{'send-message'| translate}}</button> 
-  <button (click)="goBack($event)" class="button-white"> <h3 class="link-text text-blue">{{'back'| translate}}</h3> 
-  </button> 
-</div> 
+    <button (click)="goBack($event)"class="back-button">← {{ 'back' | translate }}</button>
+  </div>
+  <div class="chat-container">
+    <div class="chat-history">
+      <div *ngFor="let message of chatHistory" class="message-card">
+        <div class="message-header">
+          <div class="message-user-section">
+            <div class="user-avatar">{{ message.userName.charAt(0) }}
+            </div>
+            <div>
+              <div class="user-name">{{ message.userName }}</div>
+              <div class="message-time">{{ message.timestamp | date:'shortTime' }}</div>
+            </div>
+          </div>
+          <div class="message-actions">
+            <button class="icon-btn edit-btn" (click)="onEditMessage(message)">✏️</button>
+            <button class="icon-btn delete-btn" (click)="onDeleteMessage(message.id, message.message)" >🗑</button>
+          </div>
+        </div>
+        <div class="message-content">
+          {{ message.message }}
+        </div>
+      </div>
+    </div>
+    <div class="message-input-container">
+      <textarea [value]="newMessageContent || ''" (input)="onMessageInput($event)" placeholder="Type your message..."></textarea>
+      <div class="input-actions">
+        <button class="send-button" (click)="sendMessage()">🚀 {{ 'send-message' | translate }}</button>
+      </div>
+    </div>
+  </div>
 </div>

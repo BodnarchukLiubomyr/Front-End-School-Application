@@ -1,70 +1,83 @@
-<div class="flex-column-frame">
-    <div class="alert-container">
-      <div class="alert-body alert-bg-error" role="alert" *ngIf="isCreateClassFailed">
-        <span class="alert-icon-container">
-          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <use xlink:href="assets/icons.svg#error-icon"></use>
-          </svg>
-        </span>
-        <span class="alert-text">{{ errorMessage }}</span>
-        <span class="alert-button-container" (click)="closeErrorAlert()">
-          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <use xlink:href="assets/icons.svg#close-icon"></use>
-          </svg>
-        </span>
-      </div>
+<div class="page-container">
+  <div class="error-alert" *ngIf="isCreateClassFailed" role="alert">
+<div class="error-alert-content">
+  <span class="error-icon">!</span>
+  <span class="error-message">
+    {{ errorMessage }}
+  </span>
+</div>
+<button type="button" class="close-alert" (click)="closeErrorAlert()"aria-label="Close">&times;</button>
+</div>
+<div class="create-class-card">
+<div class="form-header">
+  <div class="header-icon">
+    <span>🏫</span>
+  </div>
+  <h2>{{ 'create-class' | translate }}</h2>
+  <p>{{ 'create-class-description' | translate }}</p>
+</div>
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()" class="create-class-form"><div class="field-container">
+    <label for="classNumber" class="label">
+      {{ 'class-number' | translate }}
+      <span class="required">*</span>
+    </label>
+
+    <div class="input-wrapper" [class.input-error]="form.controls['classNumber'].invalid && (form.controls['classNumber'].dirty ||form.controls['classNumber'].touched)"
+      [class.input-success]="form.controls['classNumber'].valid && (form.controls['classNumber'].dirty ||form.controls['classNumber'].touched)">
+      <span class="input-icon">#</span>
+      <input id="classNumber" name="classNumber" type="number" min="1"max="11" autocomplete="off"formControlName="classNumber"placeholder="1 - 11"
+        class="field-text">
     </div>
-    <div class="create-class-form">
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-        <div class="title-input">
-          <h3 class="title-text">{{'create-class'| translate}}</h3>
-          <div class="field-container">
-            <div>
-              <label for="classNumber" class="label">{{'class-number'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['classNumber'].invalid && (form.controls['classNumber'].dirty || form.controls['classNumber'].touched)}">
-              <input class="field-text" id="classNumber" name="classNumber" type="classNumber" autocomplete="classNumber" formControlName="classNumber">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['classNumber'].invalid && (form.controls['classNumber'].dirty || form.controls['classNumber'].touched)">
-              <div *ngIf="form.controls['classNumber'].errors?.['required']" class="label text-red">
-                {{'valid-class-number'| translate}}
-              </div>
-              <div *ngIf="form.controls['classNumber'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-class-number'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="field-container">
-            <div>
-              <label for="classLetter" class="label">{{'class-letter'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['classLetter'].invalid && (form.controls['classLetter'].dirty || form.controls['classLetter'].touched)}">
-              <input class="field-text" id="classLetter" name="classLetter" type="classLetter" autocomplete="classLetter" formControlName="classLetter">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['classLetter'].invalid && (form.controls['classLetter'].dirty || form.controls['classLetter'].touched)">
-              <div *ngIf="form.controls['classLetter'].errors?.['required']" class="label text-red">
-                {{'valid-class-letter'| translate}}
-              </div>
-              <div *ngIf="form.controls['classLetter'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-class-letter'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="button-container">
-            <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">{{'create'| translate}}</h3>
-            </button>
-            <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-            </button>
-          </div>
-        </div>
-      </form>
+    <div class="error-message" *ngIf=" form.controls['classNumber'].invalid && (form.controls['classNumber'].dirty || form.controls['classNumber'].touched)">
+      <span *ngIf="form.controls['classNumber'].errors?.['required']">
+        {{ 'valid-class-number' | translate }}
+      </span>
+      <span *ngIf="form.controls['classNumber'].errors?.['pattern']">
+        {{ 'not-valid-class-number' | translate }}
+      </span>
     </div>
   </div>
+  <div class="field-container">
+    <label for="classLetter" class="label">
+      {{ 'class-letter' | translate }}
+      <span class="required">*</span>
+    </label>
+    <div class="input-wrapper" [class.input-error]=" form.controls['classLetter'].invalid && (form.controls['classLetter'].dirty ||form.controls['classLetter'].touched)"
+      [class.input-success]="form.controls['classLetter'].valid &&(form.controls['classLetter'].dirty ||form.controls['classLetter'].touched)">
+      <span class="input-icon">A</span>
+      <input id="classLetter" name="classLetter" type="text" maxlength="1" autocomplete="off" formControlName="classLetter"
+      placeholder="A - D"class="field-text">
+    </div>
+    <div class="error-message" 
+    *ngIf="form.controls['classLetter'].invalid && (form.controls['classLetter'].dirty || form.controls['classLetter'].touched)">
+      <span *ngIf="form.controls['classLetter'].errors?.['required']">
+        {{ 'valid-class-letter' | translate }}
+      </span>
+      <span *ngIf="form.controls['classLetter'].errors?.['pattern']">
+        {{ 'not-valid-class-letter' | translate }}
+      </span>
+    </div>
+  </div>
+  <div  class="class-preview" *ngIf="form.get('classNumber')?.value &&form.get('classLetter')?.value">
+    <span class="preview-label">
+      {{ 'class' | translate }}
+    </span>
+    <strong>
+      {{ form.get('classNumber')?.value }}
+      {{ form.get('classLetter')?.value | uppercase }}
+    </strong>
+  </div>
+  <div class="button-container">
+    <button type="submit" class="primary-button" [disabled]="form.invalid" [class.disabled]="form.invalid">
+      <span>＋</span>
+      {{ 'create' | translate }}
+    </button>
+    <button type="button" class="secondary-button" (click)="goBack($event)">
+      <span>←</span>
+      {{ 'back' | translate }}
+    </button>
+  </div>
+</form>
+  </div>
+</div>
+

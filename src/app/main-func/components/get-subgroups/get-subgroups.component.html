@@ -1,18 +1,56 @@
-<button (click)="onDelete(subject.id)" class="delete-button">{{'delete'| translate}}</button>
+<div class="page-header">
+  <div class="subject-info">
+    <h2>{{ subject.name }}</h2>
+    <span class="subgroup-count">
+      {{ subgroups?.length || 0 }} {{ 'subgroups' | translate }}
+    </span>
+  </div>
+  <button
+    (click)="onDelete(subject.id)"
+    class="delete-btn">
+    🗑 {{ 'delete' | translate }}
+  </button>
+</div>
+
 <div *ngIf="subgroups && subgroups.length > 0; else noSubgroups">
-  <div class="subgroup-row">
+  <div class="subgroup-grid">
     <div *ngFor="let subgroup of subgroups" class="subgroup-card">
-      <h3>{{ subject.name }}</h3>
-      <p>{{'teacher'| translate}}: {{ subgroup.teacherLastname }} {{ subgroup.teacherFirstname }}</p>
-      <button [routerLink]="['/finish-subgroup', subgroup.id]" class="update-button">{{'update'| translate}}</button>
+      <div class="card-header">
+        <div class="subgroup-badge">
+          #{{ subgroup.number }}
+        </div>
+      </div>
+      <div class="teacher-section">
+        <div class="teacher-avatar">
+          👨‍🏫
+        </div>
+        <div class="teacher-info">
+          <div class="label">
+            {{ 'teacher' | translate }}
+          </div>
+          <div class="teacher-name">
+            {{ subgroup.teacherLastname || 'Not assigned' }}
+            {{ subgroup.teacherFirstname || '' }}
+          </div>
+        </div>
+      </div>
+      <button
+        [routerLink]="['/finish-subgroup', subgroup.id]"
+        class="edit-btn">
+        ✏️ {{ 'update' | translate }}
+      </button>
     </div>
   </div>
 </div>
-  
-  <ng-template #noSubgroups>
-    <p>{{'no-subgroups'| translate}}</p>
-  </ng-template>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
+
+<ng-template #noSubgroups>
+  <div class="empty-state">
+    <div class="empty-icon">📚</div>
+    <h3>{{ 'no-subgroups' | translate }}</h3>
+    <p>No subgroup information available.</p>
   </div>
+</ng-template>
+
+<div *ngIf="errorMessage" class="error-box">
+  {{ errorMessage }}
+</div>
