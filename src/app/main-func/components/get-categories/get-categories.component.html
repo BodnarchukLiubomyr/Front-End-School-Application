@@ -1,16 +1,34 @@
-<div *ngIf="categories && categories.length > 0; else noCategories">
-    <label for="categoryDropdown">{{'select-category'| translate}}:</label>
+<div class="category-control">
+  <label for="categoryDropdown">
+    {{ 'select-category' | translate }}
+  </label>
+  <div *ngIf="categories?.length; else noCategories" class="select-wrapper">
+    <mat-icon>category</mat-icon>
     <select id="categoryDropdown" (change)="onCategoryChange($event)">
-      <option *ngFor="let category of categories" [value]="category.name">
-        {{ category.name }}
+      <option value="" disabled>
+        {{ 'select-category' | translate }}
       </option>
+      <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
     </select>
+    <mat-icon class="select-arrow">
+      expand_more
+    </mat-icon>
   </div>
-  <ng-template #noCategories>
-    <p>{{'no-categories-available'| translate}}.</p>
-  </ng-template>
-  <div *ngIf="isGetCategoriesFailed" class="error-alert">
-    {{ errorMessage }}
+</div>
+<ng-template #noCategories>
+  <div class="empty-categories">
+    <mat-icon>category</mat-icon>
+    <div>
+      <strong>
+        {{ 'no-categories-available' | translate }}
+      </strong>
+      <span>
+        {{ 'create-category-to-continue' | translate }}
+      </span>
+    </div>
   </div>
+</ng-template>
+<div *ngIf="isGetCategoriesFailed" class="category-error"> <mat-icon>error_outline</mat-icon> <span>{{ errorMessage }}</span></div>
+
   
     
