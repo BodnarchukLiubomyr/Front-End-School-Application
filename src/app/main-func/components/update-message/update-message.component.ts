@@ -1,8 +1,5 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { StorageService } from '../../../shared';
 import { MainFuncService } from '../../services/main-func.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

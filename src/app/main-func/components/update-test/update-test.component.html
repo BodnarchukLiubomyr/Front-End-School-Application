@@ -1,121 +1,162 @@
-<div class="flex-column-frame">
-  <div class="alert-container">
-    <div class="alert-body alert-bg-error" role="alert" *ngIf="isUpdateTestFailed">
-      <span class="alert-icon-container">
-        <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+<div class="page-container">
+  <div class="error-alert" role="alert" *ngIf="isUpdateTestFailed">
+    <div class="error-alert__content">
+      <span class="error-alert__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
           <use xlink:href="assets/icons.svg#error-icon"></use>
         </svg>
       </span>
-      <span class="alert-text">{{ errorMessage }}</span>
-      <span class="alert-button-container" (click)="closeErrorAlert()">
-        <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <use xlink:href="assets/icons.svg#close-icon"></use>
-        </svg>
+      <span class="error-alert__message">
+        {{ errorMessage }}
       </span>
     </div>
+    <button type="button" class="error-alert__close" (click)="closeErrorAlert()" [attr.aria-label]="'close' | translate">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+        <use xlink:href="assets/icons.svg#close-icon"></use>
+      </svg>
+    </button>
   </div>
-  <div class="update-test-form">
-    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-      <div class="title-input">
-        <h3 class="title-text">{{'create-test'| translate}}</h3>
-        <div class="row">
-          <div class="column">
-            <div class="field-container">
-                <div>
-                  <label for="name" class="label">{{'name'| translate}}</label>
-                  <label for="password" class="label text-red">*</label>
-                </div>
-                <div class="field"
-                  [ngClass]="{'border-error': form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)}">
-                  <input class="field-text" id="name" name="name" type="name" autocomplete="name" formControlName="name">
-                </div>
-                <div class="error-label-container"
-                  *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
-                  <div *ngIf="form.controls['name'].errors?.['required']" class="label text-red">
-                    {{'valid-name'| translate}}
-                  </div>
-                  <div *ngIf="form.controls['name'].errors?.['pattern']" class="label text-red">
-                    {{'not-valid-name'| translate}}
-                  </div>
-                  <div *ngIf="form.controls['name'].errors?.['maxlength']" class="label text-red">
-                    {{'name-contain'| translate}}
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="column">
-            <div class="field-container">
-              <div>
-                <label for="startTime" class="label">{{'startTime'| translate}}</label>
-                <label for="password" class="label text-red">*</label>
-              </div>
-              <div class="field"
-                [ngClass]="{'border-error': form.controls['startTime'].invalid && (form.controls['startTime'].dirty || form.controls['startTime'].touched)}">
-                <input class="field-text" id="startTime" name="startTime" type="datetime-local" autocomplete="startTime" formControlName="startTime">
-              </div>
-              <div class="error-label-container"
-                *ngIf="form.controls['startTime'].invalid && (form.controls['startTime'].dirty || form.controls['startTime'].touched)">
-                <div *ngIf="form.controls['startTime'].errors?.['required']" class="label text-red">
-                  {{'valid-date'| translate}}
-                </div>
-                <div *ngIf="form.controls['startTime'].errors?.['pattern']" class="label text-red">
-                  {{'not-valid-date'| translate}}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field-container">
-              <div>
-                <label for="endTime" class="label">{{'endTime'| translate}}</label>
-                <label for="password" class="label text-red">*</label>
-              </div>
-              <div class="field"
-                [ngClass]="{'border-error': form.controls['endTime'].invalid && (form.controls['endTime'].dirty || form.controls['endTime'].touched)}">
-                <input class="field-text" id="endTime" name="endTime" type="datetime-local" autocomplete="endTime" formControlName="endTime">
-              </div>
-              <div class="error-label-container"
-                *ngIf="form.controls['endTime'].invalid && (form.controls['endTime'].dirty || form.controls['endTime'].touched)">
-                <div *ngIf="form.controls['endTime'].errors?.['required']" class="label text-red">
-                  {{'valid-date'| translate}}
-                </div>
-                <div *ngIf="form.controls['endTime'].errors?.['pattern']" class="label text-red">
-                  {{'not-valid-date'| translate}}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field-container">
-              <div>
-                <label for="duration" class="label">{{'duration' | translate}}</label>
-                <label for="password" class="label text-red">*</label>
-              </div>
-              <div class="field"
-                [ngClass]="{'border-error': form.controls['duration'].invalid && (form.controls['duration'].dirty || form.controls['duration'].touched)}">
-                <input class="field-text" id="duration" name="duration" type="text" autocomplete="duration" formControlName="duration" placeholder="duration">
-              </div>
-              <div class="error-label-container"
-                *ngIf="form.controls['duration'].invalid && (form.controls['duration'].dirty || form.controls['duration'].touched)">
-                <div *ngIf="form.controls['duration'].errors?.['required']" class="label text-red">
-                  {{'valid-duration' | translate}}
-                </div>
-                <div *ngIf="form.controls['duration'].errors?.['pattern']" class="label text-red">
-                  {{'not-valid-duration' | translate}}
-                </div>
-              </div>
-            </div>
-          </div>
-          
+  <div class="update-test-card">
+    <div class="form-header">
+      <div class="form-header__icon">
+        <span>📝</span>
+      </div>
+      <div>
+        <h2 class="form-title">
+          {{ 'update-test' | translate }}
+        </h2>
+        <p class="form-subtitle">
+          Update the test information and schedule.
+        </p>
+      </div>
+    </div>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()" class="test-form">
+      <div class="form-field">
+        <label for="name" class="form-label">
+          {{ 'name' | translate }}
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper" 
+          [class.input-wrapper--error]=" form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+          <span class="input-icon" aria-hidden="true">
+            📝
+          </span>
+          <input id="name" name="name" type="text" autocomplete="off" formControlName="name" 
+            class="form-input" [attr.aria-invalid]="form.controls['name'].invalid"aria-describedby="name-error"/>
         </div>
-        <div class="button-container">
-          <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-            <h3 class="link-text text-white">{{'create'| translate}}</h3>
-          </button>
-          <button class="button-white" (click)="goBack($event)">
-            <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-          </button>
+        <div id="name-error" class="field-error" *ngIf="
+            form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+          <span *ngIf="form.controls['name'].errors?.['required']">
+            {{ 'valid-name' | translate }}
+          </span>
+          <span *ngIf="form.controls['name'].errors?.['pattern']">
+            {{ 'not-valid-name' | translate }}
+          </span>
+          <span *ngIf="form.controls['name'].errors?.['maxlength']">
+            {{ 'name-contain' | translate }}
+          </span>
         </div>
+      </div>
+      <div class="schedule-section">
+        <div class="section-header">
+          <div class="section-icon">
+            🕐
+          </div>
+          <div>
+            <h3>
+              {{ 'schedule' | translate }}
+            </h3>
+            <p>
+              Set when the test starts and ends.
+            </p>
+          </div>
+        </div>
+        <div class="schedule-grid">
+          <div class="form-field">
+            <label for="startTime" class="form-label">
+              {{ 'startTime' | translate }}
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper" [class.input-wrapper--error]="
+                form.controls['startTime'].invalid && (form.controls['startTime'].dirty || form.controls['startTime'].touched)">
+              <span class="input-icon" aria-hidden="true">
+                ▶
+              </span>
+              <input id="startTime" name="startTime" type="datetime-local" formControlName="startTime"
+                class="form-input" [attr.aria-invalid]="form.controls['startTime'].invalid" aria-describedby="start-time-error"/>
+            </div>
+            <div id="start-time-error" class="field-error"
+              *ngIf="form.controls['startTime'].invalid && (form.controls['startTime'].dirty || form.controls['startTime'].touched)">
+              <span *ngIf="form.controls['startTime'].errors?.['required']">
+                {{ 'valid-date' | translate }}
+              </span>
+              <span *ngIf="form.controls['startTime'].errors?.['pattern']">
+                {{ 'not-valid-date' | translate }}
+              </span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="endTime" class="form-label">
+              {{ 'endTime' | translate }}
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrapper" [class.input-wrapper--error]="
+                form.controls['endTime'].invalid && (form.controls['endTime'].dirty || form.controls['endTime'].touched)">
+              <span class="input-icon" aria-hidden="true">
+                ■
+              </span>
+              <input id="endTime" name="endTime" type="datetime-local" formControlName="endTime"
+                class="form-input" [attr.aria-invalid]="form.controls['endTime'].invalid" aria-describedby="end-time-error"/>
+            </div>
+            <div id="end-time-error" class="field-error"
+              *ngIf="form.controls['endTime'].invalid && (form.controls['endTime'].dirty || form.controls['endTime'].touched)">
+              <span *ngIf="form.controls['endTime'].errors?.['required']">
+                {{ 'valid-date' | translate }}
+              </span>
+              <span *ngIf="form.controls['endTime'].errors?.['pattern']">
+                {{ 'not-valid-date' | translate }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="duration" class="form-label">
+          {{ 'duration' | translate }}
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper" [class.input-wrapper--error]="
+            form.controls['duration'].invalid && (form.controls['duration'].dirty || form.controls['duration'].touched)">
+          <span class="input-icon" aria-hidden="true">
+            ⏱
+          </span>
+          <input id="duration" name="duration" type="text" autocomplete="off" formControlName="duration" class="form-input" 
+            placeholder="e.g. 45 min" [attr.aria-invalid]="form.controls['duration'].invalid" aria-describedby="duration-error"/>
+        </div>
+        <div id="duration-error" class="field-error"
+          *ngIf="
+            form.controls['duration'].invalid && (form.controls['duration'].dirty || form.controls['duration'].touched)">
+          <span *ngIf="form.controls['duration'].errors?.['required']">
+            {{ 'valid-duration' | translate }}
+          </span>
+          <span *ngIf="form.controls['duration'].errors?.['pattern']">
+            {{ 'not-valid-duration' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          <span class="btn-icon">✓</span>
+          <span>
+            {{ 'update' | translate }}
+          </span>
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="goBack($event)">
+          <span class="btn-icon">←</span>
+          <span>
+            {{ 'back' | translate }}
+          </span>
+        </button>
       </div>
     </form>
   </div>

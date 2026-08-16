@@ -1,81 +1,126 @@
-<div class="flex-column-frame">
-    <div class="alert-container">
-      <div class="alert-body alert-bg-error" role="alert" *ngIf="isUpdateSubjectFailed">
-        <span class="alert-icon-container">
-          <svg class="alert-icon icon-error-fill" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <use xlink:href="assets/icons.svg#error-icon"></use>
-          </svg>
-        </span>
-        <span class="alert-text">{{ errorMessage }}</span>
-        <span class="alert-button-container" (click)="closeErrorAlert()">
-          <svg class="alert-button-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <use xlink:href="assets/icons.svg#close-icon"></use>
-          </svg>
-        </span>
+<div class="page-container">
+  <div class="error-alert" role="alert" *ngIf="isUpdateSubjectFailed">
+    <div class="error-alert__content">
+      <span class="error-alert__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true">
+          <use xlink:href="assets/icons.svg#error-icon"></use>
+        </svg>
+      </span>
+      <span class="error-alert__message">
+        {{ errorMessage }}
+      </span>
+    </div>
+    <button type="button" class="error-alert__close" (click)="closeErrorAlert()" [attr.aria-label]="'close' | translate">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true">
+        <use xlink:href="assets/icons.svg#close-icon"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="update-subject-card">
+    <div class="form-header">
+      <div class="form-header__icon">
+        <span>✎</span>
+      </div>
+      <div>
+        <h2 class="form-title">
+          {{ 'update-subject' | translate }}
+        </h2>
+        <p class="form-subtitle">
+          Update the subject and teacher information.
+        </p>
       </div>
     </div>
-    <div class="update-subject-form">
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(subjectId)">
-        <div class="title-input">
-          <h3 class="title-text">{{'update-subject'| translate}}</h3>
-          <div class="field-container">
-            <div>
-              <label for="name" class="label">{{'subject-name'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)}">
-              <input class="field-text" id="name" name="name" type="name" autocomplete="name" formControlName="name">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
-              <div *ngIf="form.controls['name'].errors?.['pattern']" class="label text-red">
-                {{'not-valid-subject-name'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="field-container">
-            <div>
-              <label for="teacherLastname" class="label">{{'teacher-lastname'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['teacherLastname'].invalid && (form.controls['teacherLastname'].dirty || form.controls['teacherLastname'].touched)}">
-              <input class="field-text" id="teacherLastname" name="teacherLastname" type="teacherLastname" autocomplete="teacherLastname" formControlName="teacherLastname">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['teacherLastname'].invalid && (form.controls['teacherLastname'].dirty || form.controls['teacherLastname'].touched)">
-              <div *ngIf="form.controls['teacherLastname'].errors?.['pattern']" class="label text-red">
-                {{'teacher-lastname-not-valid'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="field-container">
-            <div>
-              <label for="teacherFirstname" class="label">{{'teacher-firstname'| translate}}</label>
-              <label for="password" class="label text-red">*</label>
-            </div>
-            <div class="field"
-              [ngClass]="{'border-error': form.controls['teacherFirstname'].invalid && (form.controls['teacherFirstname'].dirty || form.controls['teacherFirstname'].touched)}">
-              <input class="field-text" id="teacherFirstname" name="teacherFirstname" type="teacherFirstname" autocomplete="teacherFirstname" formControlName="teacherFirstname">
-            </div>
-            <div class="error-label-container"
-              *ngIf="form.controls['teacherFirstname'].invalid && (form.controls['teacherFirstname'].dirty || form.controls['teacherFirstname'].touched)">
-              <div *ngIf="form.controls['teacherFirstname'].errors?.['pattern']" class="label text-red">
-                {{'teacher-firstname-not-valid'| translate}}
-              </div>
-            </div>
-          </div>
-          <div class="button-container">
-            <button type="submit" [disabled]="!form.valid" class="button" [class.disabled]="form.invalid">
-              <h3 class="link-text text-white">{{'update'| translate}}</h3>
-            </button>
-            <button class="button-white" (click)="goBack($event)">
-              <h3 class="link-text text-blue">{{'back'| translate}}</h3>
-            </button>
-          </div>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(subjectId)" class="subject-form">
+      <div class="form-field">
+        <label for="name" class="form-label">
+          {{ 'subject-name' | translate }}
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper" [class.input-wrapper--error]="form.controls['name'].invalid &&
+          (form.controls['name'].dirty ||form.controls['name'].touched)">
+          <span class="input-icon" aria-hidden="true">
+            📚
+          </span>
+          <input id="name" name="name" type="text" autocomplete="off" formControlName="name" class="form-input" 
+            [attr.aria-invalid]="form.controls['name'].invalid" [attr.aria-describedby]="'name-error'"/>
         </div>
-      </form>
-    </div>
+        <div id="name-error" class="field-error" *ngIf=" form.controls['name'].invalid && (form.controls['name'].dirty ||form.controls['name'].touched)">
+          <span
+            *ngIf="form.controls['name'].errors?.['required']">
+            {{ 'valid-subject-name' | translate }}
+          </span>
+          <span
+            *ngIf="form.controls['name'].errors?.['pattern']">
+            {{ 'not-valid-subject-name' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="teacherLastname" class="form-label">
+          {{ 'teacher-lastname' | translate }}
+          <span class="required">*</span>
+        </label>
+        <div class="input-wrapper" 
+           [class.input-wrapper--error]="form.controls['teacherLastname'].invalid && (form.controls['teacherLastname'].dirty ||form.controls['teacherLastname'].touched)">
+          <span class="input-icon" aria-hidden="true">
+            👤
+          </span>
+          <input id="teacherLastname" name="teacherLastname" type="text" autocomplete="family-name" formControlName="teacherLastname"
+            class="form-input" [attr.aria-invalid]="form.controls['teacherLastname'].invalid" [attr.aria-describedby]="'lastname-error'"/>
+        </div>
+        <div id="lastname-error" class="field-error" 
+          *ngIf="form.controls['teacherLastname'].invalid && (form.controls['teacherLastname'].dirty ||form.controls['teacherLastname'].touched)">
+          <span
+            *ngIf="form.controls['teacherLastname'].errors?.['required']">
+            {{ 'valid-teacher-lastname' | translate }}
+          </span>
+          <span
+            *ngIf="form.controls['teacherLastname'].errors?.['pattern']">
+            {{ 'teacher-lastname-not-valid' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="teacherFirstname" class="form-label">
+          {{ 'teacher-firstname' | translate }}
+          <span class="required">*</span>
+        </label>
+
+        <div class="input-wrapper" [class.input-wrapper--error]="
+          form.controls['teacherFirstname'].invalid &&(form.controls['teacherFirstname'].dirty ||form.controls['teacherFirstname'].touched)">
+          <span class="input-icon" aria-hidden="true">
+            👤
+          </span>
+          <input id="teacherFirstname" name="teacherFirstname" type="text" autocomplete="given-name" formControlName="teacherFirstname"
+            class="form-input" [attr.aria-invalid]="form.controls['teacherFirstname'].invalid" [attr.aria-describedby]="'firstname-error'"/>
+        </div>
+        <div id="firstname-error" class="field-error"
+          *ngIf=" form.controls['teacherFirstname'].invalid && (form.controls['teacherFirstname'].dirty || form.controls['teacherFirstname'].touched)">
+          <span
+            *ngIf="form.controls['teacherFirstname'].errors?.['required']">
+            {{ 'valid-teacher-firstname' | translate }}
+          </span>
+          <span
+            *ngIf="form.controls['teacherFirstname'].errors?.['pattern']">
+            {{ 'teacher-firstname-not-valid' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          <span class="btn-icon">✓</span>
+          <span>
+            {{ 'update' | translate }}
+          </span>
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="goBack($event)">
+          <span class="btn-icon">←</span>
+          <span>
+            {{ 'back' | translate }}
+          </span>
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 

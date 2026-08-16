@@ -1,23 +1,59 @@
-<h2 mat-dialog-title>{{'edit-message'| translate}}</h2>
+<h2 mat-dialog-title class="dialog-title">
+  <span class="dialog-title-icon" aria-hidden="true">
+    <mat-icon>edit</mat-icon>
+  </span>
+  <span>{{ 'edit-message' | translate }}</span>
+</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content class="dialog-content">
+    <div class="message-field">
+      <label for="message-content" class="message-label">
+        {{ 'message' | translate }}
+      </label>
 
-<form [formGroup]="form">
-  <mat-dialog-content>
-    <textarea
-      class="w-full border p-2"
-      rows="4"
-      formControlName="content">
-    </textarea>
+      <mat-form-field
+        appearance="outline"
+        class="message-form-field">
+
+        <mat-label>
+          {{ 'edit-message' | translate }}
+        </mat-label>
+
+        <textarea id="message-content" matInput formControlName="content" rows="5" maxlength="1000" autocomplete="off"cdkTextareaAutosize
+          cdkAutosizeMinRows="4" cdkAutosizeMaxRows="8" [attr.aria-invalid]=" form.controls['content'].invalid && form.controls['content'].touched">
+        </textarea>
+        <mat-hint align="start">
+          {{ 'edit-message-hint' | translate }}
+        </mat-hint>
+        <mat-hint align="end">
+          {{ form.controls['content'].value?.length || 0 }}/1000
+        </mat-hint>
+        <mat-error *ngIf="form.controls['content'].errors?.['required']">
+          {{ 'message-required' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.controls['content'].errors?.['maxlength']">
+          {{ 'message-too-long' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
   </mat-dialog-content>
-
-  <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="cancel()">Cancel</button>
+  <mat-dialog-actions class="dialog-actions">
     <button
-      mat-raised-button
-      color="primary"
+      mat-stroked-button
       type="button"
-      (click)="save()"
-      [disabled]="form.invalid">
-      Save
+      class="cancel-button"
+      (click)="cancel()">
+      <mat-icon>close</mat-icon>
+      {{ 'cancel' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="save-button"
+      [disabled]="form.invalid || form.pristine">
+      <mat-icon>check</mat-icon>
+      {{ 'save' | translate }}
     </button>
   </mat-dialog-actions>
 </form>
